@@ -1,6 +1,6 @@
 <mat-form-field>
   <mat-select placeholder="Action">
-    <mat-option *ngFor="let action of actions" [value]="action">
+    <mat-option *ngFor="let action of this.actions" [value]="action">
       {{action}}
     </mat-option>
   </mat-select>

@@ -3,7 +3,7 @@
   <a *ngIf="selectedSequence" [routerLink]="['/teacher/sequence/edit/'+ this.courseSequenceQuestionService.currentSequence._id]">Sequence:{{this.courseSequenceQuestionService.currentSequence.sequenceTitle}}</a>
 
     <h3>Sequence</h3>
-    <form class="example-form" *ngIf="selectedSequence; else loading">
+    <form class="example-form" *ngIf="selectedSequence">
         <mat-form-field class="example-full-width">
         <input matInput placeholder="Title"  type="text"  required name="title" [(ngModel)]="selectedSequence.sequenceTitle"/>
         </mat-form-field>

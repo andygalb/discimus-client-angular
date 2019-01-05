@@ -12,6 +12,7 @@ export class AdminSequenceComponent implements OnInit {
 
   sequences: Sequence[];
 
+  actions = ['Delete'];
   dataSource = new MatTableDataSource();
   displayedColumns = ['selectSequence', 'sequenceTitle', 'created_at'];
 
