@@ -1,0 +1,8 @@
+<mat-toolbar color="primary">
+  <span> <a [routerLink]="['/sequence/'+id,{ outlets: { sequenceSection : 'home' } }]">Home</a></span>
+  <span> <a [routerLink]="['/sequence/'+id,{ outlets: { sequenceSection : 'edit' } }]">Edit</a></span>
+</mat-toolbar>
+<router-outlet name="sequenceSection"></router-outlet>
+
+
+

@@ -1,0 +1,11 @@
+<mat-toolbar color="primary">
+  <span> <a [routerLink]="['/admin',{ outlets: { adminSection : 'users' } }]">Users</a></span>
+  <span> <a [routerLink]="['/admin',{ outlets: { adminSection : 'courses' } }]">Courses</a></span>
+  <span> <a [routerLink]="['/admin',{ outlets: { adminSection : 'sequences' } }]">Sequences</a></span>
+  <span> <a [routerLink]="['/admin',{ outlets: { adminSection : 'questions' } }]">Questions</a></span>
+</mat-toolbar>
+<router-outlet name="adminSection"></router-outlet>
+
+
+
+

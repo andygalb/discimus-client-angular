@@ -1,0 +1,8 @@
+<mat-toolbar color="primary">
+  <span> <a [routerLink]="['/course/'+id,{ outlets: { courseSection : 'home' } }]">Home</a></span>
+  <span> <a [routerLink]="['/course/'+id,{ outlets: { courseSection : 'teachers' } }]">Teachers</a></span>
+  <span> <a [routerLink]="['/course/'+id,{ outlets: { courseSection : 'students' } }]">Students</a></span>
+  <span> <a [routerLink]="['/course/'+id,{ outlets: { courseSection : 'documents' } }]">Documents</a></span>
+  <span> <a [routerLink]="['/course/'+id,{ outlets: { courseSection : 'sequences' } }]">Sequences</a></span>
+</mat-toolbar>
+<router-outlet name="courseSection"></router-outlet>

@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-6">
+    <h2 *ngIf="selectedSequence">Sequence: {{selectedSequence.sequenceTitle}}</h2>
+    <p *ngIf="selectedSequence">Description: {{selectedSequence.sequenceDescription}}</p>
+
+  </div>
+
+  <div class="col-6">
+    <h3>Questions</h3>
+    <div *ngFor="let question of questionsToShow">
+        <mat-card>
+          <mat-card-title><div class="card-header">{{question.title}}</div></mat-card-title>
+          <mat-card-content>
+              <p>{{question.text}}</p>
+              <div *ngIf="myUserService.hasUserAlreadyAnsweredQuestion(question._id); then answeredContent else notAnsweredContent"></div>
+              <ng-template #answeredContent>
+                <p> You answered {{question.userAnswer}}</p>
+                <p>This question has been answered correctly<mat-icon layout-align="center end">done</mat-icon></p>
+              </ng-template>
+              <ng-template #notAnsweredContent>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Answer" value="" [(ngModel)]="question.userAnswer">
+                </mat-form-field>
+                <button  (click)="answerQuestion(question);" class="btn btn-primary" >Answer</button>
+          </ng-template>
+      </mat-card-content>
+          <mat-card-footer>
+            <div *ngIf="question.userResponse">
+              <p>{{question.userResponse}}</p>
+            </div>
+          </mat-card-footer>
+        </mat-card>
+    </div>
+  </div>
+</div>
+
+
+
