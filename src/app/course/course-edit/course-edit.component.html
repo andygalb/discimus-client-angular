@@ -15,7 +15,7 @@
         <label for="description">Description:</label>
         <textarea  *ngIf="selectedCourse"type="text" class="form-control" id="course-description" required name="description" [(ngModel)]="selectedCourse.courseDescription"></textarea>
       </div>
-      <button  mat-button color="primary"  (click)="saveChanges();return;">Save Changes</button>
+      <button  mat-button color="primary"  (click)="saveChanges()">Save Changes</button>
     </form>
 
 
@@ -40,7 +40,7 @@
       </tr>
       </tbody>
     </table>
-    <button mat-button color="primary"  (click)="createNewSequence();return;">+Add new sequence</button>
+    <button mat-button color="primary"  (click)="createNewSequence()">+Add new sequence</button>
 
  <div *ngIf="newSequence">
       <h2>Add new sequence</h2>

@@ -23,7 +23,7 @@ export class SequenceEditComponent implements OnInit {
   questionForm: FormGroup;
 
   constructor(private route: ActivatedRoute,
-              private courseSequenceQuestionService: CourseSequenceQuestionService,
+              public courseSequenceQuestionService: CourseSequenceQuestionService,
               private userService: UserService,
               @Inject(FormBuilder) fb: FormBuilder) {
     this.questionForm = fb.group({
