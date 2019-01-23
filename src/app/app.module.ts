@@ -43,7 +43,6 @@ import { SequenceEditComponent } from './sequence/sequence-edit/sequence-edit.co
 import { SequenceHomeComponent } from './sequence/sequence-home/sequence-home.component';
 import { AdminSequenceComponent } from './admin/admin-sequence/admin-sequence.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

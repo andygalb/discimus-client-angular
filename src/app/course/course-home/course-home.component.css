@@ -1,0 +1,9 @@
+.course-header-image {
+  background-image: url('/assets/images/course.png');
+  background-size: cover;
+}
+
+.news-header-image {
+  background-image: url('/assets/images/news.png');
+  background-size: cover;
+}

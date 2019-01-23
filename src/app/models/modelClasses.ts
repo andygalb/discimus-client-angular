@@ -1,4 +1,4 @@
-import {Course, Question, Result, Sequence, User} from './modelInterfaces';
+import {CourseDocument, Course, Question, Result, Sequence, User, News, Message} from './modelInterfaces';
 
 export class RUser implements User {
   _id: String;
@@ -17,6 +17,35 @@ export class RCourse implements Course {
   created_at: { type: Date; required: true };
   updated_at: { type: Date; required: true };
 }
+
+export class RMessage implements Message {
+  fromID: String;
+  toID: String;
+  title: String;
+  content: String;
+  created_at: {type: Date, required: true};
+  updated_at: {type: Date, required: true};
+}
+
+export class RNews implements News {
+  ownerID: String;
+  courseID: String;
+  title: String;
+  content: String;
+  created_at: {type: Date, required: true};
+  updated_at: {type: Date, required: true};
+}
+
+
+export class RDocument implements CourseDocument {
+  _id: String;
+  owner: String;
+  course: String;
+  originalFilename: String;
+  created_at: {type: Date, required: true};
+  updated_at: {type: Date, required: true};
+}
+
 
 export class RSequence implements Sequence {
   _id: string;

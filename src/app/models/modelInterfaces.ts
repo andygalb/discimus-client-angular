@@ -1,9 +1,36 @@
+export interface CourseDocument {
+  _id: String;
+  owner: String;
+  course: String;
+  originalFilename: String;
+  created_at: {type: Date, required: true};
+  updated_at: {type: Date, required: true};
+}
+
 export interface Course {
   _id: String;
   courseTitle: String;
   courseDescription: String;
   creatorID: String;
   sequences: String[];
+  created_at: {type: Date, required: true};
+  updated_at: {type: Date, required: true};
+}
+
+export interface Message {
+  fromID: String;
+  toID: String;
+  title: String;
+  content: String;
+  created_at: {type: Date, required: true};
+  updated_at: {type: Date, required: true};
+}
+
+export interface News {
+  ownerID: String;
+  courseID: String;
+  title: String;
+  content: String;
   created_at: {type: Date, required: true};
   updated_at: {type: Date, required: true};
 }
