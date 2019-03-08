@@ -23,7 +23,7 @@ export class UserService {
   currentSequenceTitle: string;
   currentQuestionID: string;
   currentQuestionTitle: string;
-  serverAddress = 'https://ltc-server.herokuapp.com';
+  serverAddress = 'http://api.discim.us';
 
   constructor(private http: HttpClient, router: Router) {
     this.router = router;
@@ -31,7 +31,7 @@ export class UserService {
 
   loginUser(user: User) {
     console.log(user);
-    return this.http.post<User>(this.serverAddress + '/api/user/login/', JSON.stringify(user), httpOptions);
+    return this.http.post(this.serverAddress + '/api/auth/local/', {'username' : user.local.username, 'password' : user.local.password});
   }
 
   initiateUser(user: User) {

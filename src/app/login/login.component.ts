@@ -55,10 +55,13 @@ export class LoginComponent implements OnInit {
     this.userService.loginUser(this.tempUser).subscribe(
       data => {
         console.log("This is what was returned in data:")
+        console.log("Token:" + data["token"]);
+
         console.log(data);
-        if(data.local.username!=null) {
-          this.userService.initiateUser(data);
-          this.userService.isUserLoggedIn=true;
+        let user = data["user"];
+        if(user.local.username!=null) {
+          this.userService.initiateUser(user);
+          this.userService.isUserLoggedIn = true;
           console.log(this.userService.user);
           this.tempUser=null;
           if(this.userService.user.local.userType=="admin") {this.router.navigate(['admin']);}
