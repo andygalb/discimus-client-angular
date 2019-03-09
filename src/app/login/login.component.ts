@@ -58,6 +58,10 @@ export class LoginComponent implements OnInit {
         console.log("Token:" + data["token"]);
 
         console.log(data);
+
+        const token = data["token"];
+        if (token !== "") { localStorage.setItem('token', token); }
+
         let user = data["user"];
         if(user.local.username!=null) {
           this.userService.initiateUser(user);

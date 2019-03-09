@@ -29,7 +29,7 @@ import { QuestionEditComponent } from './question/question-edit/question-edit.co
 import { QuestionDetailComponent } from './question/question-detail/question-detail.component';
 import { SequenceComponent } from './sequence/sequence.component';
 import { AdminComponent } from './admin/admin/admin.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { AdminUserComponent } from './admin/admin-user/admin-user.component';
 import { AdminQuestionComponent } from './admin/admin-question/admin-question.component';
 import { AdminCourseComponent } from './admin/admin-course/admin-course.component';
@@ -42,6 +42,7 @@ import {FormBuilder, FormsModule} from '@angular/forms';
 import { SequenceEditComponent } from './sequence/sequence-edit/sequence-edit.component';
 import { SequenceHomeComponent } from './sequence/sequence-home/sequence-home.component';
 import { AdminSequenceComponent } from './admin/admin-sequence/admin-sequence.component';
+import {HttpConfigInterceptor} from './interceptor/httpconfig.interceptor.';
 
 @NgModule({
   declarations: [
@@ -91,7 +92,8 @@ import { AdminSequenceComponent } from './admin/admin-sequence/admin-sequence.co
     RouterModule
   ],
   providers: [UserService,
-              CourseSequenceQuestionService,
+      { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },
+    CourseSequenceQuestionService,
               FormBuilder],
   bootstrap: [AppComponent]
 })
