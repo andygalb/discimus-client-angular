@@ -42,7 +42,7 @@ import {FormBuilder, FormsModule} from '@angular/forms';
 import { SequenceEditComponent } from './sequence/sequence-edit/sequence-edit.component';
 import { SequenceHomeComponent } from './sequence/sequence-home/sequence-home.component';
 import { AdminSequenceComponent } from './admin/admin-sequence/admin-sequence.component';
-import {HttpConfigInterceptor} from './interceptor/httpconfig.interceptor.';
+import {HttpConfigInterceptor, LoaderService} from './interceptor/httpconfig.interceptor.';
 
 @NgModule({
   declarations: [
@@ -92,6 +92,7 @@ import {HttpConfigInterceptor} from './interceptor/httpconfig.interceptor.';
     RouterModule
   ],
   providers: [UserService,
+    LoaderService,
       { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },
     CourseSequenceQuestionService,
               FormBuilder],

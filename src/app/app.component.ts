@@ -3,6 +3,7 @@ import {CourseSequenceQuestionService} from './course-sequence-question.service'
 import {FormBuilder, Validators} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {UserService} from './user.service';
+import {LoaderService} from './interceptor/httpconfig.interceptor.';
 
 @Component({
   selector: 'app-root',
@@ -14,9 +15,9 @@ export class AppComponent {
   events: string[] = [];
   opened: boolean;
 
-  userService: UserService
+  userService: UserService;
 
-  constructor(userService: UserService) {
+  constructor(userService: UserService, public loaderService: LoaderService) {
     this.userService = userService;
   }
 
