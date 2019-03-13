@@ -101,7 +101,7 @@ export class SequenceEditComponent implements OnInit {
 
     let dialogRef = this.dialog.open(QuestionDialogComponent,{
       data: {question: this.newQuestion,
-             metadata: this.metadata;
+             metadata: this.metadata
       }
     });
 

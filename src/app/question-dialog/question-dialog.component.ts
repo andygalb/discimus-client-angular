@@ -13,8 +13,11 @@ export class QuestionDialogComponent implements OnInit {
   questionTypes = [
     {name: 'Text only', value : 'simple-text'},
     {name: 'Simple text answer', value : 'simple-text-answer'},
-    {name: 'C#', value : 'csharp'}
+    {name: 'C#', value : 'csharp'},
+    {name: 'Multiple choice', value : 'multiple-choice'}
   ];
+
+  multipleChoiceChoices = ['bananas', 'apples', 'pears'];
 
   newQuestion: RQuestion;
   metadata: QuestionMetaData;
@@ -34,6 +37,10 @@ export class QuestionDialogComponent implements OnInit {
 
   cancelQuestion(): void {
     this.dialogRef.close();
+  }
+
+  removeChoice(choice){
+    this.multipleChoiceChoices = this.multipleChoiceChoices.filter(item => item !== choice);
   }
 
 }
