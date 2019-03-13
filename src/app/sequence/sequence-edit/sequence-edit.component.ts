@@ -5,8 +5,10 @@ import { FormGroup } from '@angular/forms';
 import {CourseSequenceQuestionService} from '../../course-sequence-question.service';
 import {UserService} from '../../user.service';
 import {Question, Sequence} from '../../models/modelInterfaces';
-import {RQuestion} from '../../models/modelClasses';
+import {QuestionMetaData, RQuestion} from '../../models/modelClasses';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatDialog} from '@angular/material';
+import {QuestionDialogComponent} from '../../question-dialog/question-dialog.component';
 
 @Component({
   selector: 'app-sequence',
@@ -16,15 +18,22 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 export class SequenceEditComponent implements OnInit {
 
-  title = 'LTC';
   courseID: number;
   id: string;
   response: string;
   questionForm: FormGroup;
+  questionTypes = [
+    {name: 'Pure text', value : 'pure-text'},
+    {name: 'Simple text answer', value : 'simple-text'},
+    {name: 'C#', value : 'c-sharp'}
+  ];
+
+  metadata : QuestionMetaData;
 
   constructor(private route: ActivatedRoute,
               public courseSequenceQuestionService: CourseSequenceQuestionService,
               private userService: UserService,
+              public dialog: MatDialog,
               @Inject(FormBuilder) fb: FormBuilder) {
     this.questionForm = fb.group({
       title: ['', [Validators.required]],
@@ -80,9 +89,42 @@ export class SequenceEditComponent implements OnInit {
 
   }
 
+  updateQuestionType(value): void {
+    this.newQuestion.type=value;
+  }
+
   createNewQuestion(): void {
+
     this.newQuestion = new RQuestion();
+    this.metadata = new QuestionMetaData();
     this.newQuestion.questionAnswer = {text: '', javascript: '', csharp: ''};
+
+    let dialogRef = this.dialog.open(QuestionDialogComponent,{
+      data: {question: this.newQuestion,
+             metadata: this.metadata;
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      if(result)
+      {
+
+        if(this.newQuestion.type === "csharp")
+        {
+          let answer = { inputs: this.metadata.inputs,
+            outputs: this.metadata.outputs
+          };
+          console.log("Logging answer: " +answer);
+          console.log(this.metadata.inputs);
+          console.log(this.metadata.outputs);
+          console.log(JSON.stringify(answer));
+          this.newQuestion.questionAnswer.text = JSON.stringify(answer);
+        }
+        console.log(result);
+        this.submitNewQuestion();
+      }
+    });
   }
 
   deleteQuestion(questionID): void {
@@ -126,7 +168,7 @@ export class SequenceEditComponent implements OnInit {
             this.response = data;
           },
           err=> {
-            console.error('Error adding question to seqeunce');
+            console.error('Error adding question to sequence');
             return;
           },
           () => {

@@ -1,36 +1,9 @@
-<mat-toolbar >
-  <span> <a [routerLink]="['/teacher',{ outlets: { teacherSection : 'courses' } }]">Courses</a></span>
-  <span> <a [routerLink]="['/teacher',{ outlets: { teacherSection : 'questions' } }]">Questions</a></span>
-</mat-toolbar>
+<h3 *ngIf="userService.isUserLoggedIn">Welcome {{userService.user.local.firstName}}.</h3>
 
-<router-outlet name="teacherSection"></router-outlet>
-
-<h3 *ngIf="userService.isUserLoggedIn">Welcome {{userService.user.local.firstName}}</h3>
-
-
-<!--
-    <div *ngIf="selectedCourse">
-      <h2>Edit course</h2>
-      <form>
-        <div class="form-group">
-          <label for="courseTitle">Title:</label>
-          <input id="courseTitle"  name="courseTitle" value="{{selectedCourse.courseTitle}}"/>
-        </div>
-        <div class="form-group">
-          <label for="courseText">course:</label>
-          <textarea class="form-control" id="courseText" rows="3" name="courseText" value="{{selectedCourse.courseDescription}}"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Save</button>
-      </form>
-    </div>
-    -->
-
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+  <div fxFlex="50%">
     <h3>Courses</h3>
-
-    <button mat-raised-button color="primary"  (click)="createNewCourse()" >+Add new course</button>
-
     <table mat-table [dataSource]="courses" class="mat-elevation-z8 full-width">
-
       <ng-container matColumnDef="title">
         <th mat-header-cell *matHeaderCellDef> Title </th>
         <td mat-cell *matCellDef="let element"> <a routerLink="/course/{{element._id}}">{{element.courseTitle}}</a></td>
@@ -60,7 +33,10 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
     </table>
+    <button mat-raised-button color="primary"  (click)="createNewCourse()" >+Add new course</button>
+  </div>
 
+  <div fxFlex="50%">
     <div *ngIf="newCourse">
       <h2>Add new course</h2>
       <form #heroForm="ngForm">
@@ -75,6 +51,19 @@
         <button type="submit" class="btn btn-success"  (click)="submitNewCourse();return;">Create</button>
       </form>
     </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
 
 
     <!--

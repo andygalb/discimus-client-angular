@@ -1,0 +1,80 @@
+<h2 mat-dialog-title>Add question </h2>
+
+<mat-form-field class="example-full-width" >
+  <mat-select name="questionType" placeholder="Question type" (selectionChange)="updateQuestionType($event.value)">
+    <mat-option *ngFor="let questionType of questionTypes" [value]="questionType.value">
+      {{questionType.name}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-dialog-content>
+
+  <div [ngSwitch]="newQuestion.type">
+
+    <div *ngSwitchCase="'simple-text'">
+      <ng-container *ngTemplateOutlet="simpleText"></ng-container>
+    </div>
+
+    <div *ngSwitchCase="'csharp'">
+      <ng-container *ngTemplateOutlet="cSharp"></ng-container>
+    </div>
+
+    <div *ngSwitchCase="'simple-text-answer'">
+      <ng-container *ngTemplateOutlet="simpleAnswer"></ng-container>
+    </div>
+
+    <div *ngSwitchDefault>
+      <ng-container *ngTemplateOutlet="simpleAnswer"></ng-container>
+    </div>
+
+    <ng-template #simpleAnswer>
+        <mat-form-field class="example-full-width" >
+          <input matInput type="text" placeholder="Title:"  class="form-control" id="title" required name="title"  [(ngModel)]="newQuestion.title">
+        </mat-form-field >
+
+        <mat-form-field class="example-full-width">
+          <textarea matInput  name="questionText" placeholder="Question Text:" class="form-control" id="questionText" rows="5"   [(ngModel)]="newQuestion.text"  ></textarea>
+        </mat-form-field >
+
+        <mat-form-field class="example-full-width">
+          <input matInput  name="questionAnswer" placeholder="Answer:"  class="form-control" id="questionAnswer" rows="3"  [(ngModel)]="newQuestion.questionAnswer.text" />
+        </mat-form-field >
+    </ng-template>
+
+    <ng-template #cSharp>
+      <mat-form-field class="example-full-width" >
+        <input matInput type="text" placeholder="Title:"  class="form-control" id="title" required name="title"  [(ngModel)]="newQuestion.title">
+      </mat-form-field >
+
+      <mat-form-field class="example-full-width">
+        <textarea matInput  name="questionText" placeholder="Question Text:" class="form-control" id="questionText" rows="5"   [(ngModel)]="newQuestion.text"  ></textarea>
+      </mat-form-field >
+
+      <mat-form-field class="example-full-width">
+        <input matInput  name="questionInputs" placeholder="Inputs, comma separated"  class="form-control" id="questionInputs"  [(ngModel)]="metadata.inputs" />
+      </mat-form-field >
+
+      <mat-form-field class="example-full-width">
+        <input matInput  name="questionOutputs" placeholder="Outputs, comma separated"  class="form-control" id="questionOutputs"  [(ngModel)]="metadata.outputs" />
+      </mat-form-field >
+    </ng-template>
+
+    <ng-template #simpleText>
+      <mat-form-field class="example-full-width" >
+        <input matInput type="text" placeholder="Title:"  class="form-control" id="title" required name="title"  [(ngModel)]="newQuestion.title">
+      </mat-form-field >
+
+      <mat-form-field class="example-full-width">
+        <textarea matInput  name="questionText" placeholder="Text:" class="form-control" id="questionText" rows="5"   [(ngModel)]="newQuestion.text"  ></textarea>
+      </mat-form-field >
+    </ng-template>
+
+
+  </div>
+  </mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-raised-button color="primary" type="submit"  cdkFocusInitial [mat-dialog-close]="data.question">Create</button>
+  <button mat-button (click)="cancelQuestion()">Cancel</button>
+</mat-dialog-actions>

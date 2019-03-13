@@ -1,16 +1,75 @@
-<div class="row">
-  <div class="col-6">
-    <h2 *ngIf="selectedSequence">Sequence: {{selectedSequence.sequenceTitle}}</h2>
-    <p *ngIf="selectedSequence">Description: {{selectedSequence.sequenceDescription}}</p>
+<div *ngIf="selectedSequence">
 
-  </div>
+  <h2 *ngIf="selectedSequence">Sequence: {{selectedSequence.sequenceTitle}}</h2>
+  <p *ngIf="selectedSequence">{{selectedSequence.sequenceDescription}}</p>
 
-  <div class="col-6">
-    <h3>Questions</h3>
-    <div *ngFor="let question of questionsToShow">
-        <mat-card>
-          <mat-card-title><div class="card-header">{{question.title}}</div></mat-card-title>
-          <mat-card-content>
+  <h3>Questions</h3>
+  <div *ngIf="questionsToShow">
+
+      <div *ngFor="let question of questionsToShow">
+             <div [ngSwitch]="question.type">
+
+              <div *ngSwitchCase="'simple-text'">
+                <ng-container *ngTemplateOutlet="simpleText"></ng-container>
+              </div>
+
+              <div *ngSwitchCase="'simple-answer'">
+                <ng-container *ngTemplateOutlet="simpleAnswer"></ng-container>
+              </div>
+
+              <div *ngSwitchCase="'csharp'">
+                <ng-container *ngTemplateOutlet="cSharp"></ng-container>
+              </div>
+
+              <div *ngSwitchDefault>
+                <ng-container *ngTemplateOutlet="simpleAnswer"></ng-container>
+              </div>
+
+          </div>
+
+        <ng-template #simpleAnswer>
+          <mat-card>
+            <mat-card-title><div class="card-header">{{question.title}}</div></mat-card-title>
+            <mat-card-content>
+              <p>{{question.text}}</p>
+              <div *ngIf="myUserService.hasUserAlreadyAnsweredQuestion(question._id); then answeredContent else notAnsweredContent"></div>
+              <ng-template #answeredContent>
+                <p><b>{{question.userAnswer}}</b></p>
+                <div *ngIf="question.userResponse">
+                  <p>{{question.userResponse}}</p>
+                </div>
+                <p>This question has been answered correctly<mat-icon layout-align="center end">done</mat-icon></p>
+              </ng-template>
+              <ng-template #notAnsweredContent>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Answer" value="" [(ngModel)]="question.userAnswer">
+                </mat-form-field>
+
+                <button  (click)="answerQuestion(question);" class="btn btn-primary" >Answer</button>
+                <div *ngIf="question.userResponse">
+                  <p>{{question.userResponse}}</p>
+                </div>
+              </ng-template>
+            </mat-card-content>
+            <mat-card-footer>
+
+            </mat-card-footer>
+          </mat-card>
+        </ng-template>
+
+        <ng-template #simpleText>
+          <mat-card>
+            <mat-card-title><div class="card-header">{{question.title}}</div></mat-card-title>
+            <mat-card-content>
+              <p>{{question.text}}</p>
+            </mat-card-content>
+          </mat-card>
+        </ng-template>
+
+        <ng-template #cSharp>
+          <mat-card>
+            <mat-card-title><div class="card-header">{{question.title}}</div></mat-card-title>
+            <mat-card-content>
               <p>{{question.text}}</p>
               <div *ngIf="myUserService.hasUserAlreadyAnsweredQuestion(question._id); then answeredContent else notAnsweredContent"></div>
               <ng-template #answeredContent>
@@ -19,20 +78,29 @@
               </ng-template>
               <ng-template #notAnsweredContent>
                 <mat-form-field class="example-full-width">
-                  <input matInput placeholder="Answer" value="" [(ngModel)]="question.userAnswer">
+                  <textarea matInput placeholder="Answer" value="" [(ngModel)]="question.userAnswer"></textarea>
                 </mat-form-field>
                 <button  (click)="answerQuestion(question);" class="btn btn-primary" >Answer</button>
-          </ng-template>
-      </mat-card-content>
-          <mat-card-footer>
-            <div *ngIf="question.userResponse">
-              <p>{{question.userResponse}}</p>
-            </div>
-          </mat-card-footer>
-        </mat-card>
-    </div>
+              </ng-template>
+            </mat-card-content>
+            <mat-card-footer>
+              <div *ngIf="question.userResponse">
+                <p>{{question.userResponse}}</p>
+              </div>
+            </mat-card-footer>
+          </mat-card>
+        </ng-template>
+
+      </div>
+
   </div>
+
 </div>
+
+
+
+
+
 
 
 

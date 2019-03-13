@@ -27,16 +27,6 @@ export class RMessage implements Message {
   updated_at: {type: Date, required: true};
 }
 
-export class RNews implements News {
-  ownerID: String;
-  courseID: String;
-  title: String;
-  content: String;
-  created_at: {type: Date, required: true};
-  updated_at: {type: Date, required: true};
-}
-
-
 export class RDocument implements CourseDocument {
   _id: String;
   owner: String;
@@ -44,6 +34,15 @@ export class RDocument implements CourseDocument {
   originalFilename: String;
   created_at: {type: Date, required: true};
   updated_at: {type: Date, required: true};
+}
+
+export class RNews implements News{
+  _id: String;
+  ownerID: String;
+  courseID: String;
+  title: String;
+  content: String;
+  created_at: {type: Date, required: true};
 }
 
 
@@ -58,6 +57,10 @@ export class RSequence implements Sequence {
 }
 
 export class RQuestion implements Question {
+
+  constuctor() {
+    this.questionAnswer =  {text: '', javascript: '', csharp: ''};
+  }
   _id: string;
   title: string;
   text: string;
@@ -66,5 +69,17 @@ export class RQuestion implements Question {
   questionAnswer: { text: string; javascript: string; csharp: string };
   userAnswer? : string;
   userResponse?: string;
+  created_at: { type: Date; required: true };
   updated_at: { type: Date; required: true };
 }
+
+export class QuestionMetaData {
+  constuctor() {
+    this.inputs = '';
+    this.outputs = '';
+  }
+
+  inputs: String;
+  outputs: String;
+}
+

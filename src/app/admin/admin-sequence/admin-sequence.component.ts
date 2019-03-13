@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {DataService} from '../../data.service';
 import {Sequence} from '../../models/modelInterfaces';
 import {MatTableDataSource} from '@angular/material';
+import {UserService} from '../../user.service';
 
 @Component({
   selector: 'app-admin-sequence',
@@ -17,7 +18,7 @@ export class AdminSequenceComponent implements OnInit {
   displayedColumns = ['selectSequence', 'sequenceTitle', 'created_at'];
 
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, private userService: UserService) { }
 
   ngOnInit() {
     this.showSequences();

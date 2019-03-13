@@ -15,12 +15,23 @@ export class LoginComponent implements OnInit {
   username: string;
   password: string;
 
+  loginFeedback:string;
+
   user:User;
   tempUser:User;
 
   constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit() {
+
+    //Is the user already logged in? Then take the user to his/her landing page straight away.
+    if(this.userService.isUserLoggedIn) {
+      if(this.userService.user.local.userType=="admin") {this.router.navigate(['admin']);}
+      if(this.userService.user.local.userType=="teacher") {this.router.navigate(['teacher']);}
+      if(this.userService.user.local.userType=="student") {this.router.navigate(['student']);}
+      return;
+    };
+
     this.tempUser=new RUser();
     this.tempUser.local= {
       userType: '',
@@ -39,14 +50,6 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  login() : void {
-    if(this.username == 'admin' && this.password == 'admin'){
-      this.router.navigate(['user']);
-    }
-    else {
-      alert('Invalid credentials');
-    }
-  }
 
   doLogIn(): void {
     console.log("Logging in");
@@ -56,16 +59,23 @@ export class LoginComponent implements OnInit {
       data => {
         console.log("This is what was returned in data:")
         console.log("Token:" + data["token"]);
-
+        this.loginFeedback = data['message'].message;
         console.log(data);
 
         const token = data["token"];
+        const success = data["success"];
+
+        if(success!=true) {return;}
         if (token !== "") { localStorage.setItem('token', token); }
 
         let user = data["user"];
+
         if(user.local.username!=null) {
+
           this.userService.initiateUser(user);
           this.userService.isUserLoggedIn = true;
+
+          localStorage.setItem('user', JSON.stringify(user));
           console.log(this.userService.user);
           this.tempUser=null;
           if(this.userService.user.local.userType=="admin") {this.router.navigate(['admin']);}

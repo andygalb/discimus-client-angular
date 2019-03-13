@@ -90,12 +90,17 @@ export class CourseSequenceQuestionService {
     }
 
 
+//Is there a diffeence between questions that can be answered locally and questions that must be submitted?
+  isAnswerCorrect(question: Question, givenAnswer: string) {
+    return this.submitAnswerToServer(question, givenAnswer);
+  }
 
-  isAnswerCorrect(question: Question, givenAnswer: string): boolean {
-
-    let isCorrect:boolean = false;
-    if(question.questionAnswer.text === givenAnswer) {isCorrect = true; }
-    return isCorrect;
+  submitAnswerToServer(question:Question, submittedAnswer: string) {
+     console.log("Submitting question to server");
+    const objectToSend = {
+      question: question,
+      submittedAnswer: submittedAnswer};
+    return this.http.post(config.serverAddress + '/api/test/submit', JSON.stringify(objectToSend), httpOptions);
   }
 
 

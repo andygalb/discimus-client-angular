@@ -17,18 +17,18 @@ export interface Course {
   updated_at: {type: Date, required: true};
 }
 
-export interface Message {
-  fromID: String;
-  toID: String;
+export interface News {
+  _id: String;
+  ownerID: String;
+  courseID: String;
   title: String;
   content: String;
   created_at: {type: Date, required: true};
-  updated_at: {type: Date, required: true};
 }
 
-export interface News {
-  ownerID: String;
-  courseID: String;
+export interface Message {
+  fromID: String;
+  toID: String;
   title: String;
   content: String;
   created_at: {type: Date, required: true};
@@ -119,4 +119,5 @@ export interface Document {
   systemFilename: String;
   uploaded_at: {type: Date, required: true};
 }
+
 

@@ -128,20 +128,25 @@ export class SequenceHomeComponent implements OnInit {
     );
   }
 
-    answerQuestion(question)
-    {
+    answerQuestion(question) {
       console.log('You answered:' + question.userAnswer);
-      const isCorrect: boolean = this.courseSequenceQuestionService.isAnswerCorrect(question, question.userAnswer);
 
-      if (isCorrect) {
-        this.userService.addCorrectAnswer(question._id, question.userAnswer);
-        question.userResponse = 'Right answer!';
-      } else {
-        question.userResponse = 'Wrong answer - try again.';
-      }
+      let response = this.courseSequenceQuestionService.isAnswerCorrect(question, question.userAnswer);
+
+      response.subscribe(
+        data => {
+
+          console.log(data);
+
+          if (data['score'] === 1) {
+            this.userService.addCorrectAnswer(question._id, question.userAnswer);
+            question.userResponse = 'Right answer!';
+          } else {
+            question.userResponse = 'Wrong answer - try again.';
+          }
+        }
+      );
     }
-
-
 }
 
 

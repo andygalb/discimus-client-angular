@@ -4,9 +4,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
-  MatButtonModule, MatCardModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatProgressSpinnerModule,
+  MAT_DIALOG_DEFAULT_OPTIONS,
+  MatButtonModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatPaginatorModule,
+  MatProgressSpinnerModule,
   MatSelectModule,
-  MatSpinner, MatTableModule
+  MatSpinner,
+  MatTableModule
 } from '@angular/material';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
@@ -14,6 +23,7 @@ import {MatIconModule} from '@angular/material';
 import {MatListModule} from '@angular/material';
 import {Component} from '@angular/core';
 
+import {MatGridListModule} from '@angular/material/grid-list';
 
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
@@ -43,8 +53,11 @@ import { SequenceEditComponent } from './sequence/sequence-edit/sequence-edit.co
 import { SequenceHomeComponent } from './sequence/sequence-home/sequence-home.component';
 import { AdminSequenceComponent } from './admin/admin-sequence/admin-sequence.component';
 import {HttpConfigInterceptor, LoaderService} from './interceptor/httpconfig.interceptor.';
+import { QuestionDialogComponent } from './question-dialog/question-dialog.component';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 @NgModule({
+  entryComponents: [QuestionDialogComponent],
   declarations: [
     AppComponent,
     AboutComponent,
@@ -69,6 +82,7 @@ import {HttpConfigInterceptor, LoaderService} from './interceptor/httpconfig.int
     SequenceEditComponent,
     SequenceHomeComponent,
     AdminSequenceComponent,
+    QuestionDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,12 +90,15 @@ import {HttpConfigInterceptor, LoaderService} from './interceptor/httpconfig.int
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FlexLayoutModule,
     MatButtonModule,
     MatCheckboxModule,
+    MatDialogModule,
     MatToolbarModule,
     MatSidenavModule,
     MatSelectModule,
     MatProgressSpinnerModule,
+    MatGridListModule,
     MatIconModule,
     MatListModule,
     MatCardModule,
@@ -95,6 +112,7 @@ import {HttpConfigInterceptor, LoaderService} from './interceptor/httpconfig.int
     LoaderService,
       { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },
     CourseSequenceQuestionService,
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
               FormBuilder],
   bootstrap: [AppComponent]
 })

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import {Result, User} from './models/modelInterfaces';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {RUser} from './models/modelClasses';
+import config from './config.json';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -23,7 +24,7 @@ export class UserService {
   currentSequenceTitle: string;
   currentQuestionID: string;
   currentQuestionTitle: string;
-  serverAddress = 'http://api.discim.us';
+  serverAddress = config.serverAddress;
 
   constructor(private http: HttpClient, router: Router) {
     this.router = router;
@@ -41,6 +42,7 @@ export class UserService {
   logOut(): void {
     this.user = null;
     this.isUserLoggedIn = false;
+    localStorage.clear();
     this.router.navigate(['home']);
   }
 

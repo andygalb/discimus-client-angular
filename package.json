@@ -19,6 +19,7 @@
     "@angular/compiler": "^6.1.0",
     "@angular/compiler-cli": "^6.1.0",
     "@angular/core": "^6.1.0",
+    "@angular/flex-layout": "^7.0.0-beta.23",
     "@angular/forms": "^6.1.0",
     "@angular/http": "^6.1.0",
     "@angular/material": "^6.4.7",

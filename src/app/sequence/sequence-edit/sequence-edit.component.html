@@ -51,27 +51,7 @@
 
     <button mat-raised-button color="primary"  (click)="createNewQuestion();"  >+Add new question</button>
 
-    <div *ngIf="newQuestion">
-      <h2>Add new question</h2>
-      <form class="example-form">
-        <div class="form-group">
-          <label for="title">Title:</label>
-          <input type="text" class="form-control" id="title" required name="title"  [(ngModel)]="newQuestion.title">
-        </div>
-        <div class="form-group">
-          <label for="questionText">Question Text:</label>
-          <textarea  name="questionText" class="form-control" id="questionText" rows="3" [(ngModel)]="newQuestion.text"></textarea>
-        </div>
-        <div class="form-group">
-          <label for="questionAnswer">Answer:</label>
-          <textarea  name="questionAnswer" class="form-control" id="questionAnswer" rows="3" [(ngModel)]="newQuestion.questionAnswer.text"></textarea>
-        </div>
-        <button mat-raised-button color="primary" type="submit" (click)="submitNewQuestion()">Create</button>
-      </form>
 
-    <ng-template #loading>
-      <mat-spinner></mat-spinner>
-    </ng-template>
 
 
 

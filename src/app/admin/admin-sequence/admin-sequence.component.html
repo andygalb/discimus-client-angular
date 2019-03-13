@@ -1,4 +1,4 @@
-<mat-form-field>
+<mat-form-field  *ngIf="this.userService.user.local.userType=='teacher'">
   <mat-select placeholder="Action">
     <mat-option *ngFor="let action of this.actions" [value]="action">
       {{action}}
@@ -15,12 +15,12 @@
 
   <ng-container  matColumnDef="sequenceTitle">
     <th mat-header-cell *matHeaderCellDef> Title </th>
-    <td mat-cell *matCellDef="let element"> <a routerLink="/sequence/{{element._id}}">{{element.sequenceTitle}} </a></td>
+    <td mat-cell *matCellDef="let element"> <a [routerLink]="['/sequence/'+element._id,{ outlets: { sequenceSection : 'home' } }]">{{element.sequenceTitle}} </a></td>
   </ng-container>
 
   <ng-container  matColumnDef="created_at">
     <th mat-header-cell *matHeaderCellDef> Creation Date </th>
-    <td mat-cell *matCellDef="let element"> {{element.created_at}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.created_at | date :  "dd.MM.y"}} </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -23,4 +23,14 @@ a {text-decoration:none;}
 .mat-sidenav-content { padding:10px;  height:100vh;}
 .mat-sidenav { padding:10px;  height:100vh;}
 
+.news-header-image {
+  background-image: url('/src/assets/images/news.png');
+  background-size: cover;
+}
+
+.course-header-image {
+  background-image: url('/assets/images/course.png');
+  background-size: cover;
+}
+
 
