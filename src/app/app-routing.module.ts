@@ -19,6 +19,7 @@ import {SequenceEditComponent} from './sequence/sequence-edit/sequence-edit.comp
 import {SequenceHomeComponent} from './sequence/sequence-home/sequence-home.component';
 import {AdminSequenceComponent} from './admin/admin-sequence/admin-sequence.component';
 import {RoleGuardService} from './role-guard.service';
+import {CourseSequenceComponent} from './course/course-sequence/course-sequence.component';
 
 const routes: Routes = [
   { path: 'about', component: AboutComponent  },
@@ -47,7 +48,7 @@ const routes: Routes = [
       { path: 'teachers', component: AdminUserComponent , outlet: 'courseSection'},
       { path: 'students', component: AdminQuestionComponent , outlet: 'courseSection'},
       { path: 'documents', component: DocumentsComponent , outlet: 'courseSection'},
-      { path: 'sequences', component: AdminSequenceComponent , outlet: 'courseSection'}
+      { path: 'sequences', component: CourseSequenceComponent , outlet: 'courseSection'}
     ]},
   { path: '**', redirectTo: '' }
 ];

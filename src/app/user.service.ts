@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import {Result, User} from './models/modelInterfaces';
+import {Course, Question, Result, Sequence, User} from './models/modelInterfaces';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {RUser} from './models/modelClasses';
 import config from './config.json';
@@ -18,6 +18,9 @@ export class UserService {
   user: RUser = new RUser();
   isUserLoggedIn = false;
   router: Router;
+  currentCourse: Course;
+  currentSequence: Sequence;
+  currentQuestion: Question;
   currentCourseID: string;
   currentCourseTitle: string;
   currentSequenceID: string;

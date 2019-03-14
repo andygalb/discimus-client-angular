@@ -48,6 +48,10 @@ export class DataService {
     return this.http.get<Sequence[]>(config.serverAddress + '/api/sequence/all');
   }
 
+  getSequencesForCourse(courseID) {
+    return this.http.get<Sequence[]>(config.serverAddress + '/api/sequence/' + courseID);
+  }
+
   getUsers() {
     return this.http.get<User[]>(config.serverAddress + '/api/user/all');
   }

@@ -1,7 +1,7 @@
-<mat-card class="example-card">
+<mat-card *ngIf="course" class="example-card">
   <mat-card-header>
     <div mat-card-avatar class="course-header-image"></div>
-    <mat-card-title>{{ course.courseTitle }}</mat-card-title>
+    <mat-card-title><h3>{{ course.courseTitle }}</h3></mat-card-title>
     <mat-card-subtitle>{{ course.creatorID }}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
@@ -9,9 +9,7 @@
     <p>{{ course.created_at | date :  "dd.MM.y" }} </p>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button>Copy</button>
     <button *ngIf="this.userService.user.local.userType=='teacher'" mat-button>Edit</button>
-    <button mat-button>Delete</button>
   </mat-card-actions>
 </mat-card>
 
