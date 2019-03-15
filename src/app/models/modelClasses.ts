@@ -1,4 +1,4 @@
-import {CourseDocument, Course, Question, Result, Sequence, User, News, Message} from './modelInterfaces';
+import {CourseDocument, Course, Question, Result, Sequence, User, News, Message, Enrolement} from './modelInterfaces';
 
 export class RUser implements User {
   _id: String;
@@ -20,6 +20,7 @@ export class RCourse implements Course {
 
 export class RMessage implements Message {
   fromID: String;
+  fromName: String;
   toID: String;
   title: String;
   content: String;
@@ -36,9 +37,14 @@ export class RDocument implements CourseDocument {
   updated_at: {type: Date, required: true};
 }
 
-export class RNews implements News{
+export class RNews implements News {
   _id: String;
-  ownerID: String;
+  owner: {
+    id: string;
+    firstName: string;
+    lastName: string;
+  } ;
+  ownerName: String;
   courseID: String;
   title: String;
   content: String;
@@ -78,8 +84,15 @@ export class QuestionMetaData {
     this.inputs = '';
     this.outputs = '';
   }
-
   inputs: String;
   outputs: String;
+}
+
+export class MEnrolement implements Enrolement {
+  courseID: String;
+  userID: String;
+  role: String;
+  created_at: {type: Date};
+  updated_at: {type: Date};
 }
 

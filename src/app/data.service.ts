@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {CourseDocument, Course, Question, Sequence, User, News, Message} from './models/modelInterfaces';
+import {CourseDocument, Course, Question, Sequence, User, News, Message, Enrolement} from './models/modelInterfaces';
 import {Settings} from './settings';
 import config from './config.json';
+import {MEnrolement} from './models/modelClasses';
 
 
 const httpOptions = {
@@ -40,6 +41,11 @@ export class DataService {
     return this.http.get<Course[]>(config.serverAddress + '/api/course/all');
   }
 
+  getEnrolementsForUser(id) {
+    return this.http.get<Enrolement[]>(config.serverAddress + '/api/enrolement/user/' + id);
+  }
+
+
   getQuestions() {
     return this.http.get<Question[]>(config.serverAddress + '/api/question/all');
   }
@@ -74,6 +80,15 @@ export class DataService {
 
   deleteDocument(document: CourseDocument) {
     return this.http.delete<String>(config.serverAddress + '/api/document/' + document._id, httpOptions);
+  }
+
+  enroleUserOnCourse(courseID, userID, role){
+    let enrolement = new MEnrolement();
+    enrolement.courseID = courseID;
+    enrolement.role = role;
+    enrolement.userID = userID;
+
+    return this.http.post<any>(config.serverAddress + '/api/enrolement', JSON.stringify(enrolement), httpOptions);
   }
 
 }

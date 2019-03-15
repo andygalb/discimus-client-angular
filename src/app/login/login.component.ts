@@ -25,15 +25,14 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
     //Is the user already logged in? Then take the user to his/her landing page straight away.
-    if(this.userService.isUserLoggedIn) {
-      if(this.userService.user.local.userType=="admin") {this.router.navigate(['admin']);}
-      if(this.userService.user.local.userType=="teacher") {this.router.navigate(['teacher']);}
-      if(this.userService.user.local.userType=="student") {this.router.navigate(['student']);}
+    if (this.userService.isUserLoggedIn) {
+      this.router.navigate(['home']);
       return;
-    };
+    }
 
-    this.tempUser=new RUser();
-    this.tempUser.local= {
+    this.tempUser = new RUser();
+
+    this.tempUser.local = {
       userType: '',
       firstName: '',
       username: '',
@@ -47,14 +46,14 @@ export class LoginComponent implements OnInit {
         age:0,
         website:''
       }
-    }
+    };
   }
 
 
   doLogIn(): void {
     console.log("Logging in");
-    this.tempUser.local.username=this.username;
-    this.tempUser.local.password=this.password;
+    this.tempUser.local.username = this.username;
+    this.tempUser.local.password = this.password;
     this.userService.loginUser(this.tempUser).subscribe(
       data => {
         console.log("This is what was returned in data:")
@@ -78,9 +77,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('user', JSON.stringify(user));
           console.log(this.userService.user);
           this.tempUser=null;
-          if(this.userService.user.local.userType=="admin") {this.router.navigate(['admin']);}
-          if(this.userService.user.local.userType=="teacher") {this.router.navigate(['teacher']);}
-          if(this.userService.user.local.userType=="student") {this.router.navigate(['student']);}
+          this.router.navigate(['home']);
         };
       }
       ,

@@ -13,14 +13,12 @@
   </div>
 </div>
 
-
-
       <ng-template  #student>
 
         <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
 
           <div fxFlex="50%">
-            <h3>Courses</h3>
+            <h3>Your courses</h3>
             <div *ngFor="let course of courses"  class="card" >
               <mat-card>
                 <mat-card-header>
@@ -74,7 +72,7 @@
                   <mat-card-title>
                     {{newsItem.title}}
                   </mat-card-title>
-                  <mat-card-subtitle>{{newsItem.ownerID}}  {{newsItem.created_at | date :  "dd.MM.y" }}</mat-card-subtitle>
+                  <mat-card-subtitle>By: {{newsItem.owner.firstName}} {{newsItem.owner.lastName}}  Published: {{newsItem.created_at | date :  "dd.MM.y" }}</mat-card-subtitle>
                 </mat-card-header>
 
                 <mat-card-content>

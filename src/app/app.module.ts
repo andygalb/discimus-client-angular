@@ -56,6 +56,7 @@ import {HttpConfigInterceptor, LoaderService} from './interceptor/httpconfig.int
 import { QuestionDialogComponent } from './question-dialog/question-dialog.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { CourseSequenceComponent } from './course/course-sequence/course-sequence.component';
+import { CourseSearchComponent } from './course-search/course-search.component';
 
 @NgModule({
   entryComponents: [QuestionDialogComponent],
@@ -85,6 +86,7 @@ import { CourseSequenceComponent } from './course/course-sequence/course-sequenc
     AdminSequenceComponent,
     QuestionDialogComponent,
     CourseSequenceComponent,
+    CourseSearchComponent,
   ],
   imports: [
     BrowserModule,

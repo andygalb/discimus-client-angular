@@ -24,7 +24,7 @@ a {text-decoration:none;}
 .mat-sidenav { padding:10px;  height:100vh;}
 
 .news-header-image {
-  background-image: url('/src/assets/images/news.png');
+  background-image: url('/assets/images/news.png');
   background-size: cover;
 }
 

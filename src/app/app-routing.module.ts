@@ -20,6 +20,7 @@ import {SequenceHomeComponent} from './sequence/sequence-home/sequence-home.comp
 import {AdminSequenceComponent} from './admin/admin-sequence/admin-sequence.component';
 import {RoleGuardService} from './role-guard.service';
 import {CourseSequenceComponent} from './course/course-sequence/course-sequence.component';
+import {CourseSearchComponent} from './course-search/course-search.component';
 
 const routes: Routes = [
   { path: 'about', component: AboutComponent  },
@@ -32,6 +33,7 @@ const routes: Routes = [
     ]
   },
   { path: 'home', component: HomeComponent, canActivate: [RoleGuardService], data: {expectedRoles: ['admin', 'teacher', 'student'] }},
+  { path: 'courses', canActivate: [RoleGuardService], component: CourseSearchComponent },
   { path: 'login', component: LoginComponent },
   { path: 'student', component: StudentComponent, canActivate: [RoleGuardService], data: {expectedRoles: ['admin', 'student' ] }},
   { path: 'teacher', component: TeacherComponent, canActivate: [RoleGuardService], data: {expectedRoles: ['admin', 'teacher'] }},

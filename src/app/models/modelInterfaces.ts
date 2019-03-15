@@ -19,7 +19,11 @@ export interface Course {
 
 export interface News {
   _id: String;
-  ownerID: String;
+  owner: {
+    id: string;
+    firstName: string;
+    lastName: string;
+  } ;
   courseID: String;
   title: String;
   content: String;
@@ -28,6 +32,7 @@ export interface News {
 
 export interface Message {
   fromID: String;
+  fromName: String;
   toID: String;
   title: String;
   content: String;
@@ -118,6 +123,14 @@ export interface Document {
   originalFilename: String;
   systemFilename: String;
   uploaded_at: {type: Date, required: true};
+}
+
+export interface Enrolement {
+  courseID: String;
+  userID: String;
+  role: String;
+  created_at: {type: Date};
+  updated_at: {type: Date};
 }
 
 

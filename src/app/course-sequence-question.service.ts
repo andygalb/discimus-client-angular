@@ -27,7 +27,7 @@ export class CourseSequenceQuestionService {
     return this.http.get<Course[]>(config.serverAddress + '/api/course/all');
   }
 
-  getCourseByID(id: number) {
+  getCourseByID(id) {
     return this.http.get<Course>(config.serverAddress + '/api/course/' + id);
   }
 
