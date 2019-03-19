@@ -37,6 +37,7 @@
                 </mat-card-actions>
               </mat-card>
             </div>
+            <p></p>
             <button mat-raised-button color="primary"  [routerLink]="['/courses/']" class="btn btn-primary">Find more courses!</button>
             <h3>Results</h3>
             <div *ngIf="user.results.length<1; then noResultsContent else resultsContent">

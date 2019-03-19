@@ -29,6 +29,7 @@ export class CourseComponent implements OnInit {
         console.log(course);
         this.course = course;
         this.userService.currentCourse = course;
+        this.userService.setCurrentCourse(course);
       });
   }
 

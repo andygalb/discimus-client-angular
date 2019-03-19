@@ -1,7 +1,7 @@
 
 <h3>Available Courses</h3>
 
-  <div *ngIf="courses" class="container" fxLayout="row wrap" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+  <div *ngIf="ready" class="container" fxLayout="row wrap" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="left">
 
     <div  fxFlex="32%"  *ngFor="let course of courses" class="course-card" >
       <mat-card >

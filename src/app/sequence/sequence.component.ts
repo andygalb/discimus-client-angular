@@ -9,12 +9,12 @@ import {RQuestion} from '../models/modelClasses';
 
 @Component({
   selector: 'app-sequence',
+  styleUrls: ['./sequence.component.css'],
   templateUrl: './sequence.component.html',
 })
 
 export class SequenceComponent implements OnInit {
 
-  title = 'LTC';
   id: string;
   response: string;
   questionForm: FormGroup;
@@ -41,6 +41,7 @@ export class SequenceComponent implements OnInit {
   ngOnInit() {
 
     this.id = this.route.snapshot.paramMap.get('id');
+    this.userService.setCurrentSequence(this.id);
   }
 
   createNewQuestion(): void {

@@ -13,6 +13,7 @@ export class CourseSearchComponent implements OnInit {
 
   courses = [];
   userEnrolements = [];
+  ready = false;
 
   selectedCourse: Course;
 
@@ -42,8 +43,8 @@ export class CourseSearchComponent implements OnInit {
 
   userEnrolledOnCourses() {
 
-    for(let j=0; j <this.courses.length; j++) {
-      for (let i = 0; i<this.userEnrolements.length; i++)
+    for(let j=0; j < this.courses.length; j++) {
+      for (let i = 0; i< this.userEnrolements.length; i++)
       {
         console.log(this.courses[j]);
         console.log(this.userEnrolements[i]);
@@ -53,7 +54,7 @@ export class CourseSearchComponent implements OnInit {
       }
 
     }
-
+    this.ready = true;
 
   }
 }

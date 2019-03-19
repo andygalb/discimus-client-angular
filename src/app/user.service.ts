@@ -44,6 +44,26 @@ export class UserService {
     this.user = user;
   }
 
+  setCurrentCourse(course){
+    localStorage.setItem('currentCourse', JSON.stringify(course));
+  }
+
+  getCurrentCourse(){
+    let course = JSON.parse(localStorage.getItem('currentCourse'));
+    return course;
+  }
+
+  setCurrentSequence(sequence){
+    localStorage.setItem('currentSequence', JSON.stringify(sequence));
+  }
+
+  getCurrentSequence(){
+    let sequence= JSON.parse(localStorage.getItem('currentSequence'));
+    return sequence;
+  }
+
+
+
   logOut(): void {
     this.user = null;
     this.isUserLoggedIn = false;

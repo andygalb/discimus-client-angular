@@ -1,9 +1,8 @@
 <div *ngIf="selectedSequence">
 
-  <h2 *ngIf="selectedSequence">Sequence: {{selectedSequence.sequenceTitle}}</h2>
+  <h2 *ngIf="selectedSequence">{{selectedSequence.sequenceTitle}}</h2>
   <p *ngIf="selectedSequence">{{selectedSequence.sequenceDescription}}</p>
 
-  <h3>Questions</h3>
   <div *ngIf="questionsToShow">
 
       <div *ngFor="let question of questionsToShow">

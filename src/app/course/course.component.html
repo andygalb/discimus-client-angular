@@ -1,4 +1,4 @@
-<h2 *ngIf="course">Course: {{course.courseTitle}} <span *ngIf="sequence">{{sequence.sequenceTitle}}</span></h2>
+<a class="courseLink" [routerLink]="['/course/'+userService.getCurrentCourse()._id,{ outlets: { courseSection : 'home' } }]"><h2>Course: {{userService.getCurrentCourse().courseTitle}}</h2></a> <!--<span>{{userService.getCurrentSequence().sequenceTitle}}</span></h2>-->
 <mat-toolbar color="primary">
   <span> <a [routerLink]="['/course/'+id,{ outlets: { courseSection : 'home' } }]">Home</a></span>
   <span> <a [routerLink]="['/course/'+id,{ outlets: { courseSection : 'students' } }]">Participants</a></span>
