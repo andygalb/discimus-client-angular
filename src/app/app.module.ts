@@ -15,7 +15,7 @@ import {
   MatProgressSpinnerModule,
   MatSelectModule,
   MatSpinner,
-  MatTableModule
+  MatTableModule, MatTreeModule
 } from '@angular/material';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
@@ -53,13 +53,20 @@ import { SequenceEditComponent } from './sequence/sequence-edit/sequence-edit.co
 import { SequenceHomeComponent } from './sequence/sequence-home/sequence-home.component';
 import { AdminSequenceComponent } from './admin/admin-sequence/admin-sequence.component';
 import {HttpConfigInterceptor, LoaderService} from './interceptor/httpconfig.interceptor.';
-import { QuestionDialogComponent } from './question-dialog/question-dialog.component';
+
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { CourseSequenceComponent } from './course/course-sequence/course-sequence.component';
 import { CourseSearchComponent } from './course-search/course-search.component';
+import {TruncatePipe} from './truncate.pipe';
+import { CourseStudentsComponent} from './course/course-students/course-students.component';
+
+import { QuestionDialogComponent } from './question-dialog/question-dialog.component';
+import {CourseDialogComponent} from './home/course-dialog/course-dialog.component';
+import {SequenceDialogComponent} from './course/course-sequence/sequence-dialog/sequence-dialog.component';
+import { MessagesComponent } from './messages/messages.component';
 
 @NgModule({
-  entryComponents: [QuestionDialogComponent],
+  entryComponents: [QuestionDialogComponent, CourseDialogComponent,  SequenceDialogComponent],
   declarations: [
     AppComponent,
     AboutComponent,
@@ -85,8 +92,13 @@ import { CourseSearchComponent } from './course-search/course-search.component';
     SequenceHomeComponent,
     AdminSequenceComponent,
     QuestionDialogComponent,
+    CourseDialogComponent,
+    SequenceDialogComponent,
     CourseSequenceComponent,
     CourseSearchComponent,
+    TruncatePipe,
+    CourseStudentsComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,
@@ -99,6 +111,7 @@ import { CourseSearchComponent } from './course-search/course-search.component';
     MatCheckboxModule,
     MatDialogModule,
     MatToolbarModule,
+    MatTreeModule,
     MatSidenavModule,
     MatSelectModule,
     MatProgressSpinnerModule,

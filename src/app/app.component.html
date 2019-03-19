@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-  <button mat-icon-button (click)="sidenav.toggle()">
+  <button *ngIf="userService.isUserLoggedIn" mat-icon-button (click)="sidenav.toggle()">
     <mat-icon>more_vert</mat-icon>
   </button>
 
@@ -20,16 +20,16 @@
 <mat-sidenav-container class="example-container">
   <mat-sidenav  #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')" (closed)="events.push('close!')" opened>
       <mat-list>
-        <a mat-list-item role="listitem" routerLink="/admin" routerLinkActive="active"><mat-icon matListIcon>folder</mat-icon>Admin</a>
-        <a mat-list-item role="listitem" routerLink="/teacher" routerLinkActive="active"><mat-icon matListIcon>folder</mat-icon>Teacher</a>
-        <a mat-list-item role="listitem" routerLink="/student" routerLinkActive="active"><mat-icon matListIcon>folder</mat-icon>Student</a>
-        <a mat-list-item role="listitem" routerLink="/login" routerLinkActive="active"><mat-icon matListIcon>folder</mat-icon>Log In</a>
-        <a mat-list-item role="listitem" routerLink="/about" routerLinkActive="active" ><mat-icon matListIcon>folder</mat-icon>About</a>
+        <a mat-list-item role="listitem" routerLink="/home" routerLinkActive="active"><mat-icon matListIcon>home</mat-icon>Home</a>
+        <a mat-list-item role="listitem" routerLink="/messages" routerLinkActive="active"><mat-icon matListIcon>message</mat-icon>Messages</a>
+        <a mat-list-item role="listitem" routerLink="/about" routerLinkActive="active" ><mat-icon matListIcon>explore</mat-icon>About</a>
+        <div *ngIf="userService.courses">
+          <h3 mat-subheader>Your courses</h3>
+          <a mat-list-item role="listitem"  [routerLink]="['/course/'+course._id,{ outlets: { courseSection : 'home' } }]" *ngFor="let course of userService.courses"> <mat-icon matListIcon>assignment</mat-icon> {{course.courseTitle}}</a>
+        </div>
       </mat-list>
   </mat-sidenav>
   <mat-sidenav-content>
-  <!--  <div *ngIf="loaderService.isLoading | async;">Loading!</div>-->
     <router-outlet></router-outlet>
-
   </mat-sidenav-content>
 </mat-sidenav-container>

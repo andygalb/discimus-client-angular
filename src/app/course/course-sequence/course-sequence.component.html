@@ -1,11 +1,5 @@
-<mat-form-field  *ngIf="this.userService.user.local.userType=='teacher'">
-  <mat-select placeholder="Action">
-    <mat-option *ngFor="let action of this.actions" [value]="action">
-      {{action}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
 
+<!--
 <table mat-table [dataSource]="sequences" class="mat-elevation-z8">
 
   <ng-container  matColumnDef="selectSequence">
@@ -26,3 +20,22 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+-->
+
+<div *ngFor="let sequence of sequences"  class="card" >
+  <mat-card>
+    <mat-card-header>
+      <div mat-card-avatar > <mat-icon matListIcon>assignment</mat-icon></div>
+      <mat-card-title><div class="card-header">{{sequence.sequenceTitle}}</div></mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <p>{{sequence.sequenceDescription}}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="link"  [routerLink]="['/sequence/'+sequence._id,{ outlets: { sequenceSection : 'home' } }]" class="btn btn-primary" >View</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<button *ngIf="userService.user.local.userType=='teacher'" mat-raised-button color="primary"  (click)="openSequenceDialog()" class="btn btn-primary">New sequence</button>
+

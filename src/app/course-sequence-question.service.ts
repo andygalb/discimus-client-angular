@@ -51,6 +51,14 @@ export class CourseSequenceQuestionService {
     return this.http.put<JSON>(config.serverAddress + '/api/sequence', JSON.stringify(sequence), httpOptions);
   }
 
+  addSequenceToCourse(sequenceID: String, courseID: String) {
+     const content = {
+       sequenceID: sequenceID,
+       courseID: courseID
+     };
+    return this.http.post<JSON>(config.serverAddress + '/api/course/sequence', JSON.stringify(content), httpOptions);
+  }
+
   updateSequence(sequence: Sequence) {
     return this.http.post<string>(config.serverAddress + '/api/sequence/' + sequence._id, JSON.stringify(sequence), httpOptions);
   }

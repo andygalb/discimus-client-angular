@@ -17,6 +17,7 @@ export class UserService {
 
   user: RUser = new RUser();
   isUserLoggedIn = false;
+  courses: Course[];
   router: Router;
   currentCourse: Course;
   currentSequence: Sequence;
@@ -31,6 +32,7 @@ export class UserService {
 
   constructor(private http: HttpClient, router: Router) {
     this.router = router;
+    this.courses = [];
   }
 
   loginUser(user: User) {
@@ -45,8 +47,9 @@ export class UserService {
   logOut(): void {
     this.user = null;
     this.isUserLoggedIn = false;
+    this.courses = [];
     localStorage.clear();
-    this.router.navigate(['home']);
+    this.router.navigate(['login']).catch(reason => {console.log("Could not navigate to home:" + reason);});
   }
 
   getCurrentUser(): User {

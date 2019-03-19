@@ -29,6 +29,7 @@ export class SequenceComponent implements OnInit {
       questionAnswer: ['', [Validators.required]],
     });
   }
+
   questions: Question[];
   questionsToShow: Question[];
   selectedSequence: Sequence;

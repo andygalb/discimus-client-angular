@@ -1,20 +1,21 @@
 
 <h3>Available Courses</h3>
 
-  <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+  <div *ngIf="courses" class="container" fxLayout="row wrap" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
 
-    <div fxFlex="50%" *ngFor="let course of courses"  class="card" >
-      <mat-card>
+    <div  fxFlex="32%"  *ngFor="let course of courses" class="course-card" >
+      <mat-card >
         <mat-card-header>
           <div mat-card-avatar class="course-header-image"></div>
           <mat-card-title><div class="card-header">{{course.courseTitle}}</div></mat-card-title>
         </mat-card-header>
         <mat-card-content>
-          <p>{{course.courseDescription}}</p>
+          <p>{{course.courseDescription | truncate : 50 : true}}</p>
         </mat-card-content>
         <mat-card-actions>
-          <p  *ngIf="course.isEnrolled else enrollButton">Enrolled</p>
-         <ng-template #enrollButton>
+          <button *ngIf="course.isEnrolled else enrollButton" mat-raised-button  disabled color="disabled"  class="btn btn-disabled">Enrolled!</button>
+
+          <ng-template #enrollButton>
            <button mat-raised-button color="primary"  class="btn btn-primary"  (click)="enroleUser(course)">Enroll</button>
          </ng-template>
 

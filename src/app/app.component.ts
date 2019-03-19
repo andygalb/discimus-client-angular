@@ -1,25 +1,30 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CourseSequenceQuestionService} from './course-sequence-question.service';
 import {FormBuilder, Validators} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {UserService} from './user.service';
 import {LoaderService} from './interceptor/httpconfig.interceptor.';
+import {Course} from './models/modelInterfaces';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'ltc-app';
+export class AppComponent implements OnInit {
   events: string[] = [];
   opened: boolean;
 
-  userService: UserService;
+  constructor(private userService: UserService, public loaderService: LoaderService) {
 
-  constructor(userService: UserService, public loaderService: LoaderService) {
-    this.userService = userService;
   }
+
+  ngOnInit() {
+
+  }
+
+
+
 
   logOut()
   {

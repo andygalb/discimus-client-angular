@@ -21,6 +21,8 @@ import {AdminSequenceComponent} from './admin/admin-sequence/admin-sequence.comp
 import {RoleGuardService} from './role-guard.service';
 import {CourseSequenceComponent} from './course/course-sequence/course-sequence.component';
 import {CourseSearchComponent} from './course-search/course-search.component';
+import {CourseStudentsComponent} from './course/course-students/course-students.component';
+import {MessagesComponent} from './messages/messages.component';
 
 const routes: Routes = [
   { path: 'about', component: AboutComponent  },
@@ -33,8 +35,9 @@ const routes: Routes = [
     ]
   },
   { path: 'home', component: HomeComponent, canActivate: [RoleGuardService], data: {expectedRoles: ['admin', 'teacher', 'student'] }},
-  { path: 'courses', canActivate: [RoleGuardService], component: CourseSearchComponent },
+  { path: 'courses', component: CourseSearchComponent, canActivate: [RoleGuardService], data: {expectedRoles: ['admin', 'teacher', 'student'] } },
   { path: 'login', component: LoginComponent },
+  { path: 'messages', component: MessagesComponent, canActivate: [RoleGuardService], data: {expectedRoles: ['admin', 'teacher', 'student'] }},
   { path: 'student', component: StudentComponent, canActivate: [RoleGuardService], data: {expectedRoles: ['admin', 'student' ] }},
   { path: 'teacher', component: TeacherComponent, canActivate: [RoleGuardService], data: {expectedRoles: ['admin', 'teacher'] }},
   { path: 'question', component: QuestionComponent, canActivate: [RoleGuardService], data: {expectedRoles: ['admin', 'teacher', 'student'] }},
@@ -48,7 +51,7 @@ const routes: Routes = [
       { path: 'edit', component: CourseEditComponent , outlet: 'courseSection'},
       { path: 'home', component: CourseHomeComponent , outlet: 'courseSection'},
       { path: 'teachers', component: AdminUserComponent , outlet: 'courseSection'},
-      { path: 'students', component: AdminQuestionComponent , outlet: 'courseSection'},
+      { path: 'students', component: CourseStudentsComponent , outlet: 'courseSection'},
       { path: 'documents', component: DocumentsComponent , outlet: 'courseSection'},
       { path: 'sequences', component: CourseSequenceComponent , outlet: 'courseSection'}
     ]},

@@ -45,6 +45,11 @@ export class DataService {
     return this.http.get<Enrolement[]>(config.serverAddress + '/api/enrolement/user/' + id);
   }
 
+  getUsersForCourse(courseID) {
+    return this.http.get<User[]>(config.serverAddress + '/api/coursep/' + courseID + '/users');
+  }
+
+
 
   getQuestions() {
     return this.http.get<Question[]>(config.serverAddress + '/api/question/all');
@@ -55,7 +60,7 @@ export class DataService {
   }
 
   getSequencesForCourse(courseID) {
-    return this.http.get<Sequence[]>(config.serverAddress + '/api/sequence/' + courseID);
+    return this.http.get<Sequence[]>(config.serverAddress + '/api/sequence/course/' + courseID);
   }
 
   getUsers() {

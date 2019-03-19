@@ -1,8 +1,7 @@
 <h2 *ngIf="course">Course: {{course.courseTitle}} <span *ngIf="sequence">{{sequence.sequenceTitle}}</span></h2>
 <mat-toolbar color="primary">
   <span> <a [routerLink]="['/course/'+id,{ outlets: { courseSection : 'home' } }]">Home</a></span>
-  <span> <a [routerLink]="['/course/'+id,{ outlets: { courseSection : 'teachers' } }]">Teachers</a></span>
-  <span> <a [routerLink]="['/course/'+id,{ outlets: { courseSection : 'students' } }]">Students</a></span>
+  <span> <a [routerLink]="['/course/'+id,{ outlets: { courseSection : 'students' } }]">Participants</a></span>
   <span> <a [routerLink]="['/course/'+id,{ outlets: { courseSection : 'documents' } }]">Documents</a></span>
   <span> <a [routerLink]="['/course/'+id,{ outlets: { courseSection : 'sequences' } }]">Sequences</a></span>
 </mat-toolbar>
