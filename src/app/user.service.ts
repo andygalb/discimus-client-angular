@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import {Course, Question, Result, Sequence, User} from './models/modelInterfaces';
+import {Course, Enrolement, Question, Result, Sequence, User} from './models/modelInterfaces';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {RUser} from './models/modelClasses';
 import config from './config.json';
+import {CourseSequenceQuestionService} from './course-sequence-question.service';
 
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
-    // 'Authorization': 'my-auth-token'
   })
 };
 
@@ -18,6 +18,7 @@ export class UserService {
   user: RUser = new RUser();
   isUserLoggedIn = false;
   courses: Course[];
+  enrolements: Enrolement[];
   router: Router;
   currentCourse: Course;
   currentSequence: Sequence;
@@ -30,7 +31,7 @@ export class UserService {
   currentQuestionTitle: string;
   serverAddress = config.serverAddress;
 
-  constructor(private http: HttpClient, router: Router) {
+  constructor(private http: HttpClient, router: Router, private courseSequenceQuestionService: CourseSequenceQuestionService) {
     this.router = router;
     this.courses = [];
   }
@@ -62,7 +63,38 @@ export class UserService {
     return sequence;
   }
 
+  getEnrolementsForUser() {
+    this.http.get<Enrolement[]>(config.serverAddress + '/api/enrolement/user/' + this.getCurrentUser()._id).subscribe((enrolements) => {
+        this.enrolements = enrolements;
+        this.getCoursesForUser();
+      },
+      (err) => {console.log(err);}
+    );
+  }
 
+  getCoursesForUser() {
+      this.courses=[];
+    for (let i = 0; i < this.enrolements.length; i++) {
+      this.courseSequenceQuestionService.getCourseByID(this.enrolements[i].courseID).subscribe(data => {
+          this.courses.push(data);
+        },
+        (err) => {
+          console.log("Error fetching course:"+ err);
+        }
+      );
+    }
+  }
+
+  getCurrentScoreForCourse(courseID){
+    let userResults = this.getCurrentUser().results;
+
+    let score = 0;
+
+    for(var result of userResults){
+      if (result.courseID === courseID) {score++;}
+    }
+    return score;
+  }
 
   logOut(): void {
     this.user = null;
@@ -76,18 +108,24 @@ export class UserService {
     return this.user;
   }
 
-  addCorrectAnswer(questionID: string, answer: string): any {
-    let result: Result = new Result;
-    result._id = questionID;
-    result.type = 'question';
-    result.dateTime = Date.now();
+  addCorrectAnswer(question: Question, answer: string): any {
+
+    const course = this.getCurrentCourse();
+    const sequence  = this.getCurrentSequence();
+    const result: Result = new Result;
+    result.questionID = question._id;
+    result.questionTitle = question.title;
+    result.type = question.type;
     result.answer = answer;
-    result.courseID = this.currentCourseID;
-    result.courseTitle = this.currentCourseTitle;
-    result.sequenceID = this.currentSequenceID;
-    result.sequenceTitle = this.currentSequenceTitle;
-    result.questionID = this.currentQuestionID;
-    result.questionTitle = this.currentQuestionTitle;
+    result.courseID = course._id;
+    result.courseTitle = course.courseTitle;
+    result.sequenceID = sequence._id;
+    result.sequenceTitle = sequence.sequenceTitle;
+    result.dateTime = Date.now();
+
+
+    console.log("This is the result that has been created:");
+    console.log(result);
 
     this.user.results.push(result);
 
@@ -101,6 +139,7 @@ export class UserService {
       //  return Observable.throw(err);
       },
       () => {
+        //Must also update users results locally....
         return true; }
     );
   }
@@ -113,7 +152,7 @@ export class UserService {
 
     let alreadyAnsweredQuestion = false;
     for(let i = 0; i < this.user.results.length; i++) {
-      if(this.user.results[i]._id === questionID) {
+      if(this.user.results[i].questionID === questionID) {
         alreadyAnsweredQuestion = true;
         break;
       }

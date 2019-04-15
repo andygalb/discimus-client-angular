@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {Sequence} from '../../models/modelInterfaces';
+import {Component, Input, OnInit} from '@angular/core';
+import {Sequence, User} from '../../models/modelInterfaces';
 import {MatDialog, MatTableDataSource} from '@angular/material';
 import {DataService} from '../../data.service';
 import {UserService} from '../../user.service';
@@ -7,6 +7,7 @@ import {RSequence} from '../../models/modelClasses';
 import {CourseDialogComponent} from '../../home/course-dialog/course-dialog.component';
 import {CourseSequenceQuestionService} from '../../course-sequence-question.service';
 import {SequenceDialogComponent} from './sequence-dialog/sequence-dialog.component';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-course-sequence',
@@ -16,18 +17,20 @@ import {SequenceDialogComponent} from './sequence-dialog/sequence-dialog.compone
 export class CourseSequenceComponent implements OnInit {
 
   sequences: Sequence[];
+  @Input() style: string;
   newSequence: Sequence;
   dataSource = new MatTableDataSource();
   displayedColumns = ['selectSequence', 'sequenceTitle', 'created_at'];
 
-  constructor(public dialog: MatDialog, private dataService: DataService, private userService: UserService, private courseSequenceQuestionService: CourseSequenceQuestionService) { }
+  constructor(public dialog: MatDialog, private dataService: DataService, private route: ActivatedRoute, private userService: UserService, private courseSequenceQuestionService: CourseSequenceQuestionService) { }
 
   ngOnInit() {
     this.showSequences();
   }
 
   showSequences() {
-    this.dataService.getSequencesForCourse(this.userService.currentCourse._id)
+    //TODO Hack! Get id from userservice instead.
+    this.dataService.getSequencesForCourse(this.route.parent.snapshot.paramMap.get('id'))
       .subscribe((sequences) => {
         console.log(sequences);
         this.sequences = sequences;
@@ -68,6 +71,18 @@ export class CourseSequenceComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.submitNewSequence();
     });
+  }
+  //This function is needed to separate "real" questions from questions that only consist of text and require no answer.
+  answeredQuestionCounter(sequenceID: string){
+    let count = 0;
+    let user: User = this.userService.getCurrentUser();
+
+    for(let i = 0; i < user.results.length; i++)
+    {
+     if(user.results[i].sequenceID === sequenceID) {count++};
+    }
+
+    return count;
   }
 
 

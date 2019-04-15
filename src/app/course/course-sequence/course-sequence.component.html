@@ -1,36 +1,12 @@
-
-<!--
-<table mat-table [dataSource]="sequences" class="mat-elevation-z8">
-
-  <ng-container  matColumnDef="selectSequence">
-    <th mat-header-cell *matHeaderCellDef> Select </th>
-    <td mat-cell *matCellDef="let element">  <mat-checkbox (change)="dealWithClick($event)" class="example-margin"></mat-checkbox> </td>
-  </ng-container>
-
-  <ng-container  matColumnDef="sequenceTitle">
-    <th mat-header-cell *matHeaderCellDef> Title </th>
-    <td mat-cell *matCellDef="let element"> <a [routerLink]="['/sequence/'+element._id,{ outlets: { sequenceSection : 'home' } }]">{{element.sequenceTitle}} </a></td>
-  </ng-container>
-
-  <ng-container  matColumnDef="created_at">
-    <th mat-header-cell *matHeaderCellDef> Creation Date </th>
-    <td mat-cell *matCellDef="let element"> {{element.created_at | date :  "dd.MM.y"}} </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
--->
-
 <div *ngFor="let sequence of sequences"  class="card" >
   <mat-card>
     <mat-card-header>
       <div mat-card-avatar > <mat-icon matListIcon>assignment</mat-icon></div>
       <mat-card-title><div class="card-header">{{sequence.sequenceTitle}}</div></mat-card-title>
     </mat-card-header>
-
-    <mat-card-content>
+    <mat-card-content *ngIf="style!='short'">
       <p>{{sequence.sequenceDescription}}</p>
+      <p>You have answered {{answeredQuestionCounter(sequence._id)}} questions of {{sequence.questions.length}} in this sequence.<p>
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button color="link"  [routerLink]="['/sequence/'+sequence._id,{ outlets: { sequenceSection : 'home' } }]" class="btn btn-primary" >View</button>

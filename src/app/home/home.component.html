@@ -13,14 +13,14 @@
   </div>
 </div>
 
-      <ng-template  #student>
+<ng-template  #student>
 
         <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
 
           <div fxFlex="50%">
             <h3>Your courses</h3>
 
-            <div *ngFor="let course of courses"  class="card" >
+            <div *ngFor="let course of this.userService.courses"  class="card" >
               <mat-card>
                 <mat-card-header>
                   <div mat-card-avatar> <mat-icon matListIcon>assignment</mat-icon></div>
@@ -28,7 +28,7 @@
                 </mat-card-header>
 
                 <mat-card-content>
-                  <p>{{course.courseDescription}}</p>
+                  <p [innerHTML]="course.courseDescription"></p>
                 </mat-card-content>
                 <mat-card-actions>
                   <button mat-raised-button color="link"  [routerLink]="['/course/'+course._id,{ outlets: { courseSection : 'home' } }]" class="btn btn-primary"  [class.selected]="course === selectedCourse">View</button>
@@ -68,7 +68,7 @@
           </div>
 
           <div fxFlex="50%">
-            <h3>News</h3>
+            <h3>Site News</h3>
             <div *ngFor="let newsItem of news"  class="card" >
 
               <mat-card>
@@ -97,9 +97,8 @@
   <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
     <div fxFlex="50%">
       <h3>Your courses</h3>
-      <button mat-raised-button color="primary"  (click)="openCourseDialog()" class="btn btn-primary">Create new course</button>
       <p></p>
-      <div *ngFor="let course of courses"  class="card" >
+      <div *ngFor="let course of this.userService.courses"  class="card" >
         <mat-card>
           <mat-card-header>
             <div mat-card-avatar> <mat-icon matListIcon>assignment</mat-icon></div>
@@ -107,49 +106,22 @@
           </mat-card-header>
 
           <mat-card-content>
-            <p>{{course.courseDescription}}</p>
+            <p [innerHTML]="course.courseDescription | truncate:200"></p>
           </mat-card-content>
           <mat-card-actions>
-            <button mat-raised-button color="link"  [routerLink]="['/course/'+course._id,{ outlets: { courseSection : 'home' } }]" class="btn btn-primary"  [class.selected]="course === selectedCourse">View</button>
-            <button mat-raised-button color="warn"   class="btn btn-primary">Unenrole</button>
+            <button mat-raised-button color="primary"  [routerLink]="['/course/'+ course._id,{ outlets: { courseSection : 'home' } }]" class="btn btn-primary"  [class.selected]="course === selectedCourse">View</button>
+            <button mat-raised-button color="link"    (click)="unenroleUserFromCourse(course._id)" class="btn btn-primary align-right">Unenrole</button>
+
 
           </mat-card-actions>
         </mat-card>
+
       </div>
       <p></p>
-      <button mat-raised-button color="primary"  [routerLink]="['/courses/']" class="btn btn-primary">Find more courses!</button>
-
-
-      <h3>Results</h3>
-      <div *ngIf="user.results.length<1; then noResultsContent else resultsContent">
-        <ng-template #noResultsContent><p>You currently have no results to show.</p></ng-template>
-        <ng-template #resultsContent>
-          <h2>Your results:</h2>
-          <table class="table">
-            <thead>
-            <tr>
-              <th>Course Title</th>
-              <th>Sequence Title</th>
-              <th>Question Title</th>
-              <th>Date</th>
-            </tr>
-            </thead>
-            <tbody>
-
-            <tr *ngFor="let result of user.results" >
-              <td>{{result.courseTitle}}</td>
-              <td>{{result.sequenceTitle}}</td>
-              <td>{{result.questionTitle}}</td>
-              <td>{{result.dateTime | date:'medium' }}</td>
-            </tr>
-            </tbody>
-          </table>
-        </ng-template>
-      </div>
+      <button mat-raised-button color="primary"  (click)="openCourseDialog()" class="btn btn-primary">Create new course</button>
     </div>
-
     <div fxFlex="50%">
-      <h3>News</h3>
+      <h3>Site News</h3>
       <div *ngFor="let newsItem of news"  class="card" >
 
         <mat-card>
@@ -162,12 +134,11 @@
           </mat-card-header>
 
           <mat-card-content>
-            <p>{{newsItem.content}}</p>
+            <p [innerHTML]="newsItem.content"></p>
           </mat-card-content>
         </mat-card>
 
       </div>
     </div>
-
   </div>
 </ng-template >

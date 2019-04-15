@@ -29,8 +29,8 @@ export class CourseSearchComponent implements OnInit {
       .subscribe((data) => {
         console.log(data);
         this.fetchEnrolements();
+        this.userService.getEnrolementsForUser();
       });
-
   }
 
   fetchEnrolements(){

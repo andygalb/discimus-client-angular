@@ -4,7 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import {CourseSequenceQuestionService} from '../../course-sequence-question.service';
 import {UserService} from '../../user.service';
-import {Question, Sequence} from '../../models/modelInterfaces';
+import {Question, QuestionResponse, Sequence} from '../../models/modelInterfaces';
 import {RQuestion} from '../../models/modelClasses';
 
 
@@ -15,7 +15,6 @@ import {RQuestion} from '../../models/modelClasses';
 
 export class SequenceHomeComponent implements OnInit {
 
-  title = 'LTC';
   id: string;
   response: string;
   questionForm: FormGroup;
@@ -27,6 +26,7 @@ export class SequenceHomeComponent implements OnInit {
   newQuestionID: string;
   myUserService: UserService;
   feedback: string;
+  questionResponse: QuestionResponse;
 
   constructor(private route: ActivatedRoute,
               private courseSequenceQuestionService: CourseSequenceQuestionService,
@@ -43,14 +43,11 @@ export class SequenceHomeComponent implements OnInit {
 
     const sequenceID = this.route.parent.snapshot.params['id'];
 
-    console.log('The sequence ID is:' + sequenceID);
-
     this.courseSequenceQuestionService.getSequenceByID(sequenceID).subscribe(
       data => {
-        console.log('Attempting to load seqeunce in ngInit');
-        console.log(data);
         this.selectedSequence = data;
         this.courseSequenceQuestionService.currentSequence = data;
+        this.userService.setCurrentSequence(data);
       },
       err => {
         console.error('Error getting sequence!');
@@ -116,7 +113,7 @@ export class SequenceHomeComponent implements OnInit {
             this.response = data;
           },
           err => {
-            console.error('Error adding question to seqeunce');
+            console.error('Error adding question to sequence');
             return;
           },
           () => {
@@ -131,18 +128,24 @@ export class SequenceHomeComponent implements OnInit {
     answerQuestion(question) {
       console.log('You answered:' + question.userAnswer);
 
-      let response = this.courseSequenceQuestionService.isAnswerCorrect(question, question.userAnswer);
+      const response = this.courseSequenceQuestionService.isAnswerCorrect(question, question.userAnswer);
 
       response.subscribe(
         data => {
 
           console.log(data);
+          console.log(data.score === '1');
 
-          if (data['score'] === 1) {
-            this.userService.addCorrectAnswer(question._id, question.userAnswer);
-            question.userResponse = 'Right answer!';
-          } else {
-            question.userResponse = 'Wrong answer - try again.';
+          // @ts-ignore
+          if (data.score === 1) {
+            console.log("Answer correct!");
+            this.userService.addCorrectAnswer(question, question.userAnswer );
+            question.userResponse = data.feedback;
+          }
+          else
+          {
+            this.questionResponse = data;
+            question.userResponse = data.feedback;
           }
         }
       );

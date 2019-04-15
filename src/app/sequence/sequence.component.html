@@ -1,10 +1,11 @@
+<!--
 <a class="courseLink" [routerLink]="['/course/'+userService.getCurrentCourse()._id,{ outlets: { courseSection : 'home' } }]"><h2>Course: {{userService.getCurrentCourse().courseTitle}}</h2></a>
 <span> <a class="courseLink" [routerLink]="['/course/'+userService.getCurrentCourse()._id,{ outlets: { courseSection : 'sequences' } }]">Back to Sequences</a></span>
   <mat-toolbar color="primary">
   <span>Sequence</span>
- <!-- <span> <a [routerLink]="['/sequence/'+id,{ outlets: { sequenceSection : 'home' } }]">Home</a></span>-->
-  <span *ngIf="userService.user.local.userType!=='student'"> <a [routerLink]="['/sequence/'+id,{ outlets: { sequenceSection : 'edit' } }]">Edit</a></span>
+
 </mat-toolbar>
+-->
 <router-outlet name="sequenceSection"></router-outlet>
 
 

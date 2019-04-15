@@ -50,7 +50,6 @@ export class DataService {
   }
 
 
-
   getQuestions() {
     return this.http.get<Question[]>(config.serverAddress + '/api/question/all');
   }
@@ -88,12 +87,17 @@ export class DataService {
   }
 
   enroleUserOnCourse(courseID, userID, role){
+
     let enrolement = new MEnrolement();
     enrolement.courseID = courseID;
     enrolement.role = role;
     enrolement.userID = userID;
 
     return this.http.post<any>(config.serverAddress + '/api/enrolement', JSON.stringify(enrolement), httpOptions);
+  }
+
+  unenroleUserFromCourse(enrolementID) {
+    return this.http.delete<any>(config.serverAddress + '/api/enrolement/' + enrolementID, httpOptions);
   }
 
 }

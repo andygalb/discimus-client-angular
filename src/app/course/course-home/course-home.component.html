@@ -1,25 +1,87 @@
-<mat-card *ngIf="course" class="example-card">
-  <mat-card-header>
-    <div mat-card-avatar ><mat-icon matListIcon>book</mat-icon></div>
-    <mat-card-title><h3>{{ course.courseTitle }}</h3></mat-card-title>
-    <mat-card-subtitle>{{ course.creatorID }}</mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
-    <p>{{ course.courseDescription }} </p>
-    <p>{{ course.created_at | date :  "dd.MM.y" }} </p>
-  </mat-card-content>
-  <mat-card-actions>
-    <button *ngIf="this.userService.user.local.userType=='teacher'" mat-button>Edit</button>
-  </mat-card-actions>
-</mat-card>
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.0%" fxLayoutAlign="center">
 
-<mat-card class="example card" *ngFor="let newsItem of news">
-  <mat-card-header>
-    <mat-card-title>{{ newsItem.title }}</mat-card-title>
-    <div mat-card-avatar class="news-header-image"></div>
-    <mat-card-subtitle>{{ newsItem.created_at | date :  "dd.MM.y"}}</mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
-    <p>{{newsItem.content}}</p>
-  </mat-card-content>
-</mat-card>
+  <div fxFlex="50%">
+    <mat-card *ngIf="course" class="example-card">
+      <mat-card-header>
+
+        <div mat-card-avatar ><mat-icon matListIcon>book</mat-icon></div>
+        <mat-card-title><h3>{{ course.courseTitle }}</h3></mat-card-title>
+        <mat-card-subtitle>{{ course.creatorID }}</mat-card-subtitle>
+
+      </mat-card-header>
+      <mat-card-content>
+            <p [innerHTML]="course.courseDescription"></p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button *ngIf="this.userService.user.local.userType=='teacher'" mat-button (click)="openCourseDialog()"> <mat-icon matListIcon>create</mat-icon></button>
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-card class="example card">
+      <mat-card-header>
+        <div mat-card-avatar> <mat-icon matListIcon>file_copy</mat-icon></div>
+        <mat-card-title><h3>Files</h3></mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <app-documents></app-documents>
+      </mat-card-content>
+    </mat-card>
+
+
+
+  </div>
+  <div fxFlex="50%">
+    <mat-card class="example card">
+      <mat-card-header>
+        <div mat-card-avatar> <mat-icon matListIcon>file_copy</mat-icon></div>
+        <mat-card-title><h3>Course Progress</h3></mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+          <mat-progress-spinner
+            class="spinner-margin"
+            [color]="spinnerColor"
+            [mode]="spinnerMode"
+            [value]="courseProgress">
+          </mat-progress-spinner>
+          <p>You have completed {{courseScore}} of {{courseTotal}} questions in this course.</p>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="example card">
+      <mat-card-header>
+        <div mat-card-avatar> <mat-icon matListIcon>file_copy</mat-icon></div>
+        <mat-card-title><h3>Sequences</h3></mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <app-course-sequence [id]="id" [style]="'short'"></app-course-sequence>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="example card" >
+      <mat-card-header>
+        <div mat-card-avatar> <mat-icon matListIcon>public</mat-icon></div>
+        <mat-card-title><h3>News</h3></mat-card-title>
+      </mat-card-header>
+      <div *ngIf="condition; else elseBlock">
+      <mat-card-content *ngFor="let newsItem of news">
+        <h3>{{ newsItem.title }}</h3>
+        <p>{{newsItem.content}}</p>
+        <p>{{ newsItem.created_at | date :  "dd.MM.y"}}</p>
+      </mat-card-content>
+      </div>
+      <ng-template #elseBlock>
+        <mat-card-content>
+          There is no news for this course.
+        </mat-card-content>
+      </ng-template>
+    </mat-card>
+    <mat-card class="example card" >
+      <mat-card-header>
+        <div mat-card-avatar> <mat-icon matListIcon>contacts</mat-icon></div>
+        <mat-card-title><h3>Participants</h3></mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <app-course-students-component></app-course-students-component>
+      </mat-card-content>
+    </mat-card>
+
+  </div>

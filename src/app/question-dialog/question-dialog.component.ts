@@ -1,7 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {Question} from '../models/modelInterfaces';
-import {QuestionMetaData, RQuestion} from '../models/modelClasses';
+import {DialogMetaData, QuestionMetaData, RQuestion} from '../models/modelClasses';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-question-dialog',
@@ -17,18 +18,28 @@ export class QuestionDialogComponent implements OnInit {
     {name: 'Multiple choice', value : 'multiple-choice'}
   ];
 
+  questionDialogForm: FormGroup;
+
   multipleChoiceChoices = ['bananas', 'apples', 'pears'];
 
   newQuestion: RQuestion;
   metadata: QuestionMetaData;
+  dialogMetaData: DialogMetaData;
+  htmlContent: String;
 
-  constructor(
+  constructor(private fb: FormBuilder,
     public dialogRef: MatDialogRef<QuestionDialogComponent> ,@Inject(MAT_DIALOG_DATA) public data: any
     ) {}
 
   ngOnInit() {
     this.newQuestion = this.data.question;
     this.metadata = this.data.metadata;
+    this.dialogMetaData = this.data.dialogMetaData;
+
+    this.questionDialogForm = this.fb.group({
+      typeControl: [this.newQuestion.type]
+    });
+
   }
 
   updateQuestionType(type) {

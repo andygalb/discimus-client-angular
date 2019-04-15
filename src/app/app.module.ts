@@ -30,8 +30,6 @@ import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { StudentComponent } from './student/student.component';
-import { TeacherComponent } from './teacher/teacher.component';
-import { TeacherHomeComponent } from './teacher/teacher-home/teacher-home.component';
 import { CourseComponent } from './course/course.component';
 import { CourseEditComponent } from './course/course-edit/course-edit.component';
 import { QuestionComponent } from './question/question.component';
@@ -65,6 +63,24 @@ import {CourseDialogComponent} from './home/course-dialog/course-dialog.componen
 import {SequenceDialogComponent} from './course/course-sequence/sequence-dialog/sequence-dialog.component';
 import { MessagesComponent } from './messages/messages.component';
 
+
+
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { HighlightModule } from 'ngx-highlightjs';
+import { AceEditorModule } from 'ng2-ace-editor';
+
+import { ReactiveFormsModule } from '@angular/forms';
+
+import xml from 'highlight.js/lib/languages/xml';
+import cs from 'highlight.js/lib/languages/cs';
+
+export function hljsLanguages() {
+  return [
+    {name: 'cs', func: cs},
+  ];
+}
+
+
 @NgModule({
   entryComponents: [QuestionDialogComponent, CourseDialogComponent,  SequenceDialogComponent],
   declarations: [
@@ -74,8 +90,6 @@ import { MessagesComponent } from './messages/messages.component';
     HomeComponent,
     LoginComponent,
     StudentComponent,
-    TeacherComponent,
-    TeacherHomeComponent,
     CourseComponent,
     CourseEditComponent,
     QuestionComponent,
@@ -101,12 +115,17 @@ import { MessagesComponent } from './messages/messages.component';
     MessagesComponent
   ],
   imports: [
+    AceEditorModule,
+    AngularEditorModule,
     BrowserModule,
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
+    HighlightModule.forRoot({
+      languages: hljsLanguages
+    }),
     MatButtonModule,
     MatCheckboxModule,
     MatDialogModule,
@@ -123,7 +142,8 @@ import { MessagesComponent } from './messages/messages.component';
     MatInputModule,
     MatPaginatorModule,
     MatTableModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
   ],
   providers: [UserService,
     LoaderService,

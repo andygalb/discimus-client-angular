@@ -11,3 +11,9 @@
 .mat-icon {
   font-size: 30px;
 }
+
+.spinner-margin {
+  margin: 0 10px;
+}
+
+.align-right{ float:right}

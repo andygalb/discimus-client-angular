@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Course, Question, Sequence} from './models/modelInterfaces';
+import {Course, Question, QuestionResponse, Sequence} from './models/modelInterfaces';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import config from './config.json';
 
@@ -43,6 +43,10 @@ export class CourseSequenceQuestionService {
     return this.http.delete<String>(config.serverAddress + '/api/course/' + course._id, httpOptions);
   }
 
+  deleteCourseByID(courseID: string) {
+    return this.http.delete<string>(config.serverAddress + '/api/course/' + courseID, httpOptions);
+  }
+
   deleteSequence(sequence: Sequence) {
     return this.http.delete<String>(config.serverAddress + '/api/sequence/' + sequence._id, httpOptions);
   }
@@ -81,7 +85,7 @@ export class CourseSequenceQuestionService {
     }
 
    getQuestionByID(id: string) {
-     return this.http.get(config.serverAddress + '/api/question/'+id,httpOptions);
+     return this.http.get<Question>(config.serverAddress + '/api/question/' + id, httpOptions);
    }
 
     addQuestion(question: Question) {
@@ -97,8 +101,6 @@ export class CourseSequenceQuestionService {
       return this.http.post<Question[]>(config.serverAddress + '/api/multiple/questions', JSON.stringify(objectToSend), httpOptions);
     }
 
-
-//Is there a diffeence between questions that can be answered locally and questions that must be submitted?
   isAnswerCorrect(question: Question, givenAnswer: string) {
     return this.submitAnswerToServer(question, givenAnswer);
   }
@@ -108,7 +110,7 @@ export class CourseSequenceQuestionService {
     const objectToSend = {
       question: question,
       submittedAnswer: submittedAnswer};
-    return this.http.post(config.serverAddress + '/api/test/submit', JSON.stringify(objectToSend), httpOptions);
+    return this.http.post<QuestionResponse>(config.serverAddress + '/api/test/submit', JSON.stringify(objectToSend), httpOptions);
   }
 
 

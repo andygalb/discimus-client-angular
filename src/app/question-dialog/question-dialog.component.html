@@ -1,13 +1,14 @@
-<h2 mat-dialog-title>Add question </h2>
+<h2 mat-dialog-title>{{dialogMetaData.titleText}} </h2>
 
+<form [formGroup]="questionDialogForm">
 <mat-form-field class="example-full-width" >
-  <mat-select name="questionType" placeholder="Question type" (selectionChange)="updateQuestionType($event.value)">
+  <mat-select formControlName="typeControl" name="questionType" placeholder="Question type" (selectionChange)="updateQuestionType($event.value)">//How to set initial value?
     <mat-option *ngFor="let questionType of questionTypes" [value]="questionType.value">
       {{questionType.name}}
     </mat-option>
   </mat-select>
 </mat-form-field>
-
+</form>
 <mat-dialog-content>
 
   <div [ngSwitch]="newQuestion.type">
@@ -37,9 +38,7 @@
           <input matInput type="text" placeholder="Title:"  class="form-control" id="title" required name="title"  [(ngModel)]="newQuestion.title">
         </mat-form-field >
 
-        <mat-form-field class="example-full-width">
-          <textarea matInput  name="questionText" placeholder="Question Text:" class="form-control" id="questionText" rows="5"   [(ngModel)]="newQuestion.text"  ></textarea>
-        </mat-form-field >
+      <angular-editor class="form-control"  matInput [(ngModel)]="newQuestion.text"></angular-editor>
 
         <mat-form-field class="example-full-width">
           <input matInput  name="questionAnswer" placeholder="Answer:"  class="form-control" id="questionAnswer" rows="3"  [(ngModel)]="newQuestion.questionAnswer.text" />
@@ -69,9 +68,7 @@
         <input matInput type="text" placeholder="Title:"  class="form-control" id="title" required name="title"  [(ngModel)]="newQuestion.title">
       </mat-form-field >
 
-      <mat-form-field class="example-full-width">
-        <textarea matInput  name="questionText" placeholder="Text:" class="form-control" id="questionText" rows="5"   [(ngModel)]="newQuestion.text"  ></textarea>
-      </mat-form-field >
+      <angular-editor class="form-control"  matInput [(ngModel)]="newQuestion.text"></angular-editor>
     </ng-template>
 
     <ng-template #multipleChoice>
@@ -101,6 +98,6 @@
   </mat-dialog-content>
 
 <mat-dialog-actions>
-  <button mat-raised-button color="primary" type="submit"  cdkFocusInitial [mat-dialog-close]="data.question">Create</button>
+  <button mat-raised-button color="primary" type="submit"  cdkFocusInitial [mat-dialog-close]="data.question">{{dialogMetaData.okButtonText}}</button>
   <button mat-button (click)="cancelQuestion()">Cancel</button>
 </mat-dialog-actions>

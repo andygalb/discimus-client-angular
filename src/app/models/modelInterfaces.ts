@@ -12,6 +12,7 @@ export interface Course {
   courseTitle: String;
   courseDescription: String;
   creatorID: String;
+  courseSummary: string;
   sequences: String[];
   created_at: {type: Date, required: true};
   updated_at: {type: Date, required: true};
@@ -46,6 +47,7 @@ export interface Question {
   text: string;
   type: string;
   creatorID: string;
+  questionInput?: string;
   questionAnswer: {
     text: string,
     javascript: string,
@@ -131,6 +133,14 @@ export interface Enrolement {
   role: String;
   created_at: {type: Date};
   updated_at: {type: Date};
+}
+
+export interface QuestionResponse {
+  expectedResults: string;
+  actualResults: string;
+  studentResults: string;
+  score: string;
+  feedback: string;
 }
 
 

@@ -1,12 +1,10 @@
-<h2>Add new course</h2>
+<h2>{{dialogMetaData.titleText}}</h2>
     <mat-form-field class="example-full-width">
       <input matInput placeholder="Title:"  [(ngModel)]="course.courseTitle" type="text" class="form-control" id="title" required name="title" >
     </mat-form-field>
-    <mat-form-field class="example-full-width">
-      <textarea   matInput placeholder="Description" [(ngModel)]="course.courseDescription"  name="description" class="form-control" id="description" rows="3"  required name="description" ></textarea>
-    </mat-form-field>
+      <angular-editor class="form-control"  matInput [(ngModel)]="course.courseDescription"></angular-editor>
         <mat-dialog-actions>
-      <button mat-raised-button color="primary" type="submit"  cdkFocusInitial  [mat-dialog-close]="data.question">Create</button>
-      <button mat-button (click)="cancelQuestion()">Cancel</button>
+      <button mat-raised-button color="primary" type="submit"  cdkFocusInitial  (click)="onSubmit()">{{dialogMetaData.okButtonText}}</button>
+      <button mat-button (click)="cancelDialog()">Cancel</button>
     </mat-dialog-actions>
 

@@ -13,6 +13,7 @@ export class RCourse implements Course {
   courseTitle: String;
   courseDescription: String;
   creatorID: String;
+  courseSummary: string;
   sequences: String[];
   created_at: { type: Date; required: true };
   updated_at: { type: Date; required: true };
@@ -72,6 +73,7 @@ export class RQuestion implements Question {
   text: string;
   type: string;
   creatorID: string;
+  questionInput: string;
   questionAnswer: { text: string; javascript: string; csharp: string };
   userAnswer? : string;
   userResponse?: string;
@@ -86,6 +88,18 @@ export class QuestionMetaData {
   }
   inputs: String;
   outputs: String;
+}
+
+export class DialogMetaData {
+  constructor(titleText, okButtonText, type) {
+    this.titleText = titleText;
+    this.okButtonText = okButtonText;
+    this.type = type;
+  }
+
+  titleText: String;
+  okButtonText: String;
+  type: String;
 }
 
 export class MEnrolement implements Enrolement {

@@ -3,6 +3,7 @@ import {User} from '../../models/modelInterfaces';
 import {DataService} from '../../data.service';
 import {UserService} from '../../user.service';
 import {MatTableDataSource} from '@angular/material';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-course-students-component',
@@ -16,10 +17,11 @@ export class CourseStudentsComponent implements OnInit {
   dataSource = new MatTableDataSource();
   displayedColumns = ['userFirstName', 'userSurname', 'userEmail','userType'];
 
-  constructor(private dataService: DataService, private userService: UserService) { }
+  constructor(private dataService: DataService, private route: ActivatedRoute, private userService: UserService) { }
 
   ngOnInit() {
-    this.dataService.getUsersForCourse(this.userService.currentCourse._id).subscribe(data =>{
+    //TODO Hack! Get id from userService instead.
+    this.dataService.getUsersForCourse(this.route.parent.snapshot.paramMap.get('id')).subscribe(data =>{
       this.users = data;
       this.dataSource.data = data;
     });
