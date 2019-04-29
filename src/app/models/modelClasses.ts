@@ -103,6 +103,7 @@ export class DialogMetaData {
 }
 
 export class MEnrolement implements Enrolement {
+  _id: String,
   courseID: String;
   userID: String;
   role: String;
