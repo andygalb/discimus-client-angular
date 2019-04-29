@@ -1,0 +1,15 @@
+<mat-card class="example card"  *ngIf="this.userService.user.local.userType=='student'">
+  <mat-card-header>
+    <div mat-card-avatar> <mat-icon matListIcon>file_copy</mat-icon></div>
+    <mat-card-title><h3>Course Progress</h3></mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-progress-spinner
+      class="spinner-margin progress-spinner"
+      [color]="spinnerColor"
+      [mode]="spinnerMode"
+      [value]="courseProgress">
+    </mat-progress-spinner>
+    <p>You have completed {{courseScore/courseTotal*100 | number:'1.0-0'}}% of this course.</p>
+  </mat-card-content>
+</mat-card>

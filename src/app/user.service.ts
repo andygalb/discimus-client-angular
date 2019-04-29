@@ -45,7 +45,9 @@ export class UserService {
     this.user = user;
   }
 
-  setCurrentCourse(course){
+  setCurrentCourse(course: Course){
+    console.log("Current course was just set");
+    console.log(course);
     localStorage.setItem('currentCourse', JSON.stringify(course));
   }
 

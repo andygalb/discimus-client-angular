@@ -1,0 +1,14 @@
+table{width:100%; margin-left:0px;
+  transition: none !important;
+  box-shadow: none !important;
+}
+
+.unreadMessage{
+  font-weight: bold;
+}
+
+.readMessage{
+  font-weight: normal;
+}
+
+.pointable{cursor: pointer; }

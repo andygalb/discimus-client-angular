@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>{{dialogMetaData.titleText}}</h2>
+  <mat-dialog-content >
+    <mat-card>
+      <mat-card-header>
+        <div mat-card-avatar> <mat-icon matListIcon>contacts</mat-icon></div>
+        <mat-card-title>
+          Title: {{message.title}}
+        </mat-card-title>
+        <mat-card-subtitle>
+          From: {{message.fromFirstName}} {{message.fromLastName}} Date: {{message.created_at | date: 'short'}}
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div [innerHTML]="message.content"></div>
+      </mat-card-content>
+      <mat-card-footer></mat-card-footer>
+    </mat-card>
+  </mat-dialog-content>
+<mat-dialog-actions>
+      <button mat-raised-button color="primary" type="submit"  (click)="cancelDialog()">Ok</button>
+</mat-dialog-actions>
+

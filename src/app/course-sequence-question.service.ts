@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Course, Question, QuestionResponse, Sequence} from './models/modelInterfaces';
+import {Course, News, Question, QuestionResponse, Sequence} from './models/modelInterfaces';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import config from './config.json';
 
@@ -45,6 +45,10 @@ export class CourseSequenceQuestionService {
 
   deleteCourseByID(courseID: string) {
     return this.http.delete<string>(config.serverAddress + '/api/course/' + courseID, httpOptions);
+  }
+
+  addNews(news: News) {
+    return this.http.post<String>(config.serverAddress + '/api/news', JSON.stringify(news), httpOptions);
   }
 
   deleteSequence(sequence: Sequence) {

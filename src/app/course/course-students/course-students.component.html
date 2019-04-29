@@ -1,3 +1,9 @@
+<mat-card class="example card" >
+  <mat-card-header>
+    <div mat-card-avatar> <mat-icon matListIcon>contacts</mat-icon></div>
+    <mat-card-title><h3>Participants</h3></mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
 <table *ngIf="users" mat-table [dataSource]="users" class="mat-elevation-z8">
 
   <ng-container  matColumnDef="userFirstName">
@@ -24,4 +30,7 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+
+  </mat-card-content>
+</mat-card>
 

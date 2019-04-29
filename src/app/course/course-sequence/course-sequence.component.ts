@@ -4,9 +4,9 @@ import {MatDialog, MatTableDataSource} from '@angular/material';
 import {DataService} from '../../data.service';
 import {UserService} from '../../user.service';
 import {RSequence} from '../../models/modelClasses';
-import {CourseDialogComponent} from '../../home/course-dialog/course-dialog.component';
+import {CourseDialogComponent} from '../../dialogs/course-dialog/course-dialog.component';
 import {CourseSequenceQuestionService} from '../../course-sequence-question.service';
-import {SequenceDialogComponent} from './sequence-dialog/sequence-dialog.component';
+import {SequenceDialogComponent} from '../../dialogs/sequence-dialog/sequence-dialog.component';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
@@ -25,6 +25,7 @@ export class CourseSequenceComponent implements OnInit {
   constructor(public dialog: MatDialog, private dataService: DataService, private route: ActivatedRoute, private userService: UserService, private courseSequenceQuestionService: CourseSequenceQuestionService) { }
 
   ngOnInit() {
+    this.sequences = [];
     this.showSequences();
   }
 
@@ -69,7 +70,8 @@ export class CourseSequenceComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.submitNewSequence();
+      if(result === 'submit') {this.submitNewSequence();}
+     
     });
   }
   //This function is needed to separate "real" questions from questions that only consist of text and require no answer.

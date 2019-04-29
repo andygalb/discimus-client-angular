@@ -1,0 +1,22 @@
+<mat-toolbar color="primary">
+  <button mat-button (click)="openMessageDialog()">
+    <mat-icon>add</mat-icon>
+    New message
+  </button>
+</mat-toolbar>
+<mat-tab-group>
+  <mat-tab label="Inbox">
+    <ng-template matTabContent>
+      <app-messenger-inbox></app-messenger-inbox>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Sent">
+    <ng-template matTabContent>
+      <app-messenger-sent></app-messenger-sent>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>
+
+
+
+

@@ -4,7 +4,7 @@ import {UserService} from '../user.service';
 import {DataService} from '../data.service';
 
 import {QuestionDialogComponent} from '../question-dialog/question-dialog.component';
-import {CourseDialogComponent} from './course-dialog/course-dialog.component';
+import {CourseDialogComponent} from '../dialogs/course-dialog/course-dialog.component';
 import {MatDialog} from '@angular/material';
 import {MEnrolement, RCourse} from '../models/modelClasses';
 import {Course, Enrolement, News, Question, Sequence, User} from '../models/modelInterfaces';
@@ -108,7 +108,7 @@ export class HomeComponent implements OnInit {
     this.newCourse = new RCourse();
     let dialogRef = this.dialog.open(CourseDialogComponent, {
 
-      data: {course: this.newCourse, dialogMetaData: {title: 'Add new course', okButtonText: 'Save'}},
+      data: {course: this.newCourse, dialogMetaData: {titleText: 'Add new course', okButtonText: 'Save'}},
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -122,7 +122,7 @@ export class HomeComponent implements OnInit {
       console.log(data);
     },
       (err) => {
-      console.log("Error while deleteing course:" + err);
+      console.log("Error while deleting course:" + err);
     }
       );
   }

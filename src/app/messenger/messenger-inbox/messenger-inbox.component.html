@@ -1,0 +1,49 @@
+<mat-card class="example card">
+  <mat-card-header>
+    <div mat-card-avatar>
+      <mat-icon matListIcon>contacts</mat-icon>
+    </div>
+    <mat-card-title><h3>Inbox</h3></mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+    </mat-form-field>
+
+    <table  mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+      <ng-container matColumnDef="read">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Read</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-icon *ngIf="element.read; else elseBlock" matListIcon>drafts</mat-icon>
+          <ng-template #elseBlock>
+            <mat-icon matListIcon>email</mat-icon>
+          </ng-template>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="fromName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> From</th>
+        <td mat-cell *matCellDef="let element"><span
+          [class]="element.read? 'readMessage': 'unreadMessage'">{{element.fromName}}</span></td>
+      </ng-container>
+
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Title</th>
+        <td mat-cell *matCellDef="let element" ><span  [class]="element.read? 'readMessage': 'unreadMessage'"
+                                                     (click)="viewMessage(element)"> {{element.title}}</span></td>
+      </ng-container>
+
+      <ng-container matColumnDef="created_at">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date</th>
+        <td mat-cell *matCellDef="let element"><span
+          [class]="element.read? 'readMessage': 'unreadMessage'"> {{element.created_at | date : 'short'}} </span></td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+  </mat-card-content>
+</mat-card>

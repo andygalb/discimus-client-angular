@@ -20,10 +20,16 @@ export class RCourse implements Course {
 }
 
 export class RMessage implements Message {
+  _id: String;
   fromID: String;
   fromName: String;
   toID: String;
   title: String;
+  senderFirstName: String;
+  senderLastName: String;
+  recipientFirstName: String;
+  recipientLastName: String;
+  read: Boolean;
   content: String;
   created_at: {type: Date, required: true};
   updated_at: {type: Date, required: true};
@@ -41,9 +47,9 @@ export class RDocument implements CourseDocument {
 export class RNews implements News {
   _id: String;
   owner: {
-    id: string;
-    firstName: string;
-    lastName: string;
+    id: String;
+    firstName: String;
+    lastName: String;
   } ;
   ownerName: String;
   courseID: String;
@@ -103,6 +109,7 @@ export class DialogMetaData {
 }
 
 export class MEnrolement implements Enrolement {
+  _id: String;
   courseID: String;
   userID: String;
   role: String;

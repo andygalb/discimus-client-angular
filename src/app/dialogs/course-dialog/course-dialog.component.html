@@ -1,0 +1,10 @@
+<h2>{{dialogMetaData.titleText}}</h2>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Title:"  [(ngModel)]="course.courseTitle" type="text" class="form-control" id="title" required name="title" >
+    </mat-form-field>
+      <angular-editor [config]="editorConfig" class="form-control" placeholder="Course description here..."  matInput [(ngModel)]="course.courseDescription"></angular-editor>
+        <mat-dialog-actions>
+      <button mat-raised-button color="primary" type="submit"  cdkFocusInitial  (click)="onSubmit()">{{dialogMetaData.okButtonText}}</button>
+      <button mat-button (click)="cancelDialog()">Cancel</button>
+    </mat-dialog-actions>
+
