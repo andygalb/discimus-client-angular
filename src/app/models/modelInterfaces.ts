@@ -128,6 +128,7 @@ export interface Document {
 }
 
 export interface Enrolement {
+  _id: String;
   courseID: String;
   userID: String;
   role: String;
