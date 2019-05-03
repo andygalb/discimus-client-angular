@@ -26,7 +26,7 @@ export class CourseProgressComponent implements OnInit {
   }
 
   calculateProgress() {
-
+   //Get course summary from user service.
     console.log(this.userService.getCurrentCourse().courseSummary);
 
     const courseSummary = JSON.parse(this.userService.getCurrentCourse().courseSummary);
