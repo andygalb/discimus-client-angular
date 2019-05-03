@@ -2,12 +2,16 @@ import { Injectable } from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 import {HttpClient, HttpEventType, HttpRequest, HttpResponse} from '@angular/common/http';
 
-const url = 'http://localhost:3000/api/document';
+import config from '../config.json';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class UploadService {
+
+  serverAddress = config.serverAddress;
+  url = this.serverAddress + '/api/document';
 
   constructor(private http: HttpClient) { }
 
@@ -24,7 +28,7 @@ export class UploadService {
 
       // create a http-post request and pass the form
       // tell it to report the upload progress
-      const req = new HttpRequest('POST', url, formData, {
+      const req = new HttpRequest('POST', this.url, formData, {
         reportProgress: true
       });
 

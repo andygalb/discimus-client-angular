@@ -44,7 +44,7 @@ export class MessengerComponent implements OnInit {
       this.newMessage.fromID = this.userService.getCurrentUser()._id;
       this.newMessage.fromName = this.userService.getCurrentUser().local.firstName;
 
-      this.newMessage.toID = '5b2ba50ad01b2e2c7062f820';
+      //this.newMessage.toID = '5b2ba50ad01b2e2c7062f820';
 
       this.messengerService.sendMessage(this.newMessage).subscribe((response) => {
         console.log(response);

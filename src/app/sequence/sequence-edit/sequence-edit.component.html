@@ -1,6 +1,6 @@
 
-  <a *ngIf="this.courseSequenceQuestionService.currentCourse" [routerLink]="['/teacher/course/edit/'+ this.courseSequenceQuestionService.currentCourse._id]">Course:{{this.courseSequenceQuestionService.currentCourse.courseTitle}}</a> >
-  <a *ngIf="selectedSequence" [routerLink]="['/teacher/sequence/edit/'+ this.courseSequenceQuestionService.currentSequence._id]">Sequence:{{this.courseSequenceQuestionService.currentSequence.sequenceTitle}}</a>
+  <a  [routerLink]="['/course/'+ this.userService.getCurrentCourse()._id,{ outlets: { courseSection : 'home' } }]">Course: {{this.userService.getCurrentCourse().courseTitle}}</a> >
+  <a *ngIf="selectedSequence" [routerLink]="['/sequence/'+ this.userService.getCurrentSequence()._id,{ outlets: { sequenceSection : 'home' } }]">Sequence: {{this.userService.getCurrentSequence().sequenceTitle}}</a>
 
     <h3>Sequence</h3>
     <form class="example-form" *ngIf="selectedSequence">

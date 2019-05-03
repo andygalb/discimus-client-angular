@@ -83,6 +83,7 @@ import { MessengerInboxComponent } from './messenger/messenger-inbox/messenger-i
 import { MessengerSentComponent } from './messenger/messenger-sent/messenger-sent.component';
 import {MessageViewDialogComponent} from './dialogs/message-view-dialog/message-view-dialog.component';
 import { LandingComponent } from './landing/landing.component';
+import { SequenceNavigatorComponent } from './sequence/sequence-navigator/sequence-navigator.component';
 
 export function hljsLanguages() {
   return [
@@ -132,7 +133,8 @@ export function hljsLanguages() {
     CourseDescriptionComponent,
     MessengerInboxComponent,
     MessengerSentComponent,
-    LandingComponent
+    LandingComponent,
+    SequenceNavigatorComponent
   ],
   imports: [
     AceEditorModule,
@@ -140,7 +142,7 @@ export function hljsLanguages() {
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule,
+    AppRoutingModule ,
     BrowserAnimationsModule,
     FlexLayoutModule,
     HighlightModule.forRoot({

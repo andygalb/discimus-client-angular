@@ -61,7 +61,7 @@ children: [
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes, {onSameUrlNavigation:"reload",/* enableTracing: true,*/ scrollPositionRestoration: "enabled"})],
+  imports: [ RouterModule.forRoot(routes, {onSameUrlNavigation:"reload",/* enableTracing: true,*/ scrollPositionRestoration: "enabled", useHash: true })],
   exports: [ RouterModule ]
 })
 

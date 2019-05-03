@@ -27,6 +27,8 @@ export class CourseProgressComponent implements OnInit {
 
   calculateProgress() {
 
+    console.log(this.userService.getCurrentCourse().courseSummary);
+
     const courseSummary = JSON.parse(this.userService.getCurrentCourse().courseSummary);
 
     let total = 0;

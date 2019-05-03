@@ -32,11 +32,11 @@ export class CourseSequenceQuestionService {
   }
 
   addCourse(course: Course) {
-    return this.http.put<String>(config.serverAddress + '/api/course', JSON.stringify(course), httpOptions);
+    return this.http.post<String>(config.serverAddress + '/api/course', JSON.stringify(course), httpOptions);
   }
 
   updateCourse(course: Course) {
-    return this.http.post<String>(config.serverAddress + '/api/course/' + course._id, JSON.stringify(course), httpOptions);
+    return this.http.put<String>(config.serverAddress + '/api/course/' + course._id, JSON.stringify(course), httpOptions);
   }
 
   deleteCourse(course: Course) {
@@ -56,7 +56,7 @@ export class CourseSequenceQuestionService {
   }
 
   addSequence(sequence: Sequence) {
-    return this.http.put<JSON>(config.serverAddress + '/api/sequence', JSON.stringify(sequence), httpOptions);
+    return this.http.post<JSON>(config.serverAddress + '/api/sequence', JSON.stringify(sequence), httpOptions);
   }
 
   addSequenceToCourse(sequenceID: String, courseID: String) {
@@ -68,7 +68,7 @@ export class CourseSequenceQuestionService {
   }
 
   updateSequence(sequence: Sequence) {
-    return this.http.post<string>(config.serverAddress + '/api/sequence/' + sequence._id, JSON.stringify(sequence), httpOptions);
+    return this.http.put<string>(config.serverAddress + '/api/sequence/' + sequence._id, JSON.stringify(sequence), httpOptions);
   }
 
   getResourceByID<T>(id: string, type: string) {
@@ -101,6 +101,7 @@ export class CourseSequenceQuestionService {
     }
 
     getMultipleQuestions(questions: string[]) {
+
       const objectToSend = {questions: questions};
       return this.http.post<Question[]>(config.serverAddress + '/api/multiple/questions', JSON.stringify(objectToSend), httpOptions);
     }

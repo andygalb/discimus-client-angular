@@ -48,12 +48,17 @@ export class UserService {
   setCurrentCourse(course: Course){
     console.log("Current course was just set");
     console.log(course);
+    this.currentCourse = course;
     localStorage.setItem('currentCourse', JSON.stringify(course));
   }
 
   getCurrentCourse(){
-    let course = JSON.parse(localStorage.getItem('currentCourse'));
-    return course;
+  //  let course = JSON.parse(localStorage.getItem('currentCourse'));
+    if (this.currentCourse == null) {
+      let course = JSON.parse(localStorage.getItem('currentCourse'));
+      return course;
+    }
+    else {return this.currentCourse;}
   }
 
   setCurrentSequence(sequence){
@@ -64,6 +69,16 @@ export class UserService {
     let sequence= JSON.parse(localStorage.getItem('currentSequence'));
     return sequence;
   }
+
+  setCurrentQuestions(questions: Question[]){
+    localStorage.setItem('currentQuestions', JSON.stringify(questions));
+  }
+
+  getCurrentQuestions(){
+    let questions = JSON.parse(localStorage.getItem('currentQuestions'));
+    return questions;
+  }
+
 
   getEnrolementsForUser() {
     this.http.get<Enrolement[]>(config.serverAddress + '/api/enrolement/user/' + this.getCurrentUser()._id).subscribe((enrolements) => {
