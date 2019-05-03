@@ -71,6 +71,7 @@ export class SequenceEditComponent implements OnInit {
       },
       () => {
         console.log('Attempting to load questions');
+
         this.courseSequenceQuestionService.getMultipleQuestions(this.selectedSequence.questions).subscribe(
           data => {
             console.log('Got data back');
@@ -192,6 +193,7 @@ export class SequenceEditComponent implements OnInit {
       },
       err => {
         console.error('Error adding question!');
+        console.error(err);
         return;
       },
       () => {
@@ -202,7 +204,7 @@ export class SequenceEditComponent implements OnInit {
         this.courseSequenceQuestionService.updateSequence(this.selectedSequence).subscribe(
           data => {
             console.log(data);
-            console.log('Updated question');
+            console.log('Added question to sequence and saved.');
             this.response = data;
           },
           err => {

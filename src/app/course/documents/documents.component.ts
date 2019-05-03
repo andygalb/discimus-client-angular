@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {DataService} from '../../data.service';
 import {ActivatedRoute} from '@angular/router';
 import {CourseDocument} from '../../models/modelInterfaces';
@@ -16,6 +16,8 @@ import {forkJoin} from 'rxjs';
 })
 export class DocumentsComponent implements OnInit {
 
+  @Input() id: String;
+
   progress;
   canBeClosed = true;
   primaryButtonText = 'Upload';
@@ -26,18 +28,16 @@ export class DocumentsComponent implements OnInit {
   @ViewChild('file') file;
   public files: Set<File> = new Set();
 
-  //TODO must have a general file with details of server etc....
+  // TODO must have a general file with details of server etc....
 
   dataSource = new MatTableDataSource();
   displayedColumns = ['selectDocument', 'originalFilename', 'creationDate'];
 
   documents: CourseDocument[];
-  id: String;
 
   constructor(private dataService: DataService, private route: ActivatedRoute, public uploadService: UploadService, public userService: UserService) { }
 
   ngOnInit() {
-    this.id = this.route.parent.snapshot.paramMap.get('id');
     this.getDocuments(this.id);
   }
 
@@ -52,7 +52,7 @@ export class DocumentsComponent implements OnInit {
 
   onFilesAdded() {
     const files: { [key: string]: File } = this.file.nativeElement.files;
-    for (let key in files) {
+    for (const key in files) {
       if (!isNaN(parseInt(key))) {
         this.files.add(files[key]);
       }
@@ -60,15 +60,15 @@ export class DocumentsComponent implements OnInit {
     console.log(files);
   }
 
-  onUploadButtonPressed(){
+  onUploadButtonPressed() {
    // this.uploadService.upload(this.files, this.userService.user._id,  this.id);
 
     // start the upload and save the progress map
     this.progress = this.uploadService.upload(this.files, this.userService.user._id,  this.id);
 
     // convert the progress map into an array
-    let allProgressObservables = [];
-    for (let key in this.progress) {
+    const allProgressObservables = [];
+    for (const key in this.progress) {
       allProgressObservables.push(this.progress[key].progress);
     }
 
@@ -88,14 +88,14 @@ export class DocumentsComponent implements OnInit {
     forkJoin(allProgressObservables).subscribe(end => {
       // ... the dialog can be closed again...
       this.canBeClosed = true;
-      //this.dialogRef.disableClose = false;
+      // this.dialogRef.disableClose = false;
 
       // ... the upload was successful...
       this.uploadSuccessful = true;
 
       // ... and the component is no longer uploading
       this.uploading = false;
-      //Reload table!
+      // Reload table!
       this.getDocuments(this.id);
     });
 

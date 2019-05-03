@@ -21,9 +21,9 @@ export interface Course {
 export interface News {
   _id: String;
   owner: {
-    id: string;
-    firstName: string;
-    lastName: string;
+    id: String;
+    firstName: String;
+    lastName: String;
   } ;
   courseID: String;
   title: String;
@@ -32,11 +32,17 @@ export interface News {
 }
 
 export interface Message {
+  _id: String;
   fromID: String;
   fromName: String;
+  senderFirstName: String;
+  senderLastName: String;
+  recipientFirstName: String;
+  recipientLastName: String;
   toID: String;
   title: String;
   content: String;
+  read: Boolean;
   created_at: {type: Date, required: true};
   updated_at: {type: Date, required: true};
 }

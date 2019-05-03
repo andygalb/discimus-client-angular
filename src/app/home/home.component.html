@@ -32,7 +32,7 @@
                 </mat-card-content>
                 <mat-card-actions>
                   <button mat-raised-button color="link"  [routerLink]="['/course/'+course._id,{ outlets: { courseSection : 'home' } }]" class="btn btn-primary"  [class.selected]="course === selectedCourse">View</button>
-                  <button mat-raised-button color="warn"   class="btn btn-primary">Unenrole</button>
+                  <button mat-raised-button color="link"    (click)="unenroleUserFromCourse(course._id)" class="btn btn-primary align-right">Unenrole</button>
 
                 </mat-card-actions>
               </mat-card>
@@ -73,7 +73,7 @@
 
               <mat-card>
                 <mat-card-header>
-                  <div mat-card-avatar class="news-header-image"></div>
+                  <div mat-card-avatar><mat-icon matListIcon>announcment</mat-icon></div>
                   <mat-card-title>
                     {{newsItem.title}}
                   </mat-card-title>
@@ -86,7 +86,9 @@
               </mat-card>
 
             </div>
+            <app-messenger-inbox></app-messenger-inbox>
           </div>
+
 
         </div>
       </ng-template >
@@ -98,11 +100,18 @@
     <div fxFlex="50%">
       <h3>Your courses</h3>
       <p></p>
+      <div >
       <div *ngFor="let course of this.userService.courses"  class="card" >
         <mat-card>
           <mat-card-header>
-            <div mat-card-avatar> <mat-icon matListIcon>assignment</mat-icon></div>
-            <mat-card-title><div class="card-header"><h3>{{course.courseTitle}}</h3></div></mat-card-title>
+            <div mat-card-avatar>
+              <mat-icon matListIcon>assignment</mat-icon>
+            </div>
+            <mat-card-title>
+              <div class="card-header">
+                <h3>{{course.courseTitle}}</h3>
+              </div>
+            </mat-card-title>
           </mat-card-header>
 
           <mat-card-content>
@@ -117,6 +126,7 @@
         </mat-card>
 
       </div>
+      </div>
       <p></p>
       <button mat-raised-button color="primary"  (click)="openCourseDialog()" class="btn btn-primary">Create new course</button>
     </div>
@@ -126,7 +136,7 @@
 
         <mat-card>
           <mat-card-header>
-            <div mat-card-avatar class="news-header-image"></div>
+            <div mat-card-avatar><mat-icon matListIcon>announcement</mat-icon></div>
             <mat-card-title>
               {{newsItem.title}}
             </mat-card-title>
@@ -139,6 +149,7 @@
         </mat-card>
 
       </div>
+      <app-messenger-inbox></app-messenger-inbox>
     </div>
   </div>
 </ng-template >

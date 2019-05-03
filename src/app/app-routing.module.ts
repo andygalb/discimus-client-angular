@@ -22,8 +22,11 @@ import {CourseSequenceComponent} from './course/course-sequence/course-sequence.
 import {CourseSearchComponent} from './course-search/course-search.component';
 import {CourseStudentsComponent} from './course/course-students/course-students.component';
 import {MessagesComponent} from './messages/messages.component';
+import {MessengerComponent} from './messenger/messenger.component';
+import {LandingComponent} from './landing/landing.component';
 
 const routes: Routes = [
+  { path: 'messenger', component: MessengerComponent,  canActivate: [RoleGuardService] , data: {expectedRoles: ['admin', 'teacher', 'student'] }},
   { path: 'about', component: AboutComponent  },
   { path: 'admin', component: AdminComponent, canActivate: [RoleGuardService], data: {expectedRoles: ['admin']},
     children: [
@@ -44,8 +47,8 @@ const routes: Routes = [
       { path: 'edit', component: SequenceEditComponent , outlet: 'sequenceSection'},
       { path: 'home', component: SequenceHomeComponent , outlet: 'sequenceSection'},
       ]},
-  { path: 'course/:id', component: CourseComponent, canActivate: [RoleGuardService], data: {expectedRoles: ['admin', 'teacher', 'student']},
-    children: [
+  { path: 'course/:id', component: CourseComponent, canActivate: [RoleGuardService], data: {expectedRoles: ['admin', 'teacher', 'student']}, runGuardsAndResolvers:'always',
+children: [
       { path: 'edit', component: CourseEditComponent , outlet: 'courseSection'},
       { path: 'home', component: CourseHomeComponent , outlet: 'courseSection'},
       { path: 'teachers', component: AdminUserComponent , outlet: 'courseSection'},
@@ -53,11 +56,12 @@ const routes: Routes = [
       { path: 'documents', component: DocumentsComponent , outlet: 'courseSection'},
       { path: 'sequences', component: CourseSequenceComponent , outlet: 'courseSection'}
     ]},
+  {path: '', component: LandingComponent },
   { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
+  imports: [ RouterModule.forRoot(routes, {onSameUrlNavigation:"reload",/* enableTracing: true,*/ scrollPositionRestoration: "enabled", useHash: true })],
   exports: [ RouterModule ]
 })
 

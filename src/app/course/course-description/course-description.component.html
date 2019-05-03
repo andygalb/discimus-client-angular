@@ -1,0 +1,15 @@
+<mat-card  class="example-card">
+  <mat-card-header>
+
+    <div mat-card-avatar ><mat-icon matListIcon>book</mat-icon></div>
+    <mat-card-title><h3>{{ userService.getCurrentCourse().courseTitle }}</h3></mat-card-title>
+    <mat-card-subtitle>{{ userService.getCurrentCourse().creatorID }}</mat-card-subtitle>
+
+  </mat-card-header>
+  <mat-card-content>
+    <p [innerHTML]="userService.getCurrentCourse().courseDescription"></p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button *ngIf="userService.user.local.userType=='teacher'" mat-button (click)="openCourseDialog()"> <mat-icon matListIcon>create</mat-icon></button>
+  </mat-card-actions>
+</mat-card>

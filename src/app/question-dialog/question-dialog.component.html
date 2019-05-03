@@ -2,7 +2,7 @@
 
 <form [formGroup]="questionDialogForm">
 <mat-form-field class="example-full-width" >
-  <mat-select formControlName="typeControl" name="questionType" placeholder="Question type" (selectionChange)="updateQuestionType($event.value)">//How to set initial value?
+  <mat-select formControlName="typeControl" name="questionType" placeholder="Question type" (selectionChange)="updateQuestionType($event.value)">
     <mat-option *ngFor="let questionType of questionTypes" [value]="questionType.value">
       {{questionType.name}}
     </mat-option>

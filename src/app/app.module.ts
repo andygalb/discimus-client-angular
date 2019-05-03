@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
-  MAT_DIALOG_DEFAULT_OPTIONS,
+  MAT_DIALOG_DEFAULT_OPTIONS, MatBadgeModule,
   MatButtonModule,
   MatCardModule,
   MatCheckboxModule,
@@ -13,9 +13,9 @@ import {
   MatInputModule,
   MatPaginatorModule,
   MatProgressSpinnerModule,
-  MatSelectModule,
+  MatSelectModule, MatSortModule,
   MatSpinner,
-  MatTableModule, MatTreeModule
+  MatTableModule, MatTabsModule, MatTreeModule
 } from '@angular/material';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
@@ -59,8 +59,8 @@ import {TruncatePipe} from './truncate.pipe';
 import { CourseStudentsComponent} from './course/course-students/course-students.component';
 
 import { QuestionDialogComponent } from './question-dialog/question-dialog.component';
-import {CourseDialogComponent} from './home/course-dialog/course-dialog.component';
-import {SequenceDialogComponent} from './course/course-sequence/sequence-dialog/sequence-dialog.component';
+import {CourseDialogComponent} from './dialogs/course-dialog/course-dialog.component';
+import {SequenceDialogComponent} from './dialogs/sequence-dialog/sequence-dialog.component';
 import { MessagesComponent } from './messages/messages.component';
 
 
@@ -73,6 +73,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import xml from 'highlight.js/lib/languages/xml';
 import cs from 'highlight.js/lib/languages/cs';
+import {NewsDialogComponent} from './dialogs/news-dialog/news-dialog.component';
+import { NewsComponent } from './news/news.component';
+import { CourseProgressComponent } from './course/course-progress/course-progress.component';
+import { CourseDescriptionComponent } from './course/course-description/course-description.component';
+import {MessageDialogComponent} from './dialogs/message-dialog/message-dialog.component';
+import {MessengerComponent} from './messenger/messenger.component';
+import { MessengerInboxComponent } from './messenger/messenger-inbox/messenger-inbox.component';
+import { MessengerSentComponent } from './messenger/messenger-sent/messenger-sent.component';
+import {MessageViewDialogComponent} from './dialogs/message-view-dialog/message-view-dialog.component';
+import { LandingComponent } from './landing/landing.component';
+import { SequenceNavigatorComponent } from './sequence/sequence-navigator/sequence-navigator.component';
 
 export function hljsLanguages() {
   return [
@@ -82,7 +93,7 @@ export function hljsLanguages() {
 
 
 @NgModule({
-  entryComponents: [QuestionDialogComponent, CourseDialogComponent,  SequenceDialogComponent],
+  entryComponents: [QuestionDialogComponent, CourseDialogComponent, NewsDialogComponent,  SequenceDialogComponent, MessageDialogComponent, MessageViewDialogComponent],
   declarations: [
     AppComponent,
     AboutComponent,
@@ -107,12 +118,23 @@ export function hljsLanguages() {
     AdminSequenceComponent,
     QuestionDialogComponent,
     CourseDialogComponent,
+    NewsDialogComponent,
     SequenceDialogComponent,
     CourseSequenceComponent,
     CourseSearchComponent,
     TruncatePipe,
     CourseStudentsComponent,
-    MessagesComponent
+    MessagesComponent,
+    MessengerComponent,
+    MessageDialogComponent,
+    MessageViewDialogComponent,
+    NewsComponent,
+    CourseProgressComponent,
+    CourseDescriptionComponent,
+    MessengerInboxComponent,
+    MessengerSentComponent,
+    LandingComponent,
+    SequenceNavigatorComponent
   ],
   imports: [
     AceEditorModule,
@@ -120,7 +142,7 @@ export function hljsLanguages() {
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule,
+    AppRoutingModule ,
     BrowserAnimationsModule,
     FlexLayoutModule,
     HighlightModule.forRoot({
@@ -133,6 +155,9 @@ export function hljsLanguages() {
     MatTreeModule,
     MatSidenavModule,
     MatSelectModule,
+    MatBadgeModule,
+    MatSortModule,
+    MatTabsModule,
     MatProgressSpinnerModule,
     MatGridListModule,
     MatIconModule,

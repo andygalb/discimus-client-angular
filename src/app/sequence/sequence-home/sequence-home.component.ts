@@ -63,6 +63,7 @@ export class SequenceHomeComponent implements OnInit {
             console.log('Got data back');
             console.log(data);
             this.questionsToShow = data;
+            this.userService.setCurrentQuestions(data);
           }
         ),
           err => {

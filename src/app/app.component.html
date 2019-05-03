@@ -17,16 +17,27 @@
         <button mat-icon-button routerLink="/login" routerLinkActive="active" class="nav-link">Log in</button>
       </ng-template>
 </mat-toolbar>
-<mat-sidenav-container class="example-container">
-  <mat-sidenav  #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')" (closed)="events.push('close!')" opened>
+<mat-sidenav-container    class="example-container">
+  <mat-sidenav  #sidenav  mode="side" [(opened)]="opened" (opened)="events.push('open!')" (closed)="events.push('close!')" opened>
       <mat-list>
         <a mat-list-item role="listitem" routerLink="/home" routerLinkActive="active"><mat-icon matListIcon>home</mat-icon>Home</a>
-        <a mat-list-item role="listitem" routerLink="/messages" routerLinkActive="active"><mat-icon matListIcon>message</mat-icon>Messages</a>
+        <a mat-list-item role="listitem" routerLink="/messages" routerLinkActive="active">
+          <div *ngIf="messengerService.newMessages.length!==0 ; else noBadge">
+            <mat-icon  matListIcon matBadge="{{messengerService.newMessages.length}}" matBadgePosition="above after">message</mat-icon>
+          </div>
+
+          <ng-template #noBadge>
+            <mat-icon  matListIcon>message</mat-icon>
+          </ng-template>
+          Messages</a>
+
+
         <a mat-list-item role="listitem" routerLink="/about" routerLinkActive="active" ><mat-icon matListIcon>trip_origin</mat-icon>About</a>
         <div *ngIf="userService.courses">
           <h3 mat-subheader>Your courses</h3>
-         <a mat-list-item role="listitem"  [routerLink]="['/course/'+course._id,{ outlets: { courseSection : 'home' } }]" *ngFor="let course of userService.courses" [class.selected]="userService.setCurrentCourse(course)"> <mat-icon matListIcon>assignment</mat-icon> {{course.courseTitle}}</a>
-        </div>
+         <a mat-list-item role="listitem"  *ngFor="let course of userService.courses" [routerLink]="['/course/'+course?._id,{ outlets: { courseSection : 'home' } }]"  > <mat-icon matListIcon>assignment</mat-icon> {{course?.courseTitle}}</a>
+          </div>
+
         <h3 mat-subheader>Other</h3>
         <a mat-list-item role="listitem"  [routerLink]="['/courses/']" > <mat-icon matListIcon>explore</mat-icon> Find more courses</a>
       </mat-list>

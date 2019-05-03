@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Course, Question, QuestionResponse, Sequence} from './models/modelInterfaces';
+import {Course, News, Question, QuestionResponse, Sequence} from './models/modelInterfaces';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import config from './config.json';
 
@@ -32,11 +32,11 @@ export class CourseSequenceQuestionService {
   }
 
   addCourse(course: Course) {
-    return this.http.put<String>(config.serverAddress + '/api/course', JSON.stringify(course), httpOptions);
+    return this.http.post<String>(config.serverAddress + '/api/course', JSON.stringify(course), httpOptions);
   }
 
   updateCourse(course: Course) {
-    return this.http.post<String>(config.serverAddress + '/api/course/' + course._id, JSON.stringify(course), httpOptions);
+    return this.http.put<String>(config.serverAddress + '/api/course/' + course._id, JSON.stringify(course), httpOptions);
   }
 
   deleteCourse(course: Course) {
@@ -47,12 +47,16 @@ export class CourseSequenceQuestionService {
     return this.http.delete<string>(config.serverAddress + '/api/course/' + courseID, httpOptions);
   }
 
+  addNews(news: News) {
+    return this.http.post<String>(config.serverAddress + '/api/news', JSON.stringify(news), httpOptions);
+  }
+
   deleteSequence(sequence: Sequence) {
     return this.http.delete<String>(config.serverAddress + '/api/sequence/' + sequence._id, httpOptions);
   }
 
   addSequence(sequence: Sequence) {
-    return this.http.put<JSON>(config.serverAddress + '/api/sequence', JSON.stringify(sequence), httpOptions);
+    return this.http.post<JSON>(config.serverAddress + '/api/sequence', JSON.stringify(sequence), httpOptions);
   }
 
   addSequenceToCourse(sequenceID: String, courseID: String) {
@@ -64,7 +68,7 @@ export class CourseSequenceQuestionService {
   }
 
   updateSequence(sequence: Sequence) {
-    return this.http.post<string>(config.serverAddress + '/api/sequence/' + sequence._id, JSON.stringify(sequence), httpOptions);
+    return this.http.put<string>(config.serverAddress + '/api/sequence/' + sequence._id, JSON.stringify(sequence), httpOptions);
   }
 
   getResourceByID<T>(id: string, type: string) {
@@ -97,6 +101,7 @@ export class CourseSequenceQuestionService {
     }
 
     getMultipleQuestions(questions: string[]) {
+
       const objectToSend = {questions: questions};
       return this.http.post<Question[]>(config.serverAddress + '/api/multiple/questions', JSON.stringify(objectToSend), httpOptions);
     }

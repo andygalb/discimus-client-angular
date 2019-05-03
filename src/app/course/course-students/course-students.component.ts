@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {User} from '../../models/modelInterfaces';
 import {DataService} from '../../data.service';
 import {UserService} from '../../user.service';
@@ -14,14 +14,14 @@ export class CourseStudentsComponent implements OnInit {
 
   // @ts-ignore
   users: User[];
+  @Input() id: String;
   dataSource = new MatTableDataSource();
-  displayedColumns = ['userFirstName', 'userSurname', 'userEmail','userType'];
+  displayedColumns = ['userFirstName', 'userSurname', 'userEmail', 'userType'];
 
   constructor(private dataService: DataService, private route: ActivatedRoute, private userService: UserService) { }
 
   ngOnInit() {
-    //TODO Hack! Get id from userService instead.
-    this.dataService.getUsersForCourse(this.route.parent.snapshot.paramMap.get('id')).subscribe(data =>{
+    this.dataService.getUsersForCourse(this.id).subscribe(data => {
       this.users = data;
       this.dataSource.data = data;
     });

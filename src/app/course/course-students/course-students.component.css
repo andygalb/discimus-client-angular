@@ -1,1 +1,6 @@
 table{width:100%;}
+
+table{width:100%; margin-left:0px;
+  transition: none !important;
+  box-shadow: none !important;
+}

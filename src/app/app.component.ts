@@ -5,6 +5,7 @@ import {ActivatedRoute} from '@angular/router';
 import {UserService} from './user.service';
 import {LoaderService} from './interceptor/httpconfig.interceptor.';
 import {Course} from './models/modelInterfaces';
+import {MessengerService} from './messenger.service';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,7 @@ export class AppComponent implements OnInit {
   events: string[] = [];
   opened: boolean;
 
-  constructor(private userService: UserService, public loaderService: LoaderService) {
+  constructor(private userService: UserService, public loaderService: LoaderService, private messengerService: MessengerService) {
 
   }
 
