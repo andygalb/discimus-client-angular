@@ -8,6 +8,7 @@ import {UploadService} from '../../upload/upload.service';
 import { DialogComponent } from '../../upload/dialog/dialog.component';
 import {UserService} from '../../user.service';
 import {forkJoin} from 'rxjs';
+import {Observable} from "rxjs/Rx";
 
 @Component({
   selector: 'app-documents',
@@ -28,12 +29,11 @@ export class DocumentsComponent implements OnInit {
   @ViewChild('file') file;
   public files: Set<File> = new Set();
 
-  // TODO must have a general file with details of server etc....
 
   dataSource = new MatTableDataSource();
   displayedColumns = ['selectDocument', 'originalFilename', 'creationDate'];
 
-  documents: CourseDocument[];
+  documents: Observable<CourseDocument[]>;
 
   constructor(private dataService: DataService, private route: ActivatedRoute, public uploadService: UploadService, public userService: UserService) { }
 
@@ -42,12 +42,7 @@ export class DocumentsComponent implements OnInit {
   }
 
   getDocuments(id: String) {
-    this.dataService.getAllDocumentsForCourse(id)
-      .subscribe((data) => {
-        console.log(data);
-        this.documents = data;
-        this.dataSource.data = data;
-      });
+    this.documents = this.dataService.getAllDocumentsForCourse(id);
   }
 
   onFilesAdded() {

@@ -9,7 +9,7 @@
 
 <input type="file" name='document' #file (change)="onFilesAdded()" multiple />
 </div>
-<table mat-table [dataSource]="documents" class="mat-elevation-z8">
+    <table mat-table [dataSource]="documents | async" class="mat-elevation-z8">
 
   <ng-container  matColumnDef="selectDocument">
     <th mat-header-cell *matHeaderCellDef> Select </th>

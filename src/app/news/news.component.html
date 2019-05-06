@@ -4,7 +4,7 @@
     <mat-card-title><h3>Course News</h3></mat-card-title>
   </mat-card-header>
   <div *ngIf="news; else elseBlock">
-    <mat-card  *ngFor="let newsItem of news">
+    <mat-card *ngFor="let newsItem of news | async ">
       <mat-card-header>
         <div mat-card-avatar class="news-header-image"></div>
         <mat-card-title>

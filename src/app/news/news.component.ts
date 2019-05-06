@@ -3,10 +3,10 @@ import {RNews} from '../models/modelClasses';
 import {NewsDialogComponent} from '../dialogs/news-dialog/news-dialog.component';
 import {MatDialog} from '@angular/material';
 import {DataService} from '../data.service';
-import {ActivatedRoute} from '@angular/router';
 import {CourseSequenceQuestionService} from '../course-sequence-question.service';
 import {News} from '../models/modelInterfaces';
 import {UserService} from '../user.service';
+import {Observable} from 'rxjs/Rx';
 
 @Component({
   selector: 'app-news',
@@ -16,10 +16,11 @@ import {UserService} from '../user.service';
 export class NewsComponent implements OnInit {
 
   @Input() id: String;
-  newsItem: RNews;
-  news: News[];
 
-  constructor(private dialog: MatDialog, private dataService: DataService, private route: ActivatedRoute,
+  newsItem: RNews;
+  news: Observable<News[]>;
+
+  constructor(private dialog: MatDialog, private dataService: DataService,
               private courseSequenceQuestionService: CourseSequenceQuestionService, private userService: UserService) { }
 
   ngOnInit() {
@@ -27,10 +28,7 @@ export class NewsComponent implements OnInit {
   }
 
   getNews(id: String) {
-    this.dataService.getNews(id)
-      .subscribe((data) => {
-        this.news = data;
-      });
+    this.news = this.dataService.getNews(id);
   }
 
   openNewsDialog(): void {
