@@ -84,6 +84,7 @@ import { MessengerSentComponent } from './messenger/messenger-sent/messenger-sen
 import {MessageViewDialogComponent} from './dialogs/message-view-dialog/message-view-dialog.component';
 import { LandingComponent } from './landing/landing.component';
 import { SequenceNavigatorComponent } from './sequence/sequence-navigator/sequence-navigator.component';
+import {MatMenuModule} from '@angular/material/menu';
 
 export function hljsLanguages() {
   return [
@@ -156,6 +157,7 @@ export function hljsLanguages() {
     MatSidenavModule,
     MatSelectModule,
     MatBadgeModule,
+    MatMenuModule,
     MatSortModule,
     MatTabsModule,
     MatProgressSpinnerModule,

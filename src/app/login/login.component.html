@@ -7,9 +7,8 @@
   <div fxFlex="40%">
     <mat-card class="login-card">
       <mat-card-header>
-        <mat-card-title>
-          <h2>Login</h2>
-        </mat-card-title>
+        <div mat-card-avatar class="header-image"></div>
+        <mat-card-title><h3>Discimus Sign In</h3></mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <mat-form-field class="full-width">
@@ -26,7 +25,7 @@
         <!--  <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>-->
       </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button (click)="doLogIn()" color="primary">Login</button>
+        <button mat-raised-button (click)="doLogIn()" color="primary" class="full-width">Sign in</button>
       </mat-card-actions>
     </mat-card>
   </div>

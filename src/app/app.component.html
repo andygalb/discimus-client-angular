@@ -8,10 +8,17 @@
 
   <span class="spacer"></span>
       <div *ngIf="userService.isUserLoggedIn; else elseBlock">
-         <a  routerLink="/home" class="nav-link">{{userService.user.local.firstName}}</a>
-         <button  mat-icon-button  class="nav-link" (click)="logOut()"><mat-icon>exit_to_app</mat-icon></button>
-
+        <button mat-button [matMenuTriggerFor]="beforeMenu"><mat-icon>account_circle</mat-icon><mat-icon>arrow_drop_down</mat-icon></button>
+        <mat-menu #beforeMenu="matMenu" xPosition="before" yPosition="below" [overlapTrigger]="false">
+          <button  mat-menu-item >Signed in as <b>{{userService.user.local.firstName}}</b> </button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item>Your profile</button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item>Settings</button>
+          <button mat-menu-item (click)="logOut()">Sign out</button>
+        </mat-menu>
       </div>
+
 
       <ng-template #elseBlock>
         <button mat-icon-button routerLink="/login" routerLinkActive="active" class="nav-link">Log in</button>

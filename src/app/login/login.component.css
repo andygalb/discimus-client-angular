@@ -6,3 +6,9 @@
 .full-width{
   width:100%;
 }
+
+.header-image {
+  background-image: url("../../assets/images/discimus.svg");
+  background-size: cover;
+  border-radius: 0;
+}
