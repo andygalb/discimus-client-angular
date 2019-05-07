@@ -85,6 +85,7 @@ import {MessageViewDialogComponent} from './dialogs/message-view-dialog/message-
 import { LandingComponent } from './landing/landing.component';
 import { SequenceNavigatorComponent } from './sequence/sequence-navigator/sequence-navigator.component';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 export function hljsLanguages() {
   return [
@@ -151,6 +152,7 @@ export function hljsLanguages() {
     }),
     MatButtonModule,
     MatCheckboxModule,
+    MatExpansionModule,
     MatDialogModule,
     MatToolbarModule,
     MatTreeModule,

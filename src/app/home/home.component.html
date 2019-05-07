@@ -98,57 +98,54 @@
 <ng-template  #teacher>
   <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
     <div fxFlex="50%">
-      <h3>Your courses</h3>
-      <p></p>
-      <div >
-      <div *ngFor="let course of this.userService.courses"  class="card" >
-        <mat-card>
-          <mat-card-header>
-            <div mat-card-avatar>
-              <mat-icon matListIcon>assignment</mat-icon>
-            </div>
-            <mat-card-title>
-              <div class="card-header">
-                <h3>{{course.courseTitle}}</h3>
-              </div>
-            </mat-card-title>
-          </mat-card-header>
+      <mat-card>
+        <mat-card-header>
+          <div mat-card-avatar> <mat-icon matListIcon>assignment</mat-icon></div>
+          <mat-card-title><div class="card-header"><h3>Your courses</h3></div></mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-expansion-panel *ngFor="let course of this.userService.courses">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{course.courseTitle}}
+              </mat-panel-title>
+              <mat-panel-description>
+                {{course.courseDescription | truncate:30}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p [innerHTML]="course.courseDescription"></p>
+            <mat-action-row>
+              <button mat-raised-button color="primary" [routerLink]="['/course/'+ course._id,{ outlets: { courseSection : 'home' } }]">View</button>
+              <button mat-raised-button color="link" (click)="unenroleUserFromCourse(course._id)">Unenrole</button>
+            </mat-action-row>
+          </mat-expansion-panel>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary"  (click)="openCourseDialog()" class="btn btn-primary">Create new course</button>
+        </mat-card-actions>
+      </mat-card>
 
-          <mat-card-content>
-            <p [innerHTML]="course.courseDescription | truncate:200"></p>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-raised-button color="primary"  [routerLink]="['/course/'+ course._id,{ outlets: { courseSection : 'home' } }]" class="btn btn-primary"  [class.selected]="course === selectedCourse">View</button>
-            <button mat-raised-button color="link"    (click)="unenroleUserFromCourse(course._id)" class="btn btn-primary align-right">Unenrole</button>
-
-
-          </mat-card-actions>
-        </mat-card>
-
-      </div>
-      </div>
-      <p></p>
-      <button mat-raised-button color="primary"  (click)="openCourseDialog()" class="btn btn-primary">Create new course</button>
     </div>
     <div fxFlex="50%">
-      <h3>Site News</h3>
-      <div *ngFor="let newsItem of news"  class="card" >
-
-        <mat-card>
-          <mat-card-header>
-            <div mat-card-avatar><mat-icon matListIcon>announcement</mat-icon></div>
-            <mat-card-title>
-              {{newsItem.title}}
-            </mat-card-title>
-            <mat-card-subtitle>By: {{newsItem.owner.firstName}} {{newsItem.owner.lastName}}  Published: {{newsItem.created_at | date :  "dd.MM.y" }}</mat-card-subtitle>
-          </mat-card-header>
-
-          <mat-card-content>
+      <mat-card>
+        <mat-card-header>
+          <div mat-card-avatar> <mat-icon>announcement</mat-icon></div>
+          <mat-card-title><div class="card-header"><h3>Site news</h3></div></mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-expansion-panel  *ngFor="let newsItem of news"  [expanded]="true">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{newsItem.title}}
+              </mat-panel-title>
+              <mat-panel-description>
+                By: {{newsItem.owner.firstName}} {{newsItem.owner.lastName}}  Published: {{newsItem.created_at | date :  "dd.MM.y" }}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
             <p [innerHTML]="newsItem.content"></p>
-          </mat-card-content>
-        </mat-card>
-
-      </div>
+          </mat-expansion-panel>
+        </mat-card-content>
+      </mat-card>
       <app-messenger-inbox></app-messenger-inbox>
     </div>
   </div>
