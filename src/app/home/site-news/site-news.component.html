@@ -1,0 +1,24 @@
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar>
+      <mat-icon>announcement</mat-icon>
+    </div>
+    <mat-card-title>
+      <div class="card-header"><h3>Site news</h3></div>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-expansion-panel *ngFor="let newsItem of news" [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{newsItem.title}}
+        </mat-panel-title>
+        <mat-panel-description>
+          By: {{newsItem.owner.firstName}} {{newsItem.owner.lastName}}
+          Published: {{newsItem.created_at | date :  "dd.MM.y" }}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p [innerHTML]="newsItem.content"></p>
+    </mat-expansion-panel>
+  </mat-card-content>
+</mat-card>

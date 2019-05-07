@@ -1,0 +1,32 @@
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar>
+      <mat-icon matListIcon>assignment</mat-icon>
+    </div>
+    <mat-card-title>
+      <div class="card-header"><h3>Your courses</h3></div>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-expansion-panel *ngFor="let course of this.userService.courses">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{course.courseTitle}}
+        </mat-panel-title>
+        <mat-panel-description>
+          {{course.courseDescription | truncate:30}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p [innerHTML]="course.courseDescription"></p>
+      <mat-action-row>
+        <button mat-raised-button color="primary"
+                [routerLink]="['/course/'+ course._id,{ outlets: { courseSection : 'home' } }]">View
+        </button>
+        <button mat-raised-button color="link" (click)="unenroleUserFromCourse(course._id)">Unenrole</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  </mat-card-content>
+  <mat-card-actions>
+    <button *ngIf="this.userService.getCurrentUser().local.userType!='student'" mat-raised-button color="primary" (click)="openCourseDialog()" class="btn btn-primary">Create new course</button>
+  </mat-card-actions>
+</mat-card>
