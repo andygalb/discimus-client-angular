@@ -24,6 +24,8 @@ import {CourseStudentsComponent} from './course/course-students/course-students.
 import {MessagesComponent} from './messages/messages.component';
 import {MessengerComponent} from './messenger/messenger.component';
 import {LandingComponent} from './landing/landing.component';
+import {ProfileComponent} from "./profile/profile.component";
+import {SettingsComponent} from "./settings/settings.component";
 
 const routes: Routes = [
   { path: 'messenger', component: MessengerComponent,  canActivate: [RoleGuardService] , data: {expectedRoles: ['admin', 'teacher', 'student'] }},
@@ -56,8 +58,12 @@ children: [
       { path: 'documents', component: DocumentsComponent , outlet: 'courseSection'},
       { path: 'sequences', component: CourseSequenceComponent , outlet: 'courseSection'}
     ]},
+  { path: 'profile', component: ProfileComponent, canActivate: [RoleGuardService], data: {expectedRoles: ['admin', 'teacher', 'student'] } },
+  { path: 'settings', component: SettingsComponent, canActivate: [RoleGuardService], data: {expectedRoles: ['admin', 'teacher', 'student'] } },
+
   {path: '', component: LandingComponent },
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '' },
+
 ];
 
 @NgModule({

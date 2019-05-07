@@ -88,6 +88,8 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { CourseListComponent } from './home/course-list/course-list.component';
 import { SiteNewsComponent } from './home/site-news/site-news.component';
+import { SettingsComponent } from './settings/settings.component';
+import { ProfileComponent } from './profile/profile.component';
 
 export function hljsLanguages() {
   return [
@@ -140,7 +142,9 @@ export function hljsLanguages() {
     LandingComponent,
     SequenceNavigatorComponent,
     CourseListComponent,
-    SiteNewsComponent
+    SiteNewsComponent,
+    SettingsComponent,
+    ProfileComponent
   ],
   imports: [
     AceEditorModule,

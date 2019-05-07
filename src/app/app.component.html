@@ -12,9 +12,9 @@
         <mat-menu #beforeMenu="matMenu" xPosition="before" yPosition="below" [overlapTrigger]="false">
           <button  mat-menu-item >Signed in as <b>{{userService.user.local.firstName}}</b> </button>
           <mat-divider></mat-divider>
-          <button mat-menu-item>Your profile</button>
+          <button mat-menu-item routerLink="/profile">Your profile</button>
           <mat-divider></mat-divider>
-          <button mat-menu-item>Settings</button>
+          <button mat-menu-item routerLink="/settings">Settings</button>
           <button mat-menu-item (click)="logOut()">Sign out</button>
         </mat-menu>
       </div>
