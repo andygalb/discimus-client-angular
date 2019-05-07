@@ -86,6 +86,8 @@ import { LandingComponent } from './landing/landing.component';
 import { SequenceNavigatorComponent } from './sequence/sequence-navigator/sequence-navigator.component';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { CourseListComponent } from './home/course-list/course-list.component';
+import { SiteNewsComponent } from './home/site-news/site-news.component';
 
 export function hljsLanguages() {
   return [
@@ -136,7 +138,9 @@ export function hljsLanguages() {
     MessengerInboxComponent,
     MessengerSentComponent,
     LandingComponent,
-    SequenceNavigatorComponent
+    SequenceNavigatorComponent,
+    CourseListComponent,
+    SiteNewsComponent
   ],
   imports: [
     AceEditorModule,

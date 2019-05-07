@@ -1,7 +1,7 @@
-<h3>Welcome {{user.local.firstName}}.</h3>
+<h3>Welcome {{this.userService.getCurrentUser().local.firstName}}.</h3>
 
 
-<div [ngSwitch]="user.local.userType">
+<div [ngSwitch]="this.userService.getCurrentUser().local.userType">
   <div *ngSwitchCase="'student'">
     <ng-container *ngTemplateOutlet="student"></ng-container>
   </div>
@@ -18,29 +18,10 @@
         <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
 
           <div fxFlex="50%">
-            <h3>Your courses</h3>
-
-            <div *ngFor="let course of this.userService.courses"  class="card" >
-              <mat-card>
-                <mat-card-header>
-                  <div mat-card-avatar> <mat-icon matListIcon>assignment</mat-icon></div>
-                  <mat-card-title><div class="card-header"><h3>{{course.courseTitle}}</h3></div></mat-card-title>
-                </mat-card-header>
-
-                <mat-card-content>
-                  <p [innerHTML]="course.courseDescription"></p>
-                </mat-card-content>
-                <mat-card-actions>
-                  <button mat-raised-button color="link"  [routerLink]="['/course/'+course._id,{ outlets: { courseSection : 'home' } }]" class="btn btn-primary"  [class.selected]="course === selectedCourse">View</button>
-                  <button mat-raised-button color="link"    (click)="unenroleUserFromCourse(course._id)" class="btn btn-primary align-right">Unenrole</button>
-
-                </mat-card-actions>
-              </mat-card>
-            </div>
-            <p></p>
+            <app-course-list></app-course-list>
             <button mat-raised-button color="primary"  [routerLink]="['/courses/']" class="btn btn-primary">Find more courses!</button>
             <h3>Results</h3>
-            <div *ngIf="user.results.length<1; then noResultsContent else resultsContent">
+            <div *ngIf="this.userService.getCurrentUser().results.length<1; then noResultsContent else resultsContent">
               <ng-template #noResultsContent><p>You currently have no results to show.</p></ng-template>
               <ng-template #resultsContent>
                 <h2>Your results:</h2>
@@ -54,8 +35,8 @@
                   </tr>
                   </thead>
                   <tbody>
-
-                  <tr *ngFor="let result of user.results" >
+e
+                  <tr *ngFor="let result of this.userService.getCurrentUser().results" >
                     <td>{{result.courseTitle}}</td>
                     <td>{{result.sequenceTitle}}</td>
                     <td>{{result.questionTitle}}</td>
@@ -68,28 +49,9 @@
           </div>
 
           <div fxFlex="50%">
-            <h3>Site News</h3>
-            <div *ngFor="let newsItem of news"  class="card" >
-
-              <mat-card>
-                <mat-card-header>
-                  <div mat-card-avatar><mat-icon matListIcon>announcment</mat-icon></div>
-                  <mat-card-title>
-                    {{newsItem.title}}
-                  </mat-card-title>
-                  <mat-card-subtitle>By: {{newsItem.owner.firstName}} {{newsItem.owner.lastName}}  Published: {{newsItem.created_at | date :  "dd.MM.y" }}</mat-card-subtitle>
-                </mat-card-header>
-
-                <mat-card-content>
-                  <p>{{newsItem.content}}</p>
-                </mat-card-content>
-              </mat-card>
-
-            </div>
+            <app-site-news></app-site-news>
             <app-messenger-inbox></app-messenger-inbox>
           </div>
-
-
         </div>
       </ng-template >
 
@@ -98,54 +60,10 @@
 <ng-template  #teacher>
   <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
     <div fxFlex="50%">
-      <mat-card>
-        <mat-card-header>
-          <div mat-card-avatar> <mat-icon matListIcon>assignment</mat-icon></div>
-          <mat-card-title><div class="card-header"><h3>Your courses</h3></div></mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <mat-expansion-panel *ngFor="let course of this.userService.courses">
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                {{course.courseTitle}}
-              </mat-panel-title>
-              <mat-panel-description>
-                {{course.courseDescription | truncate:30}}
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-            <p [innerHTML]="course.courseDescription"></p>
-            <mat-action-row>
-              <button mat-raised-button color="primary" [routerLink]="['/course/'+ course._id,{ outlets: { courseSection : 'home' } }]">View</button>
-              <button mat-raised-button color="link" (click)="unenroleUserFromCourse(course._id)">Unenrole</button>
-            </mat-action-row>
-          </mat-expansion-panel>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-raised-button color="primary"  (click)="openCourseDialog()" class="btn btn-primary">Create new course</button>
-        </mat-card-actions>
-      </mat-card>
-
+      <app-course-list></app-course-list>
     </div>
     <div fxFlex="50%">
-      <mat-card>
-        <mat-card-header>
-          <div mat-card-avatar> <mat-icon>announcement</mat-icon></div>
-          <mat-card-title><div class="card-header"><h3>Site news</h3></div></mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <mat-expansion-panel  *ngFor="let newsItem of news"  [expanded]="true">
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                {{newsItem.title}}
-              </mat-panel-title>
-              <mat-panel-description>
-                By: {{newsItem.owner.firstName}} {{newsItem.owner.lastName}}  Published: {{newsItem.created_at | date :  "dd.MM.y" }}
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-            <p [innerHTML]="newsItem.content"></p>
-          </mat-expansion-panel>
-        </mat-card-content>
-      </mat-card>
+      <app-site-news></app-site-news>
       <app-messenger-inbox></app-messenger-inbox>
     </div>
   </div>
