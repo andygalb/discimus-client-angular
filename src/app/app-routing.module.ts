@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import {LoginComponent} from './login/login.component';
-import {StudentComponent} from './student/student.component';
 import {QuestionComponent} from './question/question.component';
 import {SequenceComponent} from './sequence/sequence.component';
 import {CourseComponent} from './course/course.component';
@@ -42,7 +41,6 @@ const routes: Routes = [
   { path: 'courses', component: CourseSearchComponent, canActivate: [RoleGuardService], data: {expectedRoles: ['admin', 'teacher', 'student'] } },
   { path: 'login', component: LoginComponent },
   { path: 'messages', component: MessagesComponent, canActivate: [RoleGuardService], data: {expectedRoles: ['admin', 'teacher', 'student'] }},
-  { path: 'student', component: StudentComponent, canActivate: [RoleGuardService], data: {expectedRoles: ['admin', 'student' ] }},
   { path: 'question', component: QuestionComponent, canActivate: [RoleGuardService], data: {expectedRoles: ['admin', 'teacher', 'student'] }},
   { path: 'sequence/:id', component: SequenceComponent, canActivate: [RoleGuardService], data: {expectedRoles: ['admin', 'teacher', 'student']},
     children: [

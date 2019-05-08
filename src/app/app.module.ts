@@ -29,7 +29,6 @@ import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { StudentComponent } from './student/student.component';
 import { CourseComponent } from './course/course.component';
 import { CourseEditComponent } from './course/course-edit/course-edit.component';
 import { QuestionComponent } from './question/question.component';
@@ -109,7 +108,6 @@ export function hljsLanguages() {
     AdminComponent,
     HomeComponent,
     LoginComponent,
-    StudentComponent,
     CourseComponent,
     CourseEditComponent,
     QuestionComponent,
