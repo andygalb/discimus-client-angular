@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsComponent implements OnInit {
 
+  color = 'accent';
+  checked = false;
+  disabled = false;
+
   constructor() { }
 
   ngOnInit() {

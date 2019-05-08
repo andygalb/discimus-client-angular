@@ -13,7 +13,7 @@ import {
   MatInputModule,
   MatPaginatorModule,
   MatProgressSpinnerModule,
-  MatSelectModule, MatSortModule,
+  MatSelectModule, MatSlideToggle, MatSortModule,
   MatSpinner,
   MatTableModule, MatTabsModule, MatTreeModule
 } from '@angular/material';
@@ -90,6 +90,9 @@ import { CourseListComponent } from './home/course-list/course-list.component';
 import { SiteNewsComponent } from './home/site-news/site-news.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ProfileComponent } from './profile/profile.component';
+
+import {MatRadioModule} from '@angular/material/radio';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 export function hljsLanguages() {
   return [
@@ -168,6 +171,8 @@ export function hljsLanguages() {
     MatSelectModule,
     MatBadgeModule,
     MatMenuModule,
+    MatRadioModule,
+    MatSlideToggleModule,
     MatSortModule,
     MatTabsModule,
     MatProgressSpinnerModule,

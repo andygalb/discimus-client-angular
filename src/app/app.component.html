@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-  <button *ngIf="userService.isUserLoggedIn" mat-icon-button (click)="sidenav.toggle()">
+  <button *ngIf="this.userService.isUserLoggedIn" mat-icon-button (click)="sidenav.toggle()">
     <mat-icon>more_vert</mat-icon>
   </button>
 
