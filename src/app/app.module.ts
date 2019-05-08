@@ -186,7 +186,7 @@ export function hljsLanguages() {
     LoaderService,
       { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },
     CourseSequenceQuestionService,
-    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true,  backdropClass: 'backdropBackground'}},
               FormBuilder],
   bootstrap: [AppComponent]
 })

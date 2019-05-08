@@ -36,4 +36,9 @@ a {text-decoration:none;}
 
 mat-card{margin:5px;}
 
+.backdropBackground {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+
 
