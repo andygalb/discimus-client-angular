@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 //import { ErrorDialogService } from '../error-dialog/errordialog.service';
 import {
   HttpInterceptor,
@@ -10,20 +10,23 @@ import {
 } from '@angular/common/http';
 
 import {BehaviorSubject, Observable, throwError} from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import {map, catchError} from 'rxjs/operators';
 
 @Injectable()
 export class LoaderService {
   // A BehaviorSubject is an Observable with a default value
   public isLoading = new BehaviorSubject(false);
-  constructor() {}
+
+  constructor() {
+  }
 }
 
 
 @Injectable()
 export class HttpConfigInterceptor implements HttpInterceptor {
 
-  constructor(private loaderService: LoaderService) { }
+  constructor(private loaderService: LoaderService) {
+  }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
@@ -32,7 +35,7 @@ export class HttpConfigInterceptor implements HttpInterceptor {
     const token: string = localStorage.getItem('token');
 
     if (token) {
-      request = request.clone({ headers: request.headers.set('x-access-token', token) });
+      request = request.clone({headers: request.headers.set('x-access-token', token)});
     }
 
     return next.handle(request).pipe(
@@ -43,16 +46,16 @@ export class HttpConfigInterceptor implements HttpInterceptor {
         }
         return event;
       }),
-    catchError((error: HttpErrorResponse) => {
-      this.loaderService.isLoading.next(false);
-      let data = {};
-      data = {
-        reason: error && error.error.reason ? error.error.reason : '',
-        status: error.status
-      };
-      console.log(data);
-      return throwError(error);
-    })
+      catchError((error: HttpErrorResponse) => {
+        this.loaderService.isLoading.next(false);
+        let data = {};
+        data = {
+          reason: error && error.error.reason ? error.error.reason : '',
+          status: error.status
+        };
+        console.log(data);
+        return throwError(error);
+      })
     );
   }
 }

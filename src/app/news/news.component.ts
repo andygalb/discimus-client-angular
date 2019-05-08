@@ -21,7 +21,8 @@ export class NewsComponent implements OnInit {
   news: Observable<News[]>;
 
   constructor(private dialog: MatDialog, public dataService: DataService,
-              private courseSequenceQuestionService: CourseSequenceQuestionService, public userService: UserService) { }
+              private courseSequenceQuestionService: CourseSequenceQuestionService, public userService: UserService) {
+  }
 
   ngOnInit() {
     this.getNews(this.id);
@@ -39,7 +40,13 @@ export class NewsComponent implements OnInit {
       data: {news: this.newsItem, dialogMetaData: {titleText: ' Create News', okButtonText: 'Save'}}
     });
 
-    dialogRef.afterClosed().subscribe(result => {if (result === 'submit') { this.postNews(); } else { (this.getNews(this.id)); }});
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'submit') {
+        this.postNews();
+      } else {
+        (this.getNews(this.id));
+      }
+    });
   }
 
   postNews(): void {
@@ -53,7 +60,9 @@ export class NewsComponent implements OnInit {
     this.newsItem.courseID = this.userService.getCurrentCourse()._id;
 
     this.courseSequenceQuestionService.addNews(this.newsItem).subscribe(
-      data => {this.getNews(this.id); },
+      data => {
+        this.getNews(this.id);
+      },
       err => {
         console.error('Error adding news!' + err);
         return;

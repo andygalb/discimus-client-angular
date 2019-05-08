@@ -12,10 +12,10 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 export class QuestionDialogComponent implements OnInit {
 
   questionTypes = [
-    {name: 'Text only', value : 'simple-text'},
-    {name: 'Simple text answer', value : 'simple-text-answer'},
-    {name: 'C#', value : 'csharp'},
-    {name: 'Multiple choice', value : 'multiple-choice'}
+    {name: 'Text only', value: 'simple-text'},
+    {name: 'Simple text answer', value: 'simple-text-answer'},
+    {name: 'C#', value: 'csharp'},
+    {name: 'Multiple choice', value: 'multiple-choice'}
   ];
 
   questionDialogForm: FormGroup;
@@ -28,8 +28,8 @@ export class QuestionDialogComponent implements OnInit {
   htmlContent: String;
 
   constructor(private fb: FormBuilder,
-    public dialogRef: MatDialogRef<QuestionDialogComponent> ,@Inject(MAT_DIALOG_DATA) public data: any
-    ) {}
+              public dialogRef: MatDialogRef<QuestionDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+  }
 
   ngOnInit() {
     this.newQuestion = this.data.question;
@@ -50,7 +50,7 @@ export class QuestionDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  removeChoice(choice){
+  removeChoice(choice) {
     this.multipleChoiceChoices = this.multipleChoiceChoices.filter(item => item !== choice);
   }
 

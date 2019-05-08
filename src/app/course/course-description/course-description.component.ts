@@ -16,22 +16,29 @@ export class CourseDescriptionComponent implements OnInit {
   @Input() id: String;
   course: Course;
 
-  constructor(private dialog: MatDialog, public userService: UserService, private dataService: DataService, private courseSequenceQuestionService: CourseSequenceQuestionService) { }
+  constructor(private dialog: MatDialog, public userService: UserService, private dataService: DataService, private courseSequenceQuestionService: CourseSequenceQuestionService) {
+  }
 
   ngOnInit() {
   }
 
   openCourseDialog(): void {
-      this.course = this.userService.getCurrentCourse();
-    const dialogRef = this.dialog.open(CourseDialogComponent, {data: {course: this.course,
-        dialogMetaData: {titleText: ' Edit course', okButtonText: 'Save'}}
+    this.course = this.userService.getCurrentCourse();
+    const dialogRef = this.dialog.open(CourseDialogComponent, {
+      data: {
+        course: this.course,
+        dialogMetaData: {titleText: ' Edit course', okButtonText: 'Save'}
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('Result:' + result);
       if (result === 'submit') {
 
-        this.updateCourse(); } else { (this.getCourse(this.id)); }
+        this.updateCourse();
+      } else {
+        (this.getCourse(this.id));
+      }
     });
   }
 
@@ -52,10 +59,11 @@ export class CourseDescriptionComponent implements OnInit {
   getCourse(id: String) {
     this.dataService.getCourse(id)
       .subscribe((data) => {
-        //  this.course = data;
+          //  this.course = data;
           this.userService.setCurrentCourse(data);
         },
-        () => {});
+        () => {
+        });
   }
 
 }

@@ -25,10 +25,7 @@ export class AppComponent implements OnInit {
   }
 
 
-
-
-  logOut()
-  {
+  logOut() {
     this.userService.logOut();
   }
 }

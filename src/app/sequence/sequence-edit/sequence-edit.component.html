@@ -1,55 +1,62 @@
+<a [routerLink]="['/course/'+ this.userService.getCurrentCourse()._id,{ outlets: { courseSection : 'home' } }]">Course:
+  {{this.userService.getCurrentCourse().courseTitle}}</a> >
+<a *ngIf="selectedSequence"
+   [routerLink]="['/sequence/'+ this.userService.getCurrentSequence()._id,{ outlets: { sequenceSection : 'home' } }]">Sequence:
+  {{this.userService.getCurrentSequence().sequenceTitle}}</a>
 
-  <a  [routerLink]="['/course/'+ this.userService.getCurrentCourse()._id,{ outlets: { courseSection : 'home' } }]">Course: {{this.userService.getCurrentCourse().courseTitle}}</a> >
-  <a *ngIf="selectedSequence" [routerLink]="['/sequence/'+ this.userService.getCurrentSequence()._id,{ outlets: { sequenceSection : 'home' } }]">Sequence: {{this.userService.getCurrentSequence().sequenceTitle}}</a>
+<h3>Sequence</h3>
+<form class="example-form" *ngIf="selectedSequence">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Title" type="text" required name="title" [(ngModel)]="selectedSequence.sequenceTitle"/>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <textarea matInput placeholder="Description" type="text" id="sequence-description" required name="description"
+              [(ngModel)]="selectedSequence.sequenceDescription"></textarea>
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="saveChanges();return;">Save Changes</button>
 
-    <h3>Sequence</h3>
-    <form class="example-form" *ngIf="selectedSequence">
-        <mat-form-field class="example-full-width">
-        <input matInput placeholder="Title"  type="text"  required name="title" [(ngModel)]="selectedSequence.sequenceTitle"/>
-        </mat-form-field>
-      <mat-form-field class="example-full-width">
-        <textarea matInput placeholder="Description"  type="text"  id="sequence-description" required name="description" [(ngModel)]="selectedSequence.sequenceDescription"></textarea>
-      </mat-form-field>
-      <button  mat-raised-button color="primary" (click)="saveChanges();return;">Save Changes</button>
-
-    </form>
-
-
-    <h3>Questions</h3>
-    <table mat-table [dataSource]="questionsToShow" class="mat-elevation-z8">
-
-      <ng-container matColumnDef="title">
-        <th mat-header-cell *matHeaderCellDef> Title </th>
-        <td mat-cell *matCellDef="let element"> {{element.title}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="text">
-        <th mat-header-cell *matHeaderCellDef> Question Text </th>
-        <td mat-cell *matCellDef="let element"> {{element.text | truncate}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="creationDate">
-        <th mat-header-cell *matHeaderCellDef> Creation Date </th>
-        <td mat-cell *matCellDef="let element"> {{element.created_at | date :  "dd.MM.y"}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="edit">
-        <th mat-header-cell *matHeaderCellDef> Edit </th>
-        <td mat-cell *matCellDef="let element"> <mat-icon (click)="editQuestion(element._id)">edit</mat-icon> </td>
-      </ng-container>
-
-      <ng-container matColumnDef="delete">
-        <th mat-header-cell *matHeaderCellDef> Delete </th>
-        <td mat-cell *matCellDef="let element"> <mat-icon (click)="deleteQuestion(element._id)">delete</mat-icon> </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-    </table>
+</form>
 
 
-    <button mat-raised-button color="primary"  (click)="createNewQuestion();"  >+Add new question</button>
+<h3>Questions</h3>
+<table mat-table [dataSource]="questionsToShow" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef> Title</th>
+    <td mat-cell *matCellDef="let element"> {{element.title}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="text">
+    <th mat-header-cell *matHeaderCellDef> Question Text</th>
+    <td mat-cell *matCellDef="let element"> {{element.text | truncate}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="creationDate">
+    <th mat-header-cell *matHeaderCellDef> Creation Date</th>
+    <td mat-cell *matCellDef="let element"> {{element.created_at | date : "dd.MM.y"}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="edit">
+    <th mat-header-cell *matHeaderCellDef> Edit</th>
+    <td mat-cell *matCellDef="let element">
+      <mat-icon (click)="editQuestion(element._id)">edit</mat-icon>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef> Delete</th>
+    <td mat-cell *matCellDef="let element">
+      <mat-icon (click)="deleteQuestion(element._id)">delete</mat-icon>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
+
+
+<button mat-raised-button color="primary" (click)="createNewQuestion();">+Add new question</button>
 
 
 

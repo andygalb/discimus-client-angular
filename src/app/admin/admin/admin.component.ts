@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {DataService} from '../../data.service';
 import {MatTableDataSource, PageEvent} from '@angular/material';
-import { DataSource } from '@angular/cdk/table';
-import { RouterModule } from '@angular/router';
+import {DataSource} from '@angular/cdk/table';
+import {RouterModule} from '@angular/router';
 import {Sequence} from '../../models/modelInterfaces';
 
 @Component({
@@ -15,7 +15,8 @@ export class AdminComponent implements OnInit {
 
   sequences: Sequence[];
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService) {
+  }
 
   ngOnInit() {
 

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 import {HttpClient, HttpEventType, HttpRequest, HttpResponse} from '@angular/common/http';
 
@@ -13,9 +13,10 @@ export class UploadService {
   serverAddress = config.serverAddress;
   url = this.serverAddress + '/api/document';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
-  public upload(files: Set<File>, uploaderID: String, courseID: String): {[key: string]: Observable<number>} {
+  public upload(files: Set<File>, uploaderID: String, courseID: String): { [key: string]: Observable<number> } {
     // this will be the our resulting map
     const status = {};
 

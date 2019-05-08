@@ -1,6 +1,8 @@
-<mat-card class="example card" >
+<mat-card class="example card">
   <mat-card-header>
-    <div mat-card-avatar> <mat-icon matListIcon>public</mat-icon></div>
+    <div mat-card-avatar>
+      <mat-icon matListIcon>public</mat-icon>
+    </div>
     <mat-card-title><h3>Course News</h3></mat-card-title>
   </mat-card-header>
   <div *ngIf="news; else elseBlock">
@@ -10,7 +12,9 @@
         <mat-card-title>
           {{newsItem.title}}
         </mat-card-title>
-        <mat-card-subtitle>By: {{newsItem.owner.firstName}} {{newsItem.owner.lastName}}  Published: {{newsItem.created_at | date :  "dd.MM.y" }}</mat-card-subtitle>
+        <mat-card-subtitle>By: {{newsItem.owner.firstName}} {{newsItem.owner.lastName}} Published: {{newsItem.created_at
+          | date : "dd.MM.y" }}
+        </mat-card-subtitle>
       </mat-card-header>
 
       <mat-card-content>
@@ -24,5 +28,7 @@
       There is no news for this course.
     </mat-card-content>
   </ng-template>
-  <button *ngIf="this.userService.user.local.userType=='teacher'" mat-raised-button color="primary"  (click)="openNewsDialog()" class="btn btn-primary">Create news</button>
+  <button *ngIf="this.userService.user.local.userType=='teacher'" mat-raised-button color="primary"
+          (click)="openNewsDialog()" class="btn btn-primary">Create news
+  </button>
 </mat-card>

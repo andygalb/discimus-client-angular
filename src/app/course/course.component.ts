@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DataService} from '../data.service';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {Course, Question, Sequence} from '../models/modelInterfaces';
@@ -18,7 +18,7 @@ export class CourseComponent implements OnInit {
 
   navigationSubscription;
 
-  constructor(private dataService: DataService, private userService: UserService, private route: ActivatedRoute,  private router: Router) {
+  constructor(private dataService: DataService, private userService: UserService, private route: ActivatedRoute, private router: Router) {
 
     //TODO This is a hack to get sidelinks to navigate when the courseID changes.
     /*this.navigationSubscription = this.router.events.subscribe((e: any) => {
@@ -42,7 +42,7 @@ export class CourseComponent implements OnInit {
         this.course = course;
         this.userService.currentCourse = course;
         this.userService.setCurrentCourse(course);
-        console.log("Current course set as:");
+        console.log('Current course set as:');
         console.log(course);
       });
   }

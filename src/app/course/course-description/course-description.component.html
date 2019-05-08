@@ -13,7 +13,8 @@
   </mat-card-content>
 
   <mat-card-actions>
-    <button class="align-right" [matMenuTriggerFor]="courseMenu" *ngIf="userService.user.local.userType=='teacher'" mat-button>
+    <button class="align-right" [matMenuTriggerFor]="courseMenu" *ngIf="userService.user.local.userType=='teacher'"
+            mat-button>
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #courseMenu="matMenu" xPosition="after" yPosition="below" [overlapTrigger]="false">

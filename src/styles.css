@@ -3,9 +3,17 @@
 @import '~highlight.js/styles/github.css';
 @import "spinner.css";
 
-body { margin:0; padding:0;  height:100vh; min-height:100%; font-family: 'Roboto', sans-serif;}
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  min-height: 100%;
+  font-family: 'Roboto', sans-serif;
+}
 
-a {text-decoration:none;}
+a {
+  text-decoration: none;
+}
 
 .example-container {
   position: absolute;
@@ -13,16 +21,23 @@ a {text-decoration:none;}
   bottom: 0;
   left: 0;
   right: 0;
-  padding:5px;
-  height:100vh;
+  padding: 5px;
+  height: 100vh;
 }
 
 .spacer {
   flex: 1 1 auto;
 }
 
-.mat-sidenav-content { padding:10px;  height:100vh;}
-.mat-sidenav { padding:10px;  height:100vh;}
+.mat-sidenav-content {
+  padding: 10px;
+  height: 100vh;
+}
+
+.mat-sidenav {
+  padding: 10px;
+  height: 100vh;
+}
 
 .news-header-image {
   background-image: url('/assets/images/news.png');
@@ -34,7 +49,9 @@ a {text-decoration:none;}
   background-size: cover;
 }
 
-mat-card{margin:5px;}
+mat-card {
+  margin: 5px;
+}
 
 .backdropBackground {
   background: rgba(0, 0, 0, 0.5);

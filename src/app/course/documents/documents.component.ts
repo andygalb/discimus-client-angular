@@ -3,12 +3,12 @@ import {DataService} from '../../data.service';
 import {ActivatedRoute} from '@angular/router';
 import {CourseDocument} from '../../models/modelInterfaces';
 import {MatTableDataSource} from '@angular/material';
-import { MatDialog } from '@angular/material';
+import {MatDialog} from '@angular/material';
 import {UploadService} from '../../upload/upload.service';
-import { DialogComponent } from '../../upload/dialog/dialog.component';
+import {DialogComponent} from '../../upload/dialog/dialog.component';
 import {UserService} from '../../user.service';
 import {forkJoin} from 'rxjs';
-import {Observable} from "rxjs/Rx";
+import {Observable} from 'rxjs/Rx';
 
 @Component({
   selector: 'app-documents',
@@ -35,7 +35,8 @@ export class DocumentsComponent implements OnInit {
 
   documents: Observable<CourseDocument[]>;
 
-  constructor(private dataService: DataService, private route: ActivatedRoute, public uploadService: UploadService, public userService: UserService) { }
+  constructor(private dataService: DataService, private route: ActivatedRoute, public uploadService: UploadService, public userService: UserService) {
+  }
 
   ngOnInit() {
     this.getDocuments(this.id);
@@ -56,10 +57,10 @@ export class DocumentsComponent implements OnInit {
   }
 
   onUploadButtonPressed() {
-   // this.uploadService.upload(this.files, this.userService.user._id,  this.id);
+    // this.uploadService.upload(this.files, this.userService.user._id,  this.id);
 
     // start the upload and save the progress map
-    this.progress = this.uploadService.upload(this.files, this.userService.user._id,  this.id);
+    this.progress = this.uploadService.upload(this.files, this.userService.user._id, this.id);
 
     // convert the progress map into an array
     const allProgressObservables = [];
@@ -74,7 +75,7 @@ export class DocumentsComponent implements OnInit {
 
     // The dialog should not be closed while uploading
     this.canBeClosed = false;
-   // this.dialogRef.disableClose = true;
+    // this.dialogRef.disableClose = true;
 
     // Hide the cancel-button
     this.showCancelButton = false;

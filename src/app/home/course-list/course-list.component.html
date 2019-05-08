@@ -27,6 +27,8 @@
     </mat-expansion-panel>
   </mat-card-content>
   <mat-card-actions>
-    <button *ngIf="this.userService.getCurrentUser().local.userType!='student'" mat-raised-button color="primary" (click)="openCourseDialog()" class="btn btn-primary">Create new course</button>
+    <button *ngIf="this.userService.getCurrentUser().local.userType!='student'" mat-raised-button color="primary"
+            (click)="openCourseDialog()" class="btn btn-primary">Create new course
+    </button>
   </mat-card-actions>
 </mat-card>

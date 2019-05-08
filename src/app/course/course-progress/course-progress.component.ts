@@ -18,7 +18,8 @@ export class CourseProgressComponent implements OnInit {
   spinnerColor = 'primary';
   spinnerMode = 'determinate';
 
-  constructor(public userService: UserService) { }
+  constructor(public userService: UserService) {
+  }
 
   ngOnInit() {
     this.courseScore = this.userService.getCurrentScoreForCourse(this.id);
@@ -26,7 +27,7 @@ export class CourseProgressComponent implements OnInit {
   }
 
   calculateProgress() {
-   //Get course summary from user service.
+    //Get course summary from user service.
     console.log(this.userService.getCurrentCourse().courseSummary);
 
     const courseSummary = JSON.parse(this.userService.getCurrentCourse().courseSummary);
@@ -36,7 +37,9 @@ export class CourseProgressComponent implements OnInit {
     for (const sequence of courseSummary.sequences) {
 
       for (const question of sequence.questions) {
-        if (question.type != 'simple-text') {total += 1; }
+        if (question.type != 'simple-text') {
+          total += 1;
+        }
       }
     }
     this.courseTotal = total;

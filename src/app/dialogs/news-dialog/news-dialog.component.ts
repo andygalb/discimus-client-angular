@@ -21,9 +21,8 @@ export class NewsDialogComponent implements OnInit {
     placeholder: 'News here...',
   };
 
-  constructor(
-    public dialogRef: MatDialogRef<NewsDialogComponent> , @Inject(MAT_DIALOG_DATA) public data: any
-    ) {}
+  constructor(public dialogRef: MatDialogRef<NewsDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+  }
 
   ngOnInit() {
     this.news = this.data.news;

@@ -1,27 +1,31 @@
-
 <h3>Available Courses</h3>
 
-  <div *ngIf="ready" class="container" fxLayout="row wrap" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="left">
+<div *ngIf="ready" class="container" fxLayout="row wrap" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
+     fxLayoutAlign="left">
 
-    <div  fxFlex="32%"  *ngFor="let course of courses" class="course-card" >
-      <mat-card >
-        <mat-card-header>
-          <div mat-card-avatar class="course-header-image"></div>
-          <mat-card-title><div class="card-header">{{course.courseTitle}}</div></mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <p>{{course.courseDescription | truncate : 50 : true}}</p>
-        </mat-card-content>
-        <mat-card-actions>
-          <button *ngIf="course.isEnrolled else enrollButton" mat-raised-button  disabled color="disabled"  class="btn btn-disabled">Enrolled!</button>
+  <div fxFlex="32%" *ngFor="let course of courses" class="course-card">
+    <mat-card>
+      <mat-card-header>
+        <div mat-card-avatar class="course-header-image"></div>
+        <mat-card-title>
+          <div class="card-header">{{course.courseTitle}}</div>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{course.courseDescription | truncate : 50 : true}}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button *ngIf="course.isEnrolled else enrollButton" mat-raised-button disabled color="disabled"
+                class="btn btn-disabled">Enrolled!
+        </button>
 
-          <ng-template #enrollButton>
-           <button mat-raised-button color="primary"  class="btn btn-primary"  (click)="enroleUser(course)">Enroll</button>
-         </ng-template>
+        <ng-template #enrollButton>
+          <button mat-raised-button color="primary" class="btn btn-primary" (click)="enroleUser(course)">Enroll</button>
+        </ng-template>
 
-        </mat-card-actions>
-      </mat-card>
-    </div>
-
+      </mat-card-actions>
+    </mat-card>
   </div>
+
+</div>
 

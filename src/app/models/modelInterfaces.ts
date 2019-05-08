@@ -3,8 +3,8 @@ export interface CourseDocument {
   owner: String;
   course: String;
   originalFilename: String;
-  created_at: {type: Date, required: true};
-  updated_at: {type: Date, required: true};
+  created_at: { type: Date, required: true };
+  updated_at: { type: Date, required: true };
 }
 
 export interface Course {
@@ -14,8 +14,8 @@ export interface Course {
   creatorID: String;
   courseSummary: string;
   sequences: String[];
-  created_at: {type: Date, required: true};
-  updated_at: {type: Date, required: true};
+  created_at: { type: Date, required: true };
+  updated_at: { type: Date, required: true };
 }
 
 export interface News {
@@ -28,7 +28,7 @@ export interface News {
   courseID: String;
   title: String;
   content: String;
-  created_at: {type: Date, required: true};
+  created_at: { type: Date, required: true };
 }
 
 export interface Message {
@@ -43,8 +43,8 @@ export interface Message {
   title: String;
   content: String;
   read: Boolean;
-  created_at: {type: Date, required: true};
-  updated_at: {type: Date, required: true};
+  created_at: { type: Date, required: true };
+  updated_at: { type: Date, required: true };
 }
 
 export interface Question {
@@ -61,7 +61,7 @@ export interface Question {
   };
   userAnswer?: string;
   userResponse?: string;
-  updated_at: {type: Date, required: true};
+  updated_at: { type: Date, required: true };
 }
 
 export class Result {
@@ -83,8 +83,8 @@ export interface Sequence {
   sequenceDescription: string;
   creatorID: string;
   questions: string[];
-  created_at: {type: Date, required: true, default};
-  updated_at: {type: Date, required: true };
+  created_at: { type: Date, required: true, default };
+  updated_at: { type: Date, required: true };
 }
 
 export interface User {
@@ -130,7 +130,7 @@ export interface Document {
   uploaderID: String;
   originalFilename: String;
   systemFilename: String;
-  uploaded_at: {type: Date, required: true};
+  uploaded_at: { type: Date, required: true };
 }
 
 export interface Enrolement {
@@ -138,8 +138,8 @@ export interface Enrolement {
   courseID: String;
   userID: String;
   role: String;
-  created_at: {type: Date};
-  updated_at: {type: Date};
+  created_at: { type: Date };
+  updated_at: { type: Date };
 }
 
 export interface QuestionResponse {

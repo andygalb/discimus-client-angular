@@ -1,34 +1,47 @@
 <mat-card class="example card">
   <mat-card-header>
-    <div mat-card-avatar> <mat-icon matListIcon>file_copy</mat-icon></div>
+    <div mat-card-avatar>
+      <mat-icon matListIcon>file_copy</mat-icon>
+    </div>
     <mat-card-title><h3>Sequences</h3></mat-card-title>
   </mat-card-header>
   <mat-card-content>
-<div *ngIf="sequences.length>0; else elseBlock">
-  <div *ngFor="let sequence of sequences"  class="card" >
-    <mat-card>
-      <mat-card-header>
-        <div mat-card-avatar > <mat-icon matListIcon>assignment</mat-icon></div>
-        <mat-card-title><div class="card-header">{{sequence.sequenceTitle}}</div></mat-card-title>
-      </mat-card-header>
-      <mat-card-content *ngIf="style!='short'">
-        <p>{{sequence.sequenceDescription}}</p>
-        <p>You have answered {{answeredQuestionCounter(sequence._id)}} questions of {{sequence.questions.length}} in this sequence.<p>
-      </mat-card-content>
+    <div *ngIf="sequences.length>0; else elseBlock">
+      <div *ngFor="let sequence of sequences" class="card">
+        <mat-card>
+          <mat-card-header>
+            <div mat-card-avatar>
+              <mat-icon matListIcon>assignment</mat-icon>
+            </div>
+            <mat-card-title>
+              <div class="card-header">{{sequence.sequenceTitle}}</div>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content *ngIf="style!='short'">
+            <p>{{sequence.sequenceDescription}}</p>
+            <p>You have answered {{answeredQuestionCounter(sequence._id)}} questions of {{sequence.questions.length}} in
+              this sequence.
+            <p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="link"
+                    [routerLink]="['/sequence/'+sequence._id,{ outlets: { sequenceSection : 'home' } }]"
+                    class="btn btn-primary">View
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+
+    </div>
+    <button mat-raised-button color="primary" *ngIf="this.userService.user.local.userType=='teacher'"
+            (click)="openSequenceDialog()">Create New Sequence
+    </button>
+
+    <ng-template #elseBlock>
+      <p>There are currently no sequences in this course.</p>
       <mat-card-actions>
-        <button mat-raised-button color="link"  [routerLink]="['/sequence/'+sequence._id,{ outlets: { sequenceSection : 'home' } }]" class="btn btn-primary" >View</button>
       </mat-card-actions>
-    </mat-card>
-  </div>
-
-</div>
-<button mat-raised-button color="primary" *ngIf="this.userService.user.local.userType=='teacher'"  (click)="openSequenceDialog()">Create New Sequence</button>
-
-<ng-template #elseBlock>
-  <p>There are currently no sequences in this course.</p>
-  <mat-card-actions>
-  </mat-card-actions>
-</ng-template>
+    </ng-template>
 
   </mat-card-content>
   <mat-card-actions>

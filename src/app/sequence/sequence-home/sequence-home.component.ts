@@ -1,7 +1,7 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { FormBuilder, Validators } from '@angular/forms';
-import { FormGroup } from '@angular/forms';
+import {Component, OnInit, Inject} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {FormBuilder, Validators} from '@angular/forms';
+import {FormGroup} from '@angular/forms';
 import {CourseSequenceQuestionService} from '../../course-sequence-question.service';
 import {UserService} from '../../user.service';
 import {Question, QuestionResponse, Sequence} from '../../models/modelInterfaces';
@@ -126,31 +126,30 @@ export class SequenceHomeComponent implements OnInit {
     );
   }
 
-    answerQuestion(question) {
-      console.log('You answered:' + question.userAnswer);
+  answerQuestion(question) {
+    console.log('You answered:' + question.userAnswer);
 
-      const response = this.courseSequenceQuestionService.isAnswerCorrect(question, question.userAnswer);
+    const response = this.courseSequenceQuestionService.isAnswerCorrect(question, question.userAnswer);
 
-      response.subscribe(
-        data => {
+    response.subscribe(
+      data => {
 
-          console.log(data);
-          console.log(data.score === '1');
+        console.log(data);
+        console.log(data.score === '1');
 
-          // @ts-ignore
-          if (data.score === 1) {
-            console.log("Answer correct!");
-            this.userService.addCorrectAnswer(question, question.userAnswer );
-            question.userResponse = data.feedback;
-          }
-          else
-          {
-            this.questionResponse = data;
-            question.userResponse = data.feedback;
-          }
+        // @ts-ignore
+        if (data.score === 1) {
+          console.log('Answer correct!');
+          this.userService.addCorrectAnswer(question, question.userAnswer);
+          question.userResponse = data.feedback;
         }
-      );
-    }
+        else {
+          this.questionResponse = data;
+          question.userResponse = data.feedback;
+        }
+      }
+    );
+  }
 }
 
 

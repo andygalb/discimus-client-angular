@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {News} from '../../models/modelInterfaces';
 import {DataService} from '../../data.service';
 
@@ -11,7 +11,8 @@ export class SiteNewsComponent implements OnInit {
 
   news: News[];
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService) {
+  }
 
   ngOnInit() {
     this.dataService.getNews('all').subscribe(siteNews => this.news = siteNews);

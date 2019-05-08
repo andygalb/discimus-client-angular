@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { NewsDialogComponent } from './news-dialog.component';
+import {NewsDialogComponent} from './news-dialog.component';
 
 describe('SequenceDialogComponent', () => {
   let component: NewsDialogComponent;
@@ -8,9 +8,9 @@ describe('SequenceDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NewsDialogComponent ]
+      declarations: [NewsDialogComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

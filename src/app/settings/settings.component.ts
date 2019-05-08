@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-settings',
@@ -11,7 +11,8 @@ export class SettingsComponent implements OnInit {
   checked = false;
   disabled = false;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

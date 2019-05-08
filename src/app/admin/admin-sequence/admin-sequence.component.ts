@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DataService} from '../../data.service';
 import {Sequence} from '../../models/modelInterfaces';
 import {MatTableDataSource} from '@angular/material';
@@ -18,7 +18,8 @@ export class AdminSequenceComponent implements OnInit {
   displayedColumns = ['selectSequence', 'sequenceTitle', 'created_at'];
 
 
-  constructor(private dataService: DataService, public userService: UserService) { }
+  constructor(private dataService: DataService, public userService: UserService) {
+  }
 
   ngOnInit() {
     this.showSequences();
@@ -29,7 +30,6 @@ export class AdminSequenceComponent implements OnInit {
       .subscribe((data) => {
         console.log(data);
         this.sequences = data;
-        //this.dataSource.data = this.users;
       });
   }
 

@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { MessageViewDialogComponent } from './message-view-dialog.component';
+import {MessageViewDialogComponent} from './message-view-dialog.component';
 
 describe('SequenceDialogComponent', () => {
   let component: MessageViewDialogComponent;
@@ -8,9 +8,9 @@ describe('SequenceDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MessageViewDialogComponent ]
+      declarations: [MessageViewDialogComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

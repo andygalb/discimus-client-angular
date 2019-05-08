@@ -12,9 +12,8 @@ export class MessageViewDialogComponent implements OnInit {
   message: RMessage;
   dialogMetaData: DialogMetaData;
 
-  constructor(
-    public dialogRef: MatDialogRef<MessageViewDialogComponent> , @Inject(MAT_DIALOG_DATA) public data: any
-    ) {}
+  constructor(public dialogRef: MatDialogRef<MessageViewDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+  }
 
   ngOnInit() {
     this.message = this.data.message;

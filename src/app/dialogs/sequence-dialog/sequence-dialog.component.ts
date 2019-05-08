@@ -24,9 +24,8 @@ export class SequenceDialogComponent implements OnInit {
     placeholder: 'Sequence description here...',
   };
 
-  constructor(
-    public dialogRef: MatDialogRef<SequenceDialogComponent> , @Inject(MAT_DIALOG_DATA) public data: any
-    ) {}
+  constructor(public dialogRef: MatDialogRef<SequenceDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+  }
 
   ngOnInit() {
     this.sequence = this.data.sequence;

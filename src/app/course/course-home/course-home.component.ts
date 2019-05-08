@@ -23,7 +23,8 @@ export class CourseHomeComponent implements OnInit {
 
   navigationSubscription;
 
-  constructor(private courseSequenceQuestionService: CourseSequenceQuestionService, private dataService: DataService, private route: ActivatedRoute, private userService: UserService) { }
+  constructor(private courseSequenceQuestionService: CourseSequenceQuestionService, private dataService: DataService, private route: ActivatedRoute, private userService: UserService) {
+  }
 
   ngOnInit() {
     this.id = this.route.parent.snapshot.paramMap.get('id');
@@ -34,14 +35,13 @@ export class CourseHomeComponent implements OnInit {
   getCourse(id: String) {
     this.dataService.getCourse(id)
       .subscribe((data) => {
-        console.log(data);
-        this.course = data;
-        this.userService.setCurrentCourse(data);
-      },
-        () => {});
+          console.log(data);
+          this.course = data;
+          this.userService.setCurrentCourse(data);
+        },
+        () => {
+        });
   }
-
-
 
 
 }

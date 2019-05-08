@@ -26,10 +26,9 @@ export class MessageDialogComponent implements OnInit {
     placeholder: 'Message here...',
   };
 
-  constructor(
-    public dialogRef: MatDialogRef<MessageDialogComponent> , @Inject(MAT_DIALOG_DATA) public data: any,
-    private messengerService: MessengerService
-    ) {}
+  constructor(public dialogRef: MatDialogRef<MessageDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any,
+              private messengerService: MessengerService) {
+  }
 
   ngOnInit() {
     this.message = this.data.message;
@@ -47,11 +46,11 @@ export class MessageDialogComponent implements OnInit {
 
   getRecipients() {
     this.messengerService.getSystemUsers().subscribe((userList) => {
-      this.users = userList;
-    },
+        this.users = userList;
+      },
       (err) => {
-      console.log(err);
-    });
+        console.log(err);
+      });
 
   }
 

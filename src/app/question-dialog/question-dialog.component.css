@@ -2,4 +2,6 @@
   width: 100%;
 }
 
-angular-editor{min-height:300px;}
+angular-editor {
+  min-height: 300px;
+}

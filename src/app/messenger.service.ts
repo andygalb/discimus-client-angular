@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Message, User} from './models/modelInterfaces';
 import {HttpClient} from '@angular/common/http';
 import config from './config.json';
@@ -11,20 +11,22 @@ export class MessengerService {
   newMessages: Message[];
 
   constructor(private http: HttpClient) {
-   this.newMessages = [];
+    this.newMessages = [];
   }
 
   sendMessage(message: Message) {
     return this.http.post<string>(config.serverAddress + '/api/message', message);
   }
 
-  checkForNewMessages(id: String){
+  checkForNewMessages(id: String) {
     this.http.get<Message[]>(config.serverAddress + '/api/message/user/' + id).subscribe((messages) => {
-      this.newMessages = messages.filter(message => message.read === false);
+        this.newMessages = messages.filter(message => message.read === false);
       }
-    ,
-      (err) => {console.log(err);}
-    )
+      ,
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
   getReceivedMessages(id: String) {

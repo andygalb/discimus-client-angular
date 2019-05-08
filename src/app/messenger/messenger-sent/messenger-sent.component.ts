@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RMessage} from '../../models/modelClasses';
 import {MatTableDataSource} from '@angular/material';
 import {UserService} from '../../user.service';
@@ -12,9 +12,10 @@ import {MessengerService} from '../../messenger.service';
 export class MessengerSentComponent implements OnInit {
 
   dataSource = new MatTableDataSource();
-  displayedColumns = ['toName','title', 'date'];
+  displayedColumns = ['toName', 'title', 'date'];
 
-  constructor(private userService: UserService, private messengerService: MessengerService) { }
+  constructor(private userService: UserService, private messengerService: MessengerService) {
+  }
 
   ngOnInit() {
     this.getMessages();
@@ -23,7 +24,7 @@ export class MessengerSentComponent implements OnInit {
   getMessages() {
 
     this.messengerService.getSentMessages(this.userService.getCurrentUser()._id).subscribe((response) => {
-        this.dataSource.data= response;
+        this.dataSource.data = response;
       },
       (err) => {
         console.log(err);

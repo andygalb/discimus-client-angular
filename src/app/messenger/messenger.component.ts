@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RMessage, RSequence} from '../models/modelClasses';
 import {SequenceDialogComponent} from '../dialogs/sequence-dialog/sequence-dialog.component';
 import {MessageDialogComponent} from '../dialogs/message-dialog/message-dialog.component';
@@ -13,9 +13,10 @@ import {UserService} from '../user.service';
 })
 export class MessengerComponent implements OnInit {
 
-   newMessage: RMessage;
+  newMessage: RMessage;
 
-  constructor(public dialog: MatDialog, private messengerService: MessengerService, private userService: UserService) { }
+  constructor(public dialog: MatDialog, private messengerService: MessengerService, private userService: UserService) {
+  }
 
   ngOnInit() {
   }
@@ -41,17 +42,17 @@ export class MessengerComponent implements OnInit {
 
   sendNewMessage() {
 
-      this.newMessage.fromID = this.userService.getCurrentUser()._id;
-      this.newMessage.fromName = this.userService.getCurrentUser().local.firstName;
+    this.newMessage.fromID = this.userService.getCurrentUser()._id;
+    this.newMessage.fromName = this.userService.getCurrentUser().local.firstName;
 
-      //this.newMessage.toID = '5b2ba50ad01b2e2c7062f820';
+    //this.newMessage.toID = '5b2ba50ad01b2e2c7062f820';
 
-      this.messengerService.sendMessage(this.newMessage).subscribe((response) => {
+    this.messengerService.sendMessage(this.newMessage).subscribe((response) => {
         console.log(response);
-        },
-        (err) => {
+      },
+      (err) => {
         console.log(err);
-        });
+      });
 
   }
 

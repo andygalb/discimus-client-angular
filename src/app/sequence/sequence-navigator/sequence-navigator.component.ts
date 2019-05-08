@@ -12,7 +12,8 @@ export class SequenceNavigatorComponent implements OnInit {
   questionsToShow: Question[];
   @Input() questions: Question[];
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) {
+  }
 
   ngOnInit() {
     console.log(this.userService.getCurrentSequence());
@@ -20,10 +21,10 @@ export class SequenceNavigatorComponent implements OnInit {
   }
 
   scroll(id) {
-    console.log("Scrolling to" + id);
+    console.log('Scrolling to' + id);
     let el = document.getElementById(id);
     console.log(el);
-    el.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+    el.scrollIntoView({behavior: 'smooth', block: 'end', inline: 'nearest'});
   }
 
 }

@@ -13,51 +13,52 @@
   </div>
 </div>
 
-<ng-template  #student>
+<ng-template #student>
 
-        <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+  <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
 
-          <div fxFlex="50%">
-            <app-course-list></app-course-list>
-            <button mat-raised-button color="primary"  [routerLink]="['/courses/']" class="btn btn-primary">Find more courses!</button>
-            <h3>Results</h3>
-            <div *ngIf="this.userService.getCurrentUser().results.length<1; then noResultsContent else resultsContent">
-              <ng-template #noResultsContent><p>You currently have no results to show.</p></ng-template>
-              <ng-template #resultsContent>
-                <h2>Your results:</h2>
-                <table class="table">
-                  <thead>
-                  <tr>
-                    <th>Course Title</th>
-                    <th>Sequence Title</th>
-                    <th>Question Title</th>
-                    <th>Date</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-e
-                  <tr *ngFor="let result of this.userService.getCurrentUser().results" >
-                    <td>{{result.courseTitle}}</td>
-                    <td>{{result.sequenceTitle}}</td>
-                    <td>{{result.questionTitle}}</td>
-                    <td>{{result.dateTime | date:'medium' }}</td>
-                  </tr>
-                  </tbody>
-                </table>
-              </ng-template>
-            </div>
-          </div>
+    <div fxFlex="50%">
+      <app-course-list></app-course-list>
+      <button mat-raised-button color="primary" [routerLink]="['/courses/']" class="btn btn-primary">Find more
+        courses!
+      </button>
+      <h3>Results</h3>
+      <div *ngIf="this.userService.getCurrentUser().results.length<1; then noResultsContent else resultsContent">
+        <ng-template #noResultsContent><p>You currently have no results to show.</p></ng-template>
+        <ng-template #resultsContent>
+          <h2>Your results:</h2>
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Course Title</th>
+              <th>Sequence Title</th>
+              <th>Question Title</th>
+              <th>Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            e
+            <tr *ngFor="let result of this.userService.getCurrentUser().results">
+              <td>{{result.courseTitle}}</td>
+              <td>{{result.sequenceTitle}}</td>
+              <td>{{result.questionTitle}}</td>
+              <td>{{result.dateTime | date:'medium' }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </ng-template>
+      </div>
+    </div>
 
-          <div fxFlex="50%">
-            <app-site-news></app-site-news>
-            <app-messenger-inbox></app-messenger-inbox>
-          </div>
-        </div>
-      </ng-template >
+    <div fxFlex="50%">
+      <app-site-news></app-site-news>
+      <app-messenger-inbox></app-messenger-inbox>
+    </div>
+  </div>
+</ng-template>
 
 
-
-<ng-template  #teacher>
+<ng-template #teacher>
   <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
     <div fxFlex="50%">
       <app-course-list></app-course-list>
@@ -67,4 +68,4 @@ e
       <app-messenger-inbox></app-messenger-inbox>
     </div>
   </div>
-</ng-template >
+</ng-template>

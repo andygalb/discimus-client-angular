@@ -18,7 +18,8 @@ export class CourseStudentsComponent implements OnInit {
   dataSource = new MatTableDataSource();
   displayedColumns = ['userFirstName', 'userSurname', 'userEmail', 'userType'];
 
-  constructor(private dataService: DataService, private route: ActivatedRoute, private userService: UserService) { }
+  constructor(private dataService: DataService, private route: ActivatedRoute, private userService: UserService) {
+  }
 
   ngOnInit() {
     this.dataService.getUsersForCourse(this.id).subscribe(data => {

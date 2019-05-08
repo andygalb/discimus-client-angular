@@ -3,10 +3,14 @@
   left: 5px;
 }
 
-mat-card{margin-bottom:5px;}
+mat-card {
+  margin-bottom: 5px;
+}
 
 .mat-icon {
   font-size: 30px;
 }
 
-.align-right { float:right;}
+.align-right {
+  float: right;
+}

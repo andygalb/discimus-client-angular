@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatTableDataSource, PageEvent} from '@angular/material';
 import {DataService} from '../../data.service';
 import {User} from '../../models/modelInterfaces';
@@ -11,7 +11,7 @@ import {User} from '../../models/modelInterfaces';
 export class AdminUserComponent implements OnInit {
 
   users: User[];
-  selected: User[] = new Array();
+  selected: User[] = [];
 
   actions = ['delete'];
   length = 100;
@@ -28,7 +28,8 @@ export class AdminUserComponent implements OnInit {
     this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
   }
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService) {
+  }
 
   ngOnInit() {
     this.showUsers();
@@ -46,9 +47,8 @@ export class AdminUserComponent implements OnInit {
   dealWithClick($event) {
     console.log($event);
 
-   if ($event.checked === true) {this.selected.push(this.users[0]); }
-    else {
-
+    if ($event.checked === true) {
+      this.selected.push(this.users[0]);
     }
   }
 

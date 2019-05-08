@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatTableDataSource} from '@angular/material';
 import {DataService} from '../../data.service';
 import {Question} from '../../models/modelInterfaces';
@@ -15,7 +15,8 @@ export class AdminQuestionComponent implements OnInit {
   dataSource = new MatTableDataSource();
   displayedColumns = ['firstName', 'lastName', 'userName', 'admin', 'userType'];
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService) {
+  }
 
   ngOnInit() {
     this.showQuestions();

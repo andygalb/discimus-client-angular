@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpRequest, HttpEventType, HttpResponse } from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpRequest, HttpEventType, HttpResponse} from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
-import { DialogComponent } from './dialog/dialog.component';
+import {DialogComponent} from './dialog/dialog.component';
 
 
 @NgModule({
@@ -17,9 +17,10 @@ export class UploadModule {
 
   url = 'http://localhost:3000';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
-  public upload(files: Set<File>): {[key: string]: Observable<number>} {
+  public upload(files: Set<File>): { [key: string]: Observable<number> } {
 
     // this will be the our resulting map
     const status = {};

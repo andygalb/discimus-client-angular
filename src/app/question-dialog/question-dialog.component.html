@@ -1,13 +1,14 @@
 <h2 mat-dialog-title>{{dialogMetaData.titleText}} </h2>
 
 <form [formGroup]="questionDialogForm">
-<mat-form-field class="example-full-width" >
-  <mat-select formControlName="typeControl" name="questionType" placeholder="Question type" (selectionChange)="updateQuestionType($event.value)">
-    <mat-option *ngFor="let questionType of questionTypes" [value]="questionType.value">
-      {{questionType.name}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-select formControlName="typeControl" name="questionType" placeholder="Question type"
+                (selectionChange)="updateQuestionType($event.value)">
+      <mat-option *ngFor="let questionType of questionTypes" [value]="questionType.value">
+        {{questionType.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 </form>
 <mat-dialog-content>
 
@@ -34,58 +35,68 @@
     </div>
 
     <ng-template #simpleAnswer>
-        <mat-form-field class="example-full-width" >
-          <input matInput type="text" placeholder="Title:"  class="form-control" id="title" required name="title"  [(ngModel)]="newQuestion.title">
-        </mat-form-field >
+      <mat-form-field class="example-full-width">
+        <input matInput type="text" placeholder="Title:" class="form-control" id="title" required name="title"
+               [(ngModel)]="newQuestion.title">
+      </mat-form-field>
 
-      <angular-editor class="form-control"  matInput [(ngModel)]="newQuestion.text"></angular-editor>
+      <angular-editor class="form-control" matInput [(ngModel)]="newQuestion.text"></angular-editor>
 
-        <mat-form-field class="example-full-width">
-          <input matInput  name="questionAnswer" placeholder="Answer:"  class="form-control" id="questionAnswer" rows="3"  [(ngModel)]="newQuestion.questionAnswer.text" />
-        </mat-form-field >
+      <mat-form-field class="example-full-width">
+        <input matInput name="questionAnswer" placeholder="Answer:" class="form-control" id="questionAnswer" rows="3"
+               [(ngModel)]="newQuestion.questionAnswer.text"/>
+      </mat-form-field>
     </ng-template>
 
     <ng-template #cSharp>
-      <mat-form-field class="example-full-width" >
-        <input matInput type="text" placeholder="Title:"  class="form-control" id="title" required name="title"  [(ngModel)]="newQuestion.title">
-      </mat-form-field >
+      <mat-form-field class="example-full-width">
+        <input matInput type="text" placeholder="Title:" class="form-control" id="title" required name="title"
+               [(ngModel)]="newQuestion.title">
+      </mat-form-field>
 
       <mat-form-field class="example-full-width">
-        <textarea matInput  name="questionText" placeholder="Question Text:" class="form-control" id="questionText" rows="5"   [(ngModel)]="newQuestion.text"  ></textarea>
-      </mat-form-field >
+        <textarea matInput name="questionText" placeholder="Question Text:" class="form-control" id="questionText"
+                  rows="5" [(ngModel)]="newQuestion.text"></textarea>
+      </mat-form-field>
 
       <mat-form-field class="example-full-width">
-        <input matInput  name="questionInputs" placeholder="Inputs, comma separated"  class="form-control" id="questionInputs"  [(ngModel)]="metadata.inputs" />
-      </mat-form-field >
+        <input matInput name="questionInputs" placeholder="Inputs, comma separated" class="form-control"
+               id="questionInputs" [(ngModel)]="metadata.inputs"/>
+      </mat-form-field>
 
       <mat-form-field class="example-full-width">
-        <input matInput  name="questionOutputs" placeholder="Outputs, comma separated"  class="form-control" id="questionOutputs"  [(ngModel)]="metadata.outputs" />
-      </mat-form-field >
+        <input matInput name="questionOutputs" placeholder="Outputs, comma separated" class="form-control"
+               id="questionOutputs" [(ngModel)]="metadata.outputs"/>
+      </mat-form-field>
     </ng-template>
 
     <ng-template #simpleText>
-      <mat-form-field class="example-full-width" >
-        <input matInput type="text" placeholder="Title:"  class="form-control" id="title" required name="title"  [(ngModel)]="newQuestion.title">
-      </mat-form-field >
+      <mat-form-field class="example-full-width">
+        <input matInput type="text" placeholder="Title:" class="form-control" id="title" required name="title"
+               [(ngModel)]="newQuestion.title">
+      </mat-form-field>
 
-      <angular-editor class="form-control"  matInput [(ngModel)]="newQuestion.text"></angular-editor>
+      <angular-editor class="form-control" matInput [(ngModel)]="newQuestion.text"></angular-editor>
     </ng-template>
 
     <ng-template #multipleChoice>
-      <mat-form-field class="example-full-width" >
-        <input matInput type="text" placeholder="Title:"  class="form-control" id="title" required name="title"  [(ngModel)]="newQuestion.title">
-      </mat-form-field >
+      <mat-form-field class="example-full-width">
+        <input matInput type="text" placeholder="Title:" class="form-control" id="title" required name="title"
+               [(ngModel)]="newQuestion.title">
+      </mat-form-field>
 
       <mat-form-field class="example-full-width">
-        <textarea matInput  name="questionText" placeholder="Question Text:" class="form-control" id="questionText" rows="5"   [(ngModel)]="newQuestion.text"  ></textarea>
-      </mat-form-field >
+        <textarea matInput name="questionText" placeholder="Question Text:" class="form-control" id="questionText"
+                  rows="5" [(ngModel)]="newQuestion.text"></textarea>
+      </mat-form-field>
 
       <mat-form-field class="example-full-width" *ngFor="let choice of multipleChoiceChoices">
-        <input matInput value="{{choice}}" /> <button (click)="removeChoice(choice)">Remove</button>
-        </mat-form-field>
+        <input matInput value="{{choice}}"/>
+        <button (click)="removeChoice(choice)">Remove</button>
+      </mat-form-field>
 
-      <mat-form-field class="example-full-width" >
-        <mat-select name="questionAnswer" placeholder="Correct Answer"  [(ngModel)]="newQuestion.questionAnswer.text">
+      <mat-form-field class="example-full-width">
+        <mat-select name="questionAnswer" placeholder="Correct Answer" [(ngModel)]="newQuestion.questionAnswer.text">
           <mat-option *ngFor="let choice of multipleChoiceChoices" value="{{choice}}">
             {{choice}}
           </mat-option>
@@ -95,9 +106,11 @@
 
 
   </div>
-  </mat-dialog-content>
+</mat-dialog-content>
 
 <mat-dialog-actions>
-  <button mat-raised-button color="primary" type="submit"  cdkFocusInitial [mat-dialog-close]="data.question">{{dialogMetaData.okButtonText}}</button>
+  <button mat-raised-button color="primary" type="submit" cdkFocusInitial [mat-dialog-close]="data.question">
+    {{dialogMetaData.okButtonText}}
+  </button>
   <button mat-button (click)="cancelQuestion()">Cancel</button>
 </mat-dialog-actions>

@@ -15,7 +15,7 @@
         </mat-panel-title>
         <mat-panel-description>
           By: {{newsItem.owner.firstName}} {{newsItem.owner.lastName}}
-          Published: {{newsItem.created_at | date :  "dd.MM.y" }}
+          Published: {{newsItem.created_at | date : "dd.MM.y" }}
         </mat-panel-description>
       </mat-expansion-panel-header>
       <p [innerHTML]="newsItem.content"></p>

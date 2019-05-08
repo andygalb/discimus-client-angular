@@ -21,7 +21,8 @@ export class MessengerInboxComponent implements OnInit {
 
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private dialog: MatDialog, private userService: UserService, private messengerService: MessengerService) { }
+  constructor(private dialog: MatDialog, private userService: UserService, private messengerService: MessengerService) {
+  }
 
   ngOnInit() {
     this.sort.sort(<MatSortable>({id: 'created_at', start: 'desc'}));
@@ -32,7 +33,7 @@ export class MessengerInboxComponent implements OnInit {
   getMessages() {
 
     this.messengerService.getReceivedMessages(this.userService.getCurrentUser()._id).subscribe((response) => {
-      //  this.messages = response;
+        //  this.messages = response;
         this.dataSource.data = response;
         this.dataSource.sort = this.sort;
       },
@@ -44,8 +45,8 @@ export class MessengerInboxComponent implements OnInit {
 
   viewMessage(messageToView: Message) {
 
-        const dialogRef = this.dialog.open(MessageViewDialogComponent, {
-          width: '50%',
+    const dialogRef = this.dialog.open(MessageViewDialogComponent, {
+      width: '50%',
       data: {
         message: messageToView,
         dialogMetaData: {titleText: ' Message', okButtonText: 'Send'}
@@ -54,12 +55,12 @@ export class MessengerInboxComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'quit') {
-        if(!messageToView.read)  this. messengerService.markMessageAsRead(messageToView._id).subscribe((data) => {
-        messageToView.read = true;
+        if (!messageToView.read) this.messengerService.markMessageAsRead(messageToView._id).subscribe((data) => {
+          messageToView.read = true;
           this.messengerService.checkForNewMessages(this.userService.getCurrentUser()._id);
-       }, (err) => {
-        console.log(err);
-       });
+        }, (err) => {
+          console.log(err);
+        });
       }
 
     });

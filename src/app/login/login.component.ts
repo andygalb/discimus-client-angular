@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {MatDialog} from '@angular/material'
+import {MatDialog} from '@angular/material';
 import {UserService} from '../user.service';
 import {User} from '../models/modelInterfaces';
 import {RUser} from '../models/modelClasses';
@@ -15,12 +15,13 @@ export class LoginComponent implements OnInit {
   username: string;
   password: string;
 
-  loginFeedback:string;
+  loginFeedback: string;
 
-  user:User;
-  tempUser:User;
+  user: User;
+  tempUser: User;
 
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private router: Router, private userService: UserService) {
+  }
 
   ngOnInit() {
 
@@ -40,58 +41,62 @@ export class LoginComponent implements OnInit {
       lastName: '',
       email: '',
       admin: false,
-      organisation:'',
-      location:'',
+      organisation: '',
+      location: '',
       meta: {
-        age:0,
-        website:''
+        age: 0,
+        website: ''
       }
     };
   }
 
 
   doLogIn(): void {
-    console.log("Logging in");
+    console.log('Logging in');
     this.tempUser.local.username = this.username;
     this.tempUser.local.password = this.password;
     this.userService.loginUser(this.tempUser).subscribe(
       data => {
-        console.log("This is what was returned in data:")
-        console.log("Token:" + data["token"]);
+        console.log('This is what was returned in data:');
+        console.log('Token:' + data['token']);
         this.loginFeedback = data['message'].message;
         console.log(data);
 
-        const token = data["token"];
-        const success = data["success"];
+        const token = data['token'];
+        const success = data['success'];
 
-        if(success!=true) {return;}
-        if (token !== "") { localStorage.setItem('token', token); }
+        if (success != true) {
+          return;
+        }
+        if (token !== '') {
+          localStorage.setItem('token', token);
+        }
 
-        let user = data["user"];
+        let user = data['user'];
 
-        if(user.local.username!=null) {
+        if (user.local.username != null) {
 
           this.userService.initiateUser(user);
           this.userService.isUserLoggedIn = true;
 
           localStorage.setItem('user', JSON.stringify(user));
           console.log(this.userService.user);
-          this.tempUser=null;
+          this.tempUser = null;
           this.router.navigate(['home']);
-        };
+        }
+        ;
       }
       ,
       err => {
-        console.error("Error logging in!");
-        alert("Could not log in");
-        return
+        console.error('Error logging in!');
+        alert('Could not log in');
+        return;
       },
       () => {
       }
     );
 
   }
-
 
 
 }

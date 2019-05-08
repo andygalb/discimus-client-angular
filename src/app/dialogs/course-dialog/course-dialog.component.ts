@@ -24,9 +24,8 @@ export class CourseDialogComponent implements OnInit {
     placeholder: 'Course description here...',
   };
 
-  constructor(
-    public dialogRef: MatDialogRef<CourseDialogComponent> , @Inject(MAT_DIALOG_DATA) public data: any
-    ) {}
+  constructor(public dialogRef: MatDialogRef<CourseDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+  }
 
   ngOnInit() {
     this.course = this.data.course;

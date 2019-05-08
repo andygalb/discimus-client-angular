@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SequenceDialogComponent } from './sequence-dialog.component';
+import {SequenceDialogComponent} from './sequence-dialog.component';
 
 describe('SequenceDialogComponent', () => {
   let component: SequenceDialogComponent;
@@ -8,9 +8,9 @@ describe('SequenceDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SequenceDialogComponent ]
+      declarations: [SequenceDialogComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

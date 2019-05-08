@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from '../user.service';
 import {DataService} from '../data.service';
 import {News, User} from '../models/modelInterfaces';
@@ -10,9 +10,11 @@ import {News, User} from '../models/modelInterfaces';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public userService: UserService) { }
+  constructor(public userService: UserService) {
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 }
 
 

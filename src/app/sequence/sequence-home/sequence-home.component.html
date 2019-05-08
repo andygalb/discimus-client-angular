@@ -5,21 +5,29 @@
     <div *ngIf="selectedSequence">
 
       <mat-card>
-        <mat-card-title><div class="card-header">{{selectedSequence.sequenceTitle}}</div></mat-card-title>
+        <mat-card-title>
+          <div class="card-header">{{selectedSequence.sequenceTitle}}</div>
+        </mat-card-title>
         <mat-card-content>
           <p [innerHTML]="selectedSequence.sequenceDescription"></p>
         </mat-card-content>
         <mat-card-footer>
 
-          <button mat-raised-button  [routerLink]="['/course/'+this.userService.getCurrentCourse()._id,{ outlets: { courseSection : 'home' } }]" class="btn btn-primary" >Back to course</button>
-          <button *ngIf="userService.user.local.userType!=='student'" mat-raised-button color="link" [routerLink]="['/sequence/'+selectedSequence._id,{ outlets: { sequenceSection : 'edit' } }]"> <mat-icon matListIcon>create</mat-icon></button>
+          <button mat-raised-button
+                  [routerLink]="['/course/'+this.userService.getCurrentCourse()._id,{ outlets: { courseSection : 'home' } }]"
+                  class="btn btn-primary">Back to course
+          </button>
+          <button *ngIf="userService.user.local.userType!=='student'" mat-raised-button color="link"
+                  [routerLink]="['/sequence/'+selectedSequence._id,{ outlets: { sequenceSection : 'edit' } }]">
+            <mat-icon matListIcon>create</mat-icon>
+          </button>
 
         </mat-card-footer>
       </mat-card>
 
       <div *ngIf="questionsToShow">
 
-        <div  id="{{question._id}}" *ngFor="let question of questionsToShow">
+        <div id="{{question._id}}" *ngFor="let question of questionsToShow">
           <div [ngSwitch]="question.type">
 
             <div *ngSwitchCase="'simple-text'">
@@ -42,23 +50,28 @@
 
           <ng-template #simpleAnswer>
             <mat-card>
-              <mat-card-title><div class="card-header">{{question.title}}</div></mat-card-title>
+              <mat-card-title>
+                <div class="card-header">{{question.title}}</div>
+              </mat-card-title>
               <mat-card-content>
                 <p [innerHTML]="question.text"></p>
-                <div *ngIf="myUserService.hasUserAlreadyAnsweredQuestion(question._id); then answeredContent else notAnsweredContent"></div>
+                <div
+                  *ngIf="myUserService.hasUserAlreadyAnsweredQuestion(question._id); then answeredContent else notAnsweredContent"></div>
                 <ng-template #answeredContent>
                   <p><b>{{question.userAnswer}}</b></p>
                   <div *ngIf="question.userResponse">
                     <p>{{question.userResponse}}</p>
                   </div>
-                  <p>This question has been answered correctly<mat-icon layout-align="center end">done</mat-icon></p>
+                  <p>This question has been answered correctly
+                    <mat-icon layout-align="center end">done</mat-icon>
+                  </p>
                 </ng-template>
                 <ng-template #notAnsweredContent>
                   <mat-form-field class="example-full-width">
                     <input matInput placeholder="Answer" value="" [(ngModel)]="question.userAnswer">
                   </mat-form-field>
 
-                  <button  (click)="answerQuestion(question);" class="btn btn-primary" >Answer</button>
+                  <button (click)="answerQuestion(question);" class="btn btn-primary">Answer</button>
                   <div *ngIf="question.userResponse">
                     <p>{{question.userResponse}}</p>
                   </div>
@@ -72,7 +85,9 @@
 
           <ng-template #simpleText>
             <mat-card>
-              <mat-card-title><div class="card-header">{{question.title}}</div></mat-card-title>
+              <mat-card-title>
+                <div class="card-header">{{question.title}}</div>
+              </mat-card-title>
               <mat-card-content>
                 <p [innerHTML]="question.text"></p>
               </mat-card-content>
@@ -81,10 +96,13 @@
 
           <ng-template #cSharp>
             <mat-card>
-              <mat-card-title><div class="card-header">{{question.title}}</div></mat-card-title>
+              <mat-card-title>
+                <div class="card-header">{{question.title}}</div>
+              </mat-card-title>
               <mat-card-content>
                 <p>{{question.text}}</p>
-                <div *ngIf="myUserService.hasUserAlreadyAnsweredQuestion(question._id); then answeredContent else notAnsweredContent"></div>
+                <div
+                  *ngIf="myUserService.hasUserAlreadyAnsweredQuestion(question._id); then answeredContent else notAnsweredContent"></div>
                 <ng-template #answeredContent>
                   <div ace-editor
                        [(text)]="question.userAnswer"
@@ -100,7 +118,9 @@
                     {{i}} {{item}}
                   </div>
 
-                  <p>This question has been answered correctly<mat-icon layout-align="center end">done</mat-icon></p>
+                  <p>This question has been answered correctly
+                    <mat-icon layout-align="center end">done</mat-icon>
+                  </p>
                 </ng-template>
                 <ng-template #notAnsweredContent>
                   <div ace-editor
@@ -117,7 +137,7 @@
 
                      <textarea matInput placeholder="Answer" value="" [highlight]="question.userAnswer" ></textarea>
                    </mat-form-field>-->
-                  <button  (click)="answerQuestion(question);" class="btn btn-primary" >Answer</button>
+                  <button (click)="answerQuestion(question);" class="btn btn-primary">Answer</button>
                 </ng-template>
               </mat-card-content>
               <mat-card-footer>

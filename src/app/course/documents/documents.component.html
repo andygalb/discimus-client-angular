@@ -1,33 +1,39 @@
 <mat-card class="example card">
   <mat-card-header>
-    <div mat-card-avatar> <mat-icon matListIcon>file_copy</mat-icon></div>
+    <div mat-card-avatar>
+      <mat-icon matListIcon>file_copy</mat-icon>
+    </div>
     <mat-card-title><h3>Files</h3></mat-card-title>
   </mat-card-header>
   <mat-card-content>
-<div *ngIf="this.userService.user.local.userType === 'teacher'">
-<button mat-raised-button (click)="onUploadButtonPressed()">Upload</button>
+    <div *ngIf="this.userService.user.local.userType === 'teacher'">
+      <button mat-raised-button (click)="onUploadButtonPressed()">Upload</button>
 
-<input type="file" name='document' #file (change)="onFilesAdded()" multiple />
-</div>
+      <input type="file" name='document' #file (change)="onFilesAdded()" multiple/>
+    </div>
     <table mat-table [dataSource]="documents | async" class="mat-elevation-z8">
 
-  <ng-container  matColumnDef="selectDocument">
-    <th mat-header-cell *matHeaderCellDef> Select </th>
-    <td mat-cell *matCellDef="let element">  <mat-checkbox (change)="dealWithClick($event)" class="example-margin"></mat-checkbox> </td>
-  </ng-container>
+      <ng-container matColumnDef="selectDocument">
+        <th mat-header-cell *matHeaderCellDef> Select</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-checkbox (change)="dealWithClick($event)" class="example-margin"></mat-checkbox>
+        </td>
+      </ng-container>
 
-  <ng-container  matColumnDef="originalFilename">
-    <th mat-header-cell *matHeaderCellDef> Title </th>
-    <td mat-cell *matCellDef="let element"> <a target="_blank" href="{{this.userService.serverAddress}}/api/document/{{element._id}}">{{element.originalFilename}}</a> </td>
-  </ng-container>
+      <ng-container matColumnDef="originalFilename">
+        <th mat-header-cell *matHeaderCellDef> Title</th>
+        <td mat-cell *matCellDef="let element"><a target="_blank"
+                                                  href="{{this.userService.serverAddress}}/api/document/{{element._id}}">{{element.originalFilename}}</a>
+        </td>
+      </ng-container>
 
-  <ng-container  matColumnDef="creationDate">
-    <th mat-header-cell *matHeaderCellDef> Uploaded Date </th>
-    <td mat-cell *matCellDef="let element"> {{element.created_at | date :  "dd.MM.y"}} </td>
-  </ng-container>
+      <ng-container matColumnDef="creationDate">
+        <th mat-header-cell *matHeaderCellDef> Uploaded Date</th>
+        <td mat-cell *matCellDef="let element"> {{element.created_at | date : "dd.MM.y"}}</td>
+      </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
   </mat-card-content>
 </mat-card>

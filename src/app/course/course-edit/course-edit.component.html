@@ -1,65 +1,72 @@
 <div>
- <!-- <a *ngIf="selectedCourse" [routerLink]="['/teacher/course/edit/'+ this.courseSequenceQuestionService.currentCourse._id]">Course:{{this.courseSequenceQuestionService.currentCourse.courseTitle}}</a>
--->
+  <!-- <a *ngIf="selectedCourse" [routerLink]="['/teacher/course/edit/'+ this.courseSequenceQuestionService.currentCourse._id]">Course:{{this.courseSequenceQuestionService.currentCourse.courseTitle}}</a>
+ -->
 </div>
 
 
-    <h3>Course</h3>
+<h3>Course</h3>
 
-    <form>
-      <div class="form-group">
-        <label for="title">Title:</label>
-        <input  *ngIf="selectedCourse" type="text" class="form-control" id="course-title" required name="title" [(ngModel)]="selectedCourse.courseTitle">
-      </div>
-      <div class="form-group">
-        <label for="description">Description:</label>
-        <textarea  *ngIf="selectedCourse"type="text" class="form-control" id="course-description" required name="description" [(ngModel)]="selectedCourse.courseDescription"></textarea>
-      </div>
-      <button  mat-button color="primary"  (click)="saveChanges()">Save Changes</button>
-    </form>
-
-
-    <h3>Sequences</h3>
-    <table class="table">
-      <thead class="thead-inverse">
-      <tr>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Creation Date</th>
-        <th></th>
-        <th></th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let sequence of sequencesToShow">
-        <td><a routerLink="/sequence/{{sequence._id}}">{{sequence.sequenceTitle}}</a></td>
-        <td>{{sequence.sequenceDescription}}</td>
-        <td>{{sequence.created_at}}</td>
-        <td> <mat-icon [routerLink]="['/sequence/edit', sequence._id]">edit</mat-icon></td>
-        <td> <mat-icon (click)="onDelete(sequence);return;">delete</mat-icon></td>
-      </tr>
-      </tbody>
-    </table>
-    <button mat-button color="primary"  (click)="createNewSequence()">+Add new sequence</button>
-
- <div *ngIf="newSequence">
-      <h2>Add new sequence</h2>
-
-      <form>
-        <mat-form-field>
-          <mat-label>Title:</mat-label>
-          <input matInput type="text"  id="title" required name="title"  [(ngModel)]="newSequence.sequenceTitle">
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Description:</mat-label>
-          <textarea matInput name="description"   class="form-control" id="description" rows="3" [(ngModel)]="newSequence.sequenceDescription"></textarea>
-        </mat-form-field>
-
-        <button mat-button color="primary" type="submit"  (click)="submitNewSequence();return;">Create</button>
-
-      </form>
+<form>
+  <div class="form-group">
+    <label for="title">Title:</label>
+    <input *ngIf="selectedCourse" type="text" class="form-control" id="course-title" required name="title"
+           [(ngModel)]="selectedCourse.courseTitle">
   </div>
+  <div class="form-group">
+    <label for="description">Description:</label>
+    <textarea *ngIf="selectedCourse" type="text" class="form-control" id="course-description" required
+              name="description" [(ngModel)]="selectedCourse.courseDescription"></textarea>
+  </div>
+  <button mat-button color="primary" (click)="saveChanges()">Save Changes</button>
+</form>
+
+
+<h3>Sequences</h3>
+<table class="table">
+  <thead class="thead-inverse">
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Creation Date</th>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let sequence of sequencesToShow">
+    <td><a routerLink="/sequence/{{sequence._id}}">{{sequence.sequenceTitle}}</a></td>
+    <td>{{sequence.sequenceDescription}}</td>
+    <td>{{sequence.created_at}}</td>
+    <td>
+      <mat-icon [routerLink]="['/sequence/edit', sequence._id]">edit</mat-icon>
+    </td>
+    <td>
+      <mat-icon (click)="onDelete(sequence);return;">delete</mat-icon>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<button mat-button color="primary" (click)="createNewSequence()">+Add new sequence</button>
+
+<div *ngIf="newSequence">
+  <h2>Add new sequence</h2>
+
+  <form>
+    <mat-form-field>
+      <mat-label>Title:</mat-label>
+      <input matInput type="text" id="title" required name="title" [(ngModel)]="newSequence.sequenceTitle">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description:</mat-label>
+      <textarea matInput name="description" class="form-control" id="description" rows="3"
+                [(ngModel)]="newSequence.sequenceDescription"></textarea>
+    </mat-form-field>
+
+    <button mat-button color="primary" type="submit" (click)="submitNewSequence();return;">Create</button>
+
+  </form>
+</div>
 
 
 

@@ -31,8 +31,8 @@ export class RMessage implements Message {
   recipientLastName: String;
   read: Boolean;
   content: String;
-  created_at: {type: Date, required: true};
-  updated_at: {type: Date, required: true};
+  created_at: { type: Date, required: true };
+  updated_at: { type: Date, required: true };
 }
 
 export class RDocument implements CourseDocument {
@@ -40,8 +40,8 @@ export class RDocument implements CourseDocument {
   owner: String;
   course: String;
   originalFilename: String;
-  created_at: {type: Date, required: true};
-  updated_at: {type: Date, required: true};
+  created_at: { type: Date, required: true };
+  updated_at: { type: Date, required: true };
 }
 
 export class RNews implements News {
@@ -50,12 +50,12 @@ export class RNews implements News {
     id: String;
     firstName: String;
     lastName: String;
-  } ;
+  };
   ownerName: String;
   courseID: String;
   title: String;
   content: String;
-  created_at: {type: Date, required: true};
+  created_at: { type: Date, required: true };
 }
 
 
@@ -72,8 +72,9 @@ export class RSequence implements Sequence {
 export class RQuestion implements Question {
 
   constuctor() {
-    this.questionAnswer =  {text: '', javascript: '', csharp: ''};
+    this.questionAnswer = {text: '', javascript: '', csharp: ''};
   }
+
   _id: string;
   title: string;
   text: string;
@@ -81,7 +82,7 @@ export class RQuestion implements Question {
   creatorID: string;
   questionInput: string;
   questionAnswer: { text: string; javascript: string; csharp: string };
-  userAnswer? : string;
+  userAnswer?: string;
   userResponse?: string;
   created_at: { type: Date; required: true };
   updated_at: { type: Date; required: true };
@@ -92,6 +93,7 @@ export class QuestionMetaData {
     this.inputs = '';
     this.outputs = '';
   }
+
   inputs: String;
   outputs: String;
 }
@@ -113,7 +115,7 @@ export class MEnrolement implements Enrolement {
   courseID: String;
   userID: String;
   role: String;
-  created_at: {type: Date};
-  updated_at: {type: Date};
+  created_at: { type: Date };
+  updated_at: { type: Date };
 }
 

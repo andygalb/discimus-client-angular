@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DataService} from '../../data.service';
 import {MatTableDataSource} from '@angular/material';
 import {Course} from '../../models/modelInterfaces';
@@ -15,7 +15,8 @@ export class AdminCourseComponent implements OnInit {
   dataSource = new MatTableDataSource();
   displayedColumns = ['selectCourse', 'courseTitle', 'teacher', 'creationDate'];
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService) {
+  }
 
   ngOnInit() {
     this.showCourses();
@@ -26,7 +27,7 @@ export class AdminCourseComponent implements OnInit {
       .subscribe((data) => {
         console.log(data);
         this.courses = data;
-        this.dataSource.data= this.courses;
+        this.dataSource.data = this.courses;
       });
   }
 }

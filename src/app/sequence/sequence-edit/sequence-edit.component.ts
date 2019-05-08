@@ -1,12 +1,12 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { FormBuilder, Validators } from '@angular/forms';
-import { FormGroup } from '@angular/forms';
+import {Component, OnInit, Inject} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {FormBuilder, Validators} from '@angular/forms';
+import {FormGroup} from '@angular/forms';
 import {CourseSequenceQuestionService} from '../../course-sequence-question.service';
 import {UserService} from '../../user.service';
 import {Question, Sequence} from '../../models/modelInterfaces';
 import {DialogMetaData, QuestionMetaData, RQuestion} from '../../models/modelClasses';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatDialog} from '@angular/material';
 import {QuestionDialogComponent} from '../../question-dialog/question-dialog.component';
 
@@ -23,12 +23,12 @@ export class SequenceEditComponent implements OnInit {
   response: string;
   questionForm: FormGroup;
   questionTypes = [
-    {name: 'Pure text', value : 'pure-text'},
-    {name: 'Simple text answer', value : 'simple-text'},
-    {name: 'C#', value : 'c-sharp'}
+    {name: 'Pure text', value: 'pure-text'},
+    {name: 'Simple text answer', value: 'simple-text'},
+    {name: 'C#', value: 'c-sharp'}
   ];
 
-  metadata : QuestionMetaData;
+  metadata: QuestionMetaData;
 
   constructor(private route: ActivatedRoute,
               public courseSequenceQuestionService: CourseSequenceQuestionService,
@@ -91,7 +91,7 @@ export class SequenceEditComponent implements OnInit {
   }
 
   updateQuestionType(value): void {
-    this.newQuestion.type=value;
+    this.newQuestion.type = value;
   }
 
   editQuestion(questionID: string): void {
@@ -101,10 +101,11 @@ export class SequenceEditComponent implements OnInit {
       this.newQuestion = question;
       this.metadata = new QuestionMetaData();
 
-      const  dialogMetaData = new DialogMetaData("Edit Question", "Save", 'edit');
+      const dialogMetaData = new DialogMetaData('Edit Question', 'Save', 'edit');
 
-      const dialogRef = this.dialog.open(QuestionDialogComponent,{
-        data: {question: this.newQuestion,
+      const dialogRef = this.dialog.open(QuestionDialogComponent, {
+        data: {
+          question: this.newQuestion,
           metadata: this.metadata,
           dialogMetaData: dialogMetaData
         }
@@ -112,14 +113,12 @@ export class SequenceEditComponent implements OnInit {
 
       //Dialog is closed.
       dialogRef.afterClosed().subscribe(result => {
-        if(result)
-        {
+        if (result) {
           //TODO Code smell
-          if (this.newQuestion.type === "csharp")
-          {
-            let answer = { inputs: this.metadata.inputs, outputs: this.metadata.outputs};
+          if (this.newQuestion.type === 'csharp') {
+            let answer = {inputs: this.metadata.inputs, outputs: this.metadata.outputs};
           }
-           this.updateQuestion();
+          this.updateQuestion();
         }
       });
     });
@@ -130,30 +129,30 @@ export class SequenceEditComponent implements OnInit {
     this.newQuestion = new RQuestion();
     this.metadata = new QuestionMetaData();
 
-    const  dialogMetaData = new DialogMetaData("Create New Question", "Save", 'create');
+    const dialogMetaData = new DialogMetaData('Create New Question', 'Save', 'create');
 
     this.newQuestion.questionAnswer = {text: '', javascript: '', csharp: ''};
 
-    const dialogRef = this.dialog.open(QuestionDialogComponent,{
-      data: {question: this.newQuestion,
-             metadata: this.metadata,
-             dialogMetaData: dialogMetaData
+    const dialogRef = this.dialog.open(QuestionDialogComponent, {
+      data: {
+        question: this.newQuestion,
+        metadata: this.metadata,
+        dialogMetaData: dialogMetaData
       }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      if(result)
-      {
+      if (result) {
 
         //TODO Horrible code here...
-        if(this.newQuestion.type === "csharp")
-        {
-          let answer = { inputs: this.metadata.inputs,
+        if (this.newQuestion.type === 'csharp') {
+          let answer = {
+            inputs: this.metadata.inputs,
             outputs: this.metadata.outputs
           };
 
-          console.log("Logging answer: " +answer);
+          console.log('Logging answer: ' + answer);
           console.log(this.metadata.inputs);
           console.log(this.metadata.outputs);
           console.log(JSON.stringify(answer));
@@ -200,7 +199,7 @@ export class SequenceEditComponent implements OnInit {
 
         // TODO Case when sequence could not be created must be handled
 
-        this.selectedSequence.questions.push(JSON.stringify({'id': this.newQuestionID, 'type' : this.newQuestion.type}));
+        this.selectedSequence.questions.push(JSON.stringify({'id': this.newQuestionID, 'type': this.newQuestion.type}));
         this.courseSequenceQuestionService.updateSequence(this.selectedSequence).subscribe(
           data => {
             console.log(data);
@@ -213,13 +212,11 @@ export class SequenceEditComponent implements OnInit {
             return;
           },
           () => {
-            this.courseSequenceQuestionService.getMultipleQuestions(this.selectedSequence.questions).subscribe(data =>
-            {
+            this.courseSequenceQuestionService.getMultipleQuestions(this.selectedSequence.questions).subscribe(data => {
               this.questionsToShow = data;
-            })
+            });
             this.newQuestion = null;
           }
-
         );
 
       }
@@ -239,32 +236,31 @@ export class SequenceEditComponent implements OnInit {
       },
       () => {
 
-    /*    this.selectedSequence.questions.push(JSON.stringify({'id': this.newQuestionID, 'type' : this.newQuestion.type}));
-        this.courseSequenceQuestionService.updateSequence(this.selectedSequence).subscribe(
-          data => {
-            console.log(data);
-            console.log('Updated question');
-            this.response = data;
-          },
-          err => {
-            console.error('Error adding question to sequence');
-            console.log(err);
-            return;
-          },
-          () => {
-            this.courseSequenceQuestionService.getMultipleQuestions(this.selectedSequence.questions).subscribe(data =>
-            {
-              this.questionsToShow = data;
-            })
-            this.newQuestion = null;
-          }
+        /*    this.selectedSequence.questions.push(JSON.stringify({'id': this.newQuestionID, 'type' : this.newQuestion.type}));
+            this.courseSequenceQuestionService.updateSequence(this.selectedSequence).subscribe(
+              data => {
+                console.log(data);
+                console.log('Updated question');
+                this.response = data;
+              },
+              err => {
+                console.error('Error adding question to sequence');
+                console.log(err);
+                return;
+              },
+              () => {
+                this.courseSequenceQuestionService.getMultipleQuestions(this.selectedSequence.questions).subscribe(data =>
+                {
+                  this.questionsToShow = data;
+                })
+                this.newQuestion = null;
+              }
 
-        );*/
+            );*/
 
       }
     );
   }
-
 
 
   reloadDisplay(): void {
@@ -280,14 +276,14 @@ export class SequenceEditComponent implements OnInit {
       };
   }
 
-  saveChanges():void {
+  saveChanges(): void {
 
     this.courseSequenceQuestionService.updateSequence(this.selectedSequence).subscribe(
       data => {
         console.log(data);
-        this.response = data
+        this.response = data;
       },
-      err=> {
+      err => {
         console.error('Error updating sequence');
         return;
       },

@@ -1,8 +1,8 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { FormBuilder, Validators } from '@angular/forms';
-import { FormGroup, FormControl } from '@angular/forms';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {Component, OnInit, Inject} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {FormBuilder, Validators} from '@angular/forms';
+import {FormGroup, FormControl} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {Course, Sequence} from '../../models/modelInterfaces';
 import {CourseSequenceQuestionService} from '../../course-sequence-question.service';
 import {RCourse, RSequence} from '../../models/modelClasses';
@@ -19,8 +19,8 @@ export class CourseEditComponent implements OnInit {
               private courseSequenceQuestionService: CourseSequenceQuestionService,
               @Inject(FormBuilder) fb: FormBuilder) {
     this.sequenceForm = fb.group({
-      title: ['', [ Validators.required]],
-      description: ['',  [Validators.required]],
+      title: ['', [Validators.required]],
+      description: ['', [Validators.required]],
     });
   }
 
@@ -66,7 +66,7 @@ export class CourseEditComponent implements OnInit {
         console.log('The sequence was created and now data has been returned.');
         console.log('The data is:');
         console.log(data);
-       // this.response = data;
+        // this.response = data;
         this.newSequenceID = data['sequenceID'];
         console.log(this.newSequenceID);
       },
@@ -100,7 +100,9 @@ export class CourseEditComponent implements OnInit {
   }
 
   reloadDisplay(): void {
-    if (!this.selectedCourse.sequences) {return; }
+    if (!this.selectedCourse.sequences) {
+      return;
+    }
     this.courseSequenceQuestionService.getMultipleSequences(this.selectedCourse.sequences).subscribe(
       data => {
         console.log(data);

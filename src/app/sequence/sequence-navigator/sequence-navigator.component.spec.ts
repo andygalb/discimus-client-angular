@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SequenceNavigatorComponent } from './sequence-navigator.component';
+import {SequenceNavigatorComponent} from './sequence-navigator.component';
 
 describe('SequenceNavigatorComponent', () => {
   let component: SequenceNavigatorComponent;
@@ -8,9 +8,9 @@ describe('SequenceNavigatorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SequenceNavigatorComponent ]
+      declarations: [SequenceNavigatorComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

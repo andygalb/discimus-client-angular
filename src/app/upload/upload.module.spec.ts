@@ -1,4 +1,4 @@
-import { UploadModule } from './upload.module';
+import {UploadModule} from './upload.module';
 
 describe('UploadModule', () => {
   let uploadModule: UploadModule;

@@ -3,51 +3,66 @@
     <mat-icon>more_vert</mat-icon>
   </button>
 
-    <span class="logo"></span>
-    <span  routerLink="/home" routerLinkActive="active">Discimus</span>
+  <span class="logo"></span>
+  <span routerLink="/home" routerLinkActive="active">Discimus</span>
 
   <span class="spacer"></span>
-      <div *ngIf="userService.isUserLoggedIn; else elseBlock">
-        <button mat-button [matMenuTriggerFor]="beforeMenu"><mat-icon>account_circle</mat-icon><mat-icon>arrow_drop_down</mat-icon></button>
-        <mat-menu #beforeMenu="matMenu" xPosition="before" yPosition="below" [overlapTrigger]="false">
-          <button  mat-menu-item >Signed in as <b>{{userService.user.local.firstName}}</b> </button>
-          <mat-divider></mat-divider>
-          <button mat-menu-item routerLink="/profile">Your profile</button>
-          <mat-divider></mat-divider>
-          <button mat-menu-item routerLink="/settings">Settings</button>
-          <button mat-menu-item (click)="logOut()">Sign out</button>
-        </mat-menu>
+  <div *ngIf="userService.isUserLoggedIn; else elseBlock">
+    <button mat-button [matMenuTriggerFor]="beforeMenu">
+      <mat-icon>account_circle</mat-icon>
+      <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+    <mat-menu #beforeMenu="matMenu" xPosition="before" yPosition="below" [overlapTrigger]="false">
+      <button mat-menu-item>Signed in as <b>{{userService.user.local.firstName}}</b></button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item routerLink="/profile">Your profile</button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item routerLink="/settings">Settings</button>
+      <button mat-menu-item (click)="logOut()">Sign out</button>
+    </mat-menu>
+  </div>
+
+
+  <ng-template #elseBlock>
+    <button mat-icon-button routerLink="/login" routerLinkActive="active" class="nav-link">Log in</button>
+  </ng-template>
+</mat-toolbar>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')" (closed)="events.push('close!')"
+               opened>
+    <mat-list>
+      <a mat-list-item role="listitem" routerLink="/home" routerLinkActive="active">
+        <mat-icon matListIcon>home</mat-icon>
+        Home</a>
+      <a mat-list-item role="listitem" routerLink="/messages" routerLinkActive="active">
+        <div *ngIf="messengerService.newMessages.length!==0 ; else noBadge">
+          <mat-icon matListIcon matBadge="{{messengerService.newMessages.length}}" matBadgePosition="above after">
+            message
+          </mat-icon>
+        </div>
+
+        <ng-template #noBadge>
+          <mat-icon matListIcon>message</mat-icon>
+        </ng-template>
+        Messages</a>
+
+
+      <a mat-list-item role="listitem" routerLink="/about" routerLinkActive="active">
+        <mat-icon matListIcon>trip_origin</mat-icon>
+        About</a>
+      <div *ngIf="userService.courses">
+        <h3 mat-subheader>Your courses</h3>
+        <a mat-list-item role="listitem" *ngFor="let course of userService.courses"
+           [routerLink]="['/course/'+course?._id,{ outlets: { courseSection : 'home' } }]">
+          <mat-icon matListIcon>assignment</mat-icon>
+          {{course?.courseTitle}}</a>
       </div>
 
-
-      <ng-template #elseBlock>
-        <button mat-icon-button routerLink="/login" routerLinkActive="active" class="nav-link">Log in</button>
-      </ng-template>
-</mat-toolbar>
-<mat-sidenav-container    class="example-container">
-  <mat-sidenav  #sidenav  mode="side" [(opened)]="opened" (opened)="events.push('open!')" (closed)="events.push('close!')" opened>
-      <mat-list>
-        <a mat-list-item role="listitem" routerLink="/home" routerLinkActive="active"><mat-icon matListIcon>home</mat-icon>Home</a>
-        <a mat-list-item role="listitem" routerLink="/messages" routerLinkActive="active">
-          <div *ngIf="messengerService.newMessages.length!==0 ; else noBadge">
-            <mat-icon  matListIcon matBadge="{{messengerService.newMessages.length}}" matBadgePosition="above after">message</mat-icon>
-          </div>
-
-          <ng-template #noBadge>
-            <mat-icon  matListIcon>message</mat-icon>
-          </ng-template>
-          Messages</a>
-
-
-        <a mat-list-item role="listitem" routerLink="/about" routerLinkActive="active" ><mat-icon matListIcon>trip_origin</mat-icon>About</a>
-        <div *ngIf="userService.courses">
-          <h3 mat-subheader>Your courses</h3>
-         <a mat-list-item role="listitem"  *ngFor="let course of userService.courses" [routerLink]="['/course/'+course?._id,{ outlets: { courseSection : 'home' } }]"  > <mat-icon matListIcon>assignment</mat-icon> {{course?.courseTitle}}</a>
-          </div>
-
-        <h3 mat-subheader>Other</h3>
-        <a mat-list-item role="listitem"  [routerLink]="['/courses/']" > <mat-icon matListIcon>explore</mat-icon> Find more courses</a>
-      </mat-list>
+      <h3 mat-subheader>Other</h3>
+      <a mat-list-item role="listitem" [routerLink]="['/courses/']">
+        <mat-icon matListIcon>explore</mat-icon>
+        Find more courses</a>
+    </mat-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <router-outlet></router-outlet>

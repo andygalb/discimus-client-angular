@@ -19,4 +19,6 @@
   margin: 0 12px;
 }
 
-mat-form-field{width: 100%;}
+mat-form-field {
+  width: 100%;
+}

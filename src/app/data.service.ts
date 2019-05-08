@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {CourseDocument, Course, Question, Sequence, User, News, Message, Enrolement} from './models/modelInterfaces';
 import {Settings} from './settings';
@@ -8,7 +8,7 @@ import {MEnrolement} from './models/modelClasses';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type':  'application/json',
+    'Content-Type': 'application/json',
     // 'Authorization': 'my-auth-token'
   })
 };
@@ -19,7 +19,8 @@ const httpOptions = {
 })
 export class DataService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getNews(courseID: String) {
     return this.http.get<News[]>(config.serverAddress + '/api/news/course/' + courseID);
@@ -86,7 +87,7 @@ export class DataService {
     return this.http.delete<String>(config.serverAddress + '/api/document/' + document._id, httpOptions);
   }
 
-  enroleUserOnCourse(courseID, userID, role){
+  enroleUserOnCourse(courseID, userID, role) {
 
     let enrolement = new MEnrolement();
     enrolement.courseID = courseID;

@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Course, News, Question, QuestionResponse, Sequence} from './models/modelInterfaces';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import config from './config.json';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type':  'application/json',
+    'Content-Type': 'application/json',
     // 'Authorization': 'my-auth-token'
   })
 };
@@ -13,15 +13,16 @@ const httpOptions = {
 @Injectable()
 export class CourseSequenceQuestionService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
   currentCourse: Course;
   currentSequence: Sequence;
   currentQuestion: Question;
 
-   getAllQuestions() {
-   return this.http.get<Question[]>(config.serverAddress + '/api/question/all');
-   }
+  getAllQuestions() {
+    return this.http.get<Question[]>(config.serverAddress + '/api/question/all');
+  }
 
   getAllCourses() {
     return this.http.get<Course[]>(config.serverAddress + '/api/course/all');
@@ -60,10 +61,10 @@ export class CourseSequenceQuestionService {
   }
 
   addSequenceToCourse(sequenceID: String, courseID: String) {
-     const content = {
-       sequenceID: sequenceID,
-       courseID: courseID
-     };
+    const content = {
+      sequenceID: sequenceID,
+      courseID: courseID
+    };
     return this.http.post<JSON>(config.serverAddress + '/api/course/sequence', JSON.stringify(content), httpOptions);
   }
 
@@ -72,7 +73,7 @@ export class CourseSequenceQuestionService {
   }
 
   getResourceByID<T>(id: string, type: string) {
-    return this.http.get<T>( `${config.serverAddress}/api/${type}/id`, httpOptions);
+    return this.http.get<T>(`${config.serverAddress}/api/${type}/id`, httpOptions);
   }
 
   getSequenceByID(id: number) {
@@ -84,37 +85,38 @@ export class CourseSequenceQuestionService {
     return this.http.post<Sequence[]>(config.serverAddress + '/api/multiple/sequences', JSON.stringify(objectToSend), httpOptions);
   }
 
-    deleteQuestion(id: String) {
-      return this.http.delete<string>(config.serverAddress + '/api/question/' + id, httpOptions);
-    }
+  deleteQuestion(id: String) {
+    return this.http.delete<string>(config.serverAddress + '/api/question/' + id, httpOptions);
+  }
 
-   getQuestionByID(id: string) {
-     return this.http.get<Question>(config.serverAddress + '/api/question/' + id, httpOptions);
-   }
+  getQuestionByID(id: string) {
+    return this.http.get<Question>(config.serverAddress + '/api/question/' + id, httpOptions);
+  }
 
-    addQuestion(question: Question) {
-      return this.http.post<string>(config.serverAddress + '/api/question', JSON.stringify(question), httpOptions);
-    }
+  addQuestion(question: Question) {
+    return this.http.post<string>(config.serverAddress + '/api/question', JSON.stringify(question), httpOptions);
+  }
 
-    updateQuestion(question: Question) {
-      return this.http.put<string>(config.serverAddress + '/api/question/' + question._id, JSON.stringify(question), httpOptions);
-    }
+  updateQuestion(question: Question) {
+    return this.http.put<string>(config.serverAddress + '/api/question/' + question._id, JSON.stringify(question), httpOptions);
+  }
 
-    getMultipleQuestions(questions: string[]) {
+  getMultipleQuestions(questions: string[]) {
 
-      const objectToSend = {questions: questions};
-      return this.http.post<Question[]>(config.serverAddress + '/api/multiple/questions', JSON.stringify(objectToSend), httpOptions);
-    }
+    const objectToSend = {questions: questions};
+    return this.http.post<Question[]>(config.serverAddress + '/api/multiple/questions', JSON.stringify(objectToSend), httpOptions);
+  }
 
   isAnswerCorrect(question: Question, givenAnswer: string) {
     return this.submitAnswerToServer(question, givenAnswer);
   }
 
-  submitAnswerToServer(question:Question, submittedAnswer: string) {
-     console.log("Submitting question to server");
+  submitAnswerToServer(question: Question, submittedAnswer: string) {
+    console.log('Submitting question to server');
     const objectToSend = {
       question: question,
-      submittedAnswer: submittedAnswer};
+      submittedAnswer: submittedAnswer
+    };
     return this.http.post<QuestionResponse>(config.serverAddress + '/api/test/submit', JSON.stringify(objectToSend), httpOptions);
   }
 

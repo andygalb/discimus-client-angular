@@ -11,7 +11,7 @@
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
     </mat-form-field>
 
-    <table  mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
       <ng-container matColumnDef="read">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Read</th>
@@ -31,7 +31,7 @@
 
       <ng-container matColumnDef="title">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Title</th>
-        <td mat-cell *matCellDef="let element" ><span  [class]="element.read? 'readMessage': 'unreadMessage'"
+        <td mat-cell *matCellDef="let element"><span [class]="element.read? 'readMessage': 'unreadMessage'"
                                                      (click)="viewMessage(element)"> {{element.title}}</span></td>
       </ng-container>
 

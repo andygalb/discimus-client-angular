@@ -1,19 +1,22 @@
 <h2>{{dialogMetaData.titleText}}</h2>
 <mat-form-field>
-<mat-label>To:</mat-label>
+  <mat-label>To:</mat-label>
   <mat-select [(ngModel)]="selected" (ngModelChange)="onSelect(selected)">
     <mat-option *ngFor="let user of users"
-            [value]="user">
-      {{ user.local.firstName}}  {{ user.local.lastName}}
+                [value]="user">
+      {{ user.local.firstName}} {{ user.local.lastName}}
     </mat-option>
   </mat-select>
 </mat-form-field>
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Title:"  [(ngModel)]="message.title" type="text" class="form-control" id="title" required name="title" >
-    </mat-form-field>
-      <angular-editor [config]="editorConfig" class="form-control"  matInput [(ngModel)]="message.content"></angular-editor>
-        <mat-dialog-actions>
-      <button mat-raised-button color="primary" type="submit"  cdkFocusInitial  (click)="onSubmit()">{{dialogMetaData.okButtonText}}</button>
-      <button mat-button (click)="cancelDialog()">Cancel</button>
-    </mat-dialog-actions>
+<mat-form-field class="example-full-width">
+  <input matInput placeholder="Title:" [(ngModel)]="message.title" type="text" class="form-control" id="title" required
+         name="title">
+</mat-form-field>
+<angular-editor [config]="editorConfig" class="form-control" matInput [(ngModel)]="message.content"></angular-editor>
+<mat-dialog-actions>
+  <button mat-raised-button color="primary" type="submit" cdkFocusInitial (click)="onSubmit()">
+    {{dialogMetaData.okButtonText}}
+  </button>
+  <button mat-button (click)="cancelDialog()">Cancel</button>
+</mat-dialog-actions>
 

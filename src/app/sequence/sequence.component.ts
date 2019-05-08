@@ -1,7 +1,7 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { FormBuilder, Validators } from '@angular/forms';
-import { FormGroup } from '@angular/forms';
+import {Component, OnInit, Inject} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {FormBuilder, Validators} from '@angular/forms';
+import {FormGroup} from '@angular/forms';
 import {UserService} from '../user.service';
 import {Question, Sequence} from '../models/modelInterfaces';
 import {CourseSequenceQuestionService} from '../course-sequence-question.service';
