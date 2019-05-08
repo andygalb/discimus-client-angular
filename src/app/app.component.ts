@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   events: string[] = [];
   opened: boolean;
 
-  constructor(public userService: UserService, public loaderService: LoaderService, private messengerService: MessengerService) {
+  constructor(public userService: UserService, public loaderService: LoaderService, public messengerService: MessengerService) {
 
   }
 
