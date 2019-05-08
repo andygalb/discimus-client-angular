@@ -17,7 +17,7 @@ export class CourseListComponent implements OnInit {
   newCourse: Course;
   response: String;
 
-  constructor(private userService: UserService, private dataService: DataService, private courseSequenceQuestionService: CourseSequenceQuestionService, public dialog: MatDialog) {
+  constructor(public userService: UserService, private dataService: DataService, private courseSequenceQuestionService: CourseSequenceQuestionService, public dialog: MatDialog) {
   }
 
   ngOnInit() {
