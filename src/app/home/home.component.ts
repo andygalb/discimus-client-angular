@@ -10,7 +10,7 @@ import {News, User} from '../models/modelInterfaces';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private userService: UserService) { }
+  constructor(public userService: UserService) { }
 
   ngOnInit() {}
 }
