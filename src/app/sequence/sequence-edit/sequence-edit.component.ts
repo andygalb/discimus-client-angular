@@ -32,7 +32,7 @@ export class SequenceEditComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               public courseSequenceQuestionService: CourseSequenceQuestionService,
-              private userService: UserService,
+              public userService: UserService,
               public dialog: MatDialog,
               @Inject(FormBuilder) fb: FormBuilder) {
     this.questionForm = fb.group({

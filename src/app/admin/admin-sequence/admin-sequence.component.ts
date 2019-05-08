@@ -18,7 +18,7 @@ export class AdminSequenceComponent implements OnInit {
   displayedColumns = ['selectSequence', 'sequenceTitle', 'created_at'];
 
 
-  constructor(private dataService: DataService, private userService: UserService) { }
+  constructor(private dataService: DataService, public userService: UserService) { }
 
   ngOnInit() {
     this.showSequences();

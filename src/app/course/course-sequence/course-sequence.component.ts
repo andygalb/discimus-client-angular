@@ -22,7 +22,7 @@ export class CourseSequenceComponent implements OnInit {
   dataSource = new MatTableDataSource();
   displayedColumns = ['selectSequence', 'sequenceTitle', 'created_at'];
 
-  constructor(public dialog: MatDialog, private dataService: DataService, private route: ActivatedRoute, private userService: UserService, private courseSequenceQuestionService: CourseSequenceQuestionService) { }
+  constructor(public dialog: MatDialog, private dataService: DataService, private route: ActivatedRoute, public userService: UserService, private courseSequenceQuestionService: CourseSequenceQuestionService) { }
 
   ngOnInit() {
     this.sequences = [];
@@ -71,7 +71,7 @@ export class CourseSequenceComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result === 'submit') {this.submitNewSequence();}
-     
+
     });
   }
   //This function is needed to separate "real" questions from questions that only consist of text and require no answer.

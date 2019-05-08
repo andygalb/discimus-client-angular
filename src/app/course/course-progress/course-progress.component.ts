@@ -18,7 +18,7 @@ export class CourseProgressComponent implements OnInit {
   spinnerColor = 'primary';
   spinnerMode = 'determinate';
 
-  constructor(private userService: UserService) { }
+  constructor(public userService: UserService) { }
 
   ngOnInit() {
     this.courseScore = this.userService.getCurrentScoreForCourse(this.id);

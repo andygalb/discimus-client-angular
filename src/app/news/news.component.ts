@@ -21,7 +21,7 @@ export class NewsComponent implements OnInit {
   news: Observable<News[]>;
 
   constructor(private dialog: MatDialog, public dataService: DataService,
-              private courseSequenceQuestionService: CourseSequenceQuestionService, private userService: UserService) { }
+              private courseSequenceQuestionService: CourseSequenceQuestionService, public userService: UserService) { }
 
   ngOnInit() {
     this.getNews(this.id);
