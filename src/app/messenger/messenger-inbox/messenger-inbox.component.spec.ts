@@ -1,6 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {MessengerInboxComponent} from './messenger-inbox.component';
+import {MatIconModule} from '@angular/material';
 
 describe('MessengerInboxComponent', () => {
   let component: MessengerInboxComponent;
@@ -8,7 +9,8 @@ describe('MessengerInboxComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MessengerInboxComponent]
+      declarations: [MessengerInboxComponent],
+      imports: [MatIconModule]
     })
       .compileComponents();
   }));

@@ -1,6 +1,9 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {SequenceEditComponent} from './sequence-edit.component';
+import {RouterModule} from '@angular/router';
+import {MatCardModule, MatMenuModule} from '@angular/material';
+import {FormsModule} from '@angular/forms';
 
 describe('SequenceEditComponent', () => {
   let component: SequenceEditComponent;
@@ -8,7 +11,8 @@ describe('SequenceEditComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SequenceEditComponent]
+      declarations: [SequenceEditComponent],
+      imports: [MatCardModule, MatMenuModule, RouterModule, FormsModule],
     })
       .compileComponents();
   }));

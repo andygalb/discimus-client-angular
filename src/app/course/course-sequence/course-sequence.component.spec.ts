@@ -1,6 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {CourseSequenceComponent} from './course-sequence.component';
+import {MatCardModule, MatMenuModule} from '@angular/material';
 
 describe('CourseSequenceComponent', () => {
   let component: CourseSequenceComponent;
@@ -8,7 +9,8 @@ describe('CourseSequenceComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CourseSequenceComponent]
+      declarations: [CourseSequenceComponent],
+      imports: [MatCardModule, MatMenuModule]
     })
       .compileComponents();
   }));

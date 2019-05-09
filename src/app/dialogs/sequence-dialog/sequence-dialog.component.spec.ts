@@ -1,6 +1,10 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {SequenceDialogComponent} from './sequence-dialog.component';
+import {MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule, MatMenuModule, MatSelectModule} from '@angular/material';
+import {FormsModule} from '@angular/forms';
+
+import {AngularEditorModule} from '@kolkov/angular-editor';
 
 describe('SequenceDialogComponent', () => {
   let component: SequenceDialogComponent;
@@ -8,7 +12,8 @@ describe('SequenceDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SequenceDialogComponent]
+      declarations: [SequenceDialogComponent],
+      imports: [MatCardModule, MatMenuModule, MatInputModule, MatFormFieldModule, FormsModule, MatSelectModule, MatIconModule, AngularEditorModule],
     })
       .compileComponents();
   }));

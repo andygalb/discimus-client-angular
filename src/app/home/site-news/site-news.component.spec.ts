@@ -1,6 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {SiteNewsComponent} from './site-news.component';
+import {MatCardModule, MatExpansionModule, MatFormFieldModule, MatIconModule, MatMenuModule} from '@angular/material';
 
 describe('SiteNewsComponent', () => {
   let component: SiteNewsComponent;
@@ -8,7 +9,8 @@ describe('SiteNewsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SiteNewsComponent]
+      declarations: [SiteNewsComponent],
+      imports: [MatCardModule, MatMenuModule, MatFormFieldModule, MatIconModule, MatExpansionModule],
     })
       .compileComponents();
   }));

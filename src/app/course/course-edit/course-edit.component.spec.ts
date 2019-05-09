@@ -1,6 +1,9 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {CourseEditComponent} from './course-edit.component';
+import {MatCardModule, MatIconModule, MatMenuModule} from '@angular/material';
+import {FormsModule} from '@angular/forms';
+import {RouterModule} from '@angular/router';
 
 describe('CourseEditComponent', () => {
   let component: CourseEditComponent;
@@ -8,7 +11,8 @@ describe('CourseEditComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CourseEditComponent]
+      declarations: [CourseEditComponent],
+      imports: [MatCardModule, MatMenuModule, FormsModule, RouterModule, MatIconModule]
     })
       .compileComponents();
   }));

@@ -1,6 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {SequenceNavigatorComponent} from './sequence-navigator.component';
+import {MatCardModule, MatFormFieldModule, MatListModule, MatMenuModule} from '@angular/material';
 
 describe('SequenceNavigatorComponent', () => {
   let component: SequenceNavigatorComponent;
@@ -8,7 +9,8 @@ describe('SequenceNavigatorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SequenceNavigatorComponent]
+      declarations: [SequenceNavigatorComponent],
+      imports: [MatCardModule, MatMenuModule, MatFormFieldModule, MatListModule]
     })
       .compileComponents();
   }));

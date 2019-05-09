@@ -1,6 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {MessageDialogComponent} from './message-dialog.component';
+import {MatCardModule, MatFormFieldModule, MatMenuModule, MatSelectModule} from '@angular/material';
 
 describe('SequenceDialogComponent', () => {
   let component: MessageDialogComponent;
@@ -8,7 +9,8 @@ describe('SequenceDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MessageDialogComponent]
+      declarations: [MessageDialogComponent],
+      imports: [MatCardModule, MatMenuModule, MatFormFieldModule, MatSelectModule],
     })
       .compileComponents();
   }));
