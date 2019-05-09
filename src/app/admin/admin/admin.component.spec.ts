@@ -4,6 +4,7 @@ import {AdminComponent} from './admin.component';
 import {RouterModule} from '@angular/router';
 import {MatToolbarModule} from '@angular/material';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('AdminComponent', () => {
   let component: AdminComponent;
@@ -12,7 +13,7 @@ describe('AdminComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [AdminComponent],
-      imports: [HttpClientTestingModule, RouterModule, MatToolbarModule],
+      imports: [HttpClientTestingModule, RouterTestingModule, MatToolbarModule],
     })
       .compileComponents();
   }));

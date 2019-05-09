@@ -1,9 +1,13 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {CourseEditComponent} from './course-edit.component';
-import {MatCardModule, MatIconModule, MatMenuModule} from '@angular/material';
+import {MatCardModule, MatFormFieldModule, MatIconModule, MatMenuModule} from '@angular/material';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
+import {RouterTestingModule} from '@angular/router/testing';
+import {UserService} from '../../user.service';
+import {MockCourseSequenceQuestionService, MockUserService} from '../../mocks/mocks';
+import {CourseSequenceQuestionService} from '../../course-sequence-question.service';
 
 describe('CourseEditComponent', () => {
   let component: CourseEditComponent;
@@ -12,7 +16,11 @@ describe('CourseEditComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [CourseEditComponent],
-      imports: [MatCardModule, MatMenuModule, FormsModule, RouterModule, MatIconModule]
+      imports: [RouterTestingModule, MatFormFieldModule, MatCardModule, MatMenuModule, FormsModule, RouterModule, MatIconModule]
+      providers: [
+        {provide: UserService, useClass: MockUserService},
+        {provide: CourseSequenceQuestionService, useClass: MockCourseSequenceQuestionService}
+      ]
     })
       .compileComponents();
   }));

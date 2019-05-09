@@ -7,6 +7,7 @@ import {
 } from '@angular/material';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {RouterModule} from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('AdminUserComponent', () => {
   let component: AdminUserComponent;
@@ -15,7 +16,7 @@ describe('AdminUserComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [AdminUserComponent],
-      imports: [MatTableModule, MatCheckboxModule, HttpClientTestingModule, MatCardModule, MatMenuModule, MatFormFieldModule, MatOptionModule, MatSelectModule, RouterModule]
+      imports: [BrowserAnimationsModule, MatTableModule, MatCheckboxModule, HttpClientTestingModule, MatCardModule, MatMenuModule, MatFormFieldModule, MatOptionModule, MatSelectModule, RouterModule]
 
     })
       .compileComponents();

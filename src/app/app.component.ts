@@ -13,8 +13,10 @@ import {MessengerService} from './messenger.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+
   events: string[] = [];
   opened: boolean;
+  title = 'Discimus';
 
   constructor(public userService: UserService, public loaderService: LoaderService, public messengerService: MessengerService) {
 
