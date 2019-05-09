@@ -55,10 +55,9 @@ export class UserService {
   getCurrentCourse() {
     //  let course = JSON.parse(localStorage.getItem('currentCourse'));
     if (this.currentCourse == null) {
-      let course = JSON.parse(localStorage.getItem('currentCourse'));
+      const course = JSON.parse(localStorage.getItem('currentCourse'));
       return course;
-    }
-    else {
+    } else {
       return this.currentCourse;
     }
   }
@@ -68,7 +67,7 @@ export class UserService {
   }
 
   getCurrentSequence() {
-    let sequence = JSON.parse(localStorage.getItem('currentSequence'));
+    const sequence = JSON.parse(localStorage.getItem('currentSequence'));
     return sequence;
   }
 
@@ -77,7 +76,7 @@ export class UserService {
   }
 
   getCurrentQuestions() {
-    let questions = JSON.parse(localStorage.getItem('currentQuestions'));
+    const questions = JSON.parse(localStorage.getItem('currentQuestions'));
     return questions;
   }
 
@@ -107,11 +106,11 @@ export class UserService {
   }
 
   getCurrentScoreForCourse(courseID) {
-    let userResults = this.getCurrentUser().results;
+    const userResults = this.getCurrentUser().results;
 
     let score = 0;
 
-    for (var result of userResults) {
+    for (const result of userResults) {
       if (result.courseID === courseID) {
         score++;
       }
@@ -164,7 +163,7 @@ export class UserService {
         //  return Observable.throw(err);
       },
       () => {
-        //Must also update users results locally....
+        // Must also update users results locally....
         return true;
       }
     );

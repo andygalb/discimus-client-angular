@@ -22,7 +22,8 @@ export class CourseSequenceComponent implements OnInit {
   dataSource = new MatTableDataSource();
   displayedColumns = ['selectSequence', 'sequenceTitle', 'created_at'];
 
-  constructor(public dialog: MatDialog, private dataService: DataService, private route: ActivatedRoute, public userService: UserService, private courseSequenceQuestionService: CourseSequenceQuestionService) {
+  constructor(public dialog: MatDialog, private dataService: DataService, private route: ActivatedRoute,
+              public userService: UserService, private courseSequenceQuestionService: CourseSequenceQuestionService) {
   }
 
   ngOnInit() {
@@ -31,7 +32,7 @@ export class CourseSequenceComponent implements OnInit {
   }
 
   showSequences() {
-    //TODO Hack! Get id from userservice instead.
+    // TODO Hack! Get id from userservice instead.
     this.dataService.getSequencesForCourse(this.route.parent.snapshot.paramMap.get('id'))
       .subscribe((sequences) => {
         console.log(sequences);
@@ -64,13 +65,13 @@ export class CourseSequenceComponent implements OnInit {
           });
       }
     );
-  };
+  }
 
 
   openSequenceDialog(): void {
 
     this.newSequence = new RSequence();
-    let dialogRef = this.dialog.open(SequenceDialogComponent, {
+    const dialogRef = this.dialog.open(SequenceDialogComponent, {
 
       data: {sequence: this.newSequence}
     });
@@ -83,16 +84,16 @@ export class CourseSequenceComponent implements OnInit {
     });
   }
 
-  //This function is needed to separate "real" questions from questions that only consist of text and require no answer.
+  // This function is needed to separate "real" questions from questions that only consist of text and require no answer.
   answeredQuestionCounter(sequenceID: string) {
     let count = 0;
-    let user: User = this.userService.getCurrentUser();
+    const user: User = this.userService.getCurrentUser();
 
     for (let i = 0; i < user.results.length; i++) {
       if (user.results[i].sequenceID === sequenceID) {
         count++;
       }
-      ;
+
     }
 
     return count;

@@ -2,11 +2,12 @@ import {CourseDocument, Course, Question, Result, Sequence, User, News, Message,
 
 export class RUser implements User {
   _id: String;
-  local: { firstName: String; lastName: String; username: String; email: String; password: String; admin: Boolean; userType: String; organisation: String; location: String; meta: { age: Number; website: String } };
+  local: { firstName: String; lastName: String; username: String; email: String;
+  password: String; admin: Boolean; userType: String; organisation: String; location: String; meta: { age: Number; website: String } };
   facebook: { id: String; token: String; email: String; name: String };
   azure: { id: String; token: String; email: String; name: String; givenName: String; familyName: String };
   results: Result[];
-};
+}
 
 export class RCourse implements Course {
   _id: String;
@@ -71,7 +72,7 @@ export class RSequence implements Sequence {
 
 export class RQuestion implements Question {
 
-  constuctor() {
+  constructor() {
     this.questionAnswer = {text: '', javascript: '', csharp: ''};
   }
 
@@ -89,7 +90,7 @@ export class RQuestion implements Question {
 }
 
 export class QuestionMetaData {
-  constuctor() {
+  constructor() {
     this.inputs = '';
     this.outputs = '';
   }

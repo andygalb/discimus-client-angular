@@ -64,12 +64,10 @@ export class SequenceHomeComponent implements OnInit {
             console.log(data);
             this.questionsToShow = data;
             this.userService.setCurrentQuestions(data);
-          }
-        ),
-          err => {
-            console.error('Error getting questions!');
+          }, err => {
+            console.error('Error getting questions! ' + err);
             return;
-          };
+          });
       });
     this.myUserService = this.userService;
   }
@@ -87,7 +85,8 @@ export class SequenceHomeComponent implements OnInit {
         return;
       },
       () => {
-        this.courseSequenceQuestionService.getMultipleQuestions(this.selectedSequence.questions).subscribe(data => this.questionsToShow = data);
+        this.courseSequenceQuestionService.getMultipleQuestions(this.selectedSequence.questions)
+          .subscribe(data => this.questionsToShow = data);
       }
     );
   }
@@ -118,7 +117,8 @@ export class SequenceHomeComponent implements OnInit {
             return;
           },
           () => {
-            this.courseSequenceQuestionService.getMultipleQuestions(this.selectedSequence.questions).subscribe(data => this.questionsToShow = data);
+            this.courseSequenceQuestionService.getMultipleQuestions(this.selectedSequence.questions)
+              .subscribe(data => this.questionsToShow = data);
             this.newQuestion = null;
           }
         );
@@ -142,8 +142,7 @@ export class SequenceHomeComponent implements OnInit {
           console.log('Answer correct!');
           this.userService.addCorrectAnswer(question, question.userAnswer);
           question.userResponse = data.feedback;
-        }
-        else {
+        } else {
           this.questionResponse = data;
           question.userResponse = data.feedback;
         }

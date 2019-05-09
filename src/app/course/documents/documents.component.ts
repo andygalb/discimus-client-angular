@@ -1,14 +1,11 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {DataService} from '../../data.service';
-import {ActivatedRoute} from '@angular/router';
 import {CourseDocument} from '../../models/modelInterfaces';
 import {MatTableDataSource} from '@angular/material';
-import {MatDialog} from '@angular/material';
 import {UploadService} from '../../upload/upload.service';
-import {DialogComponent} from '../../upload/dialog/dialog.component';
 import {UserService} from '../../user.service';
 import {forkJoin} from 'rxjs';
-import {Observable} from 'rxjs/Rx';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-documents',
@@ -35,7 +32,8 @@ export class DocumentsComponent implements OnInit {
 
   documents: Observable<CourseDocument[]>;
 
-  constructor(private dataService: DataService, private route: ActivatedRoute, public uploadService: UploadService, public userService: UserService) {
+  constructor(private dataService: DataService,
+              public uploadService: UploadService, public userService: UserService) {
   }
 
   ngOnInit() {
@@ -49,7 +47,7 @@ export class DocumentsComponent implements OnInit {
   onFilesAdded() {
     const files: { [key: string]: File } = this.file.nativeElement.files;
     for (const key in files) {
-      if (!isNaN(parseInt(key))) {
+      if (!isNaN(parseInt(key, 10))) {
         this.files.add(files[key]);
       }
     }
@@ -64,7 +62,7 @@ export class DocumentsComponent implements OnInit {
 
     // convert the progress map into an array
     const allProgressObservables = [];
-    for (const key in this.progress) {
+    for (const key of this.progress) {
       allProgressObservables.push(this.progress[key].progress);
     }
 

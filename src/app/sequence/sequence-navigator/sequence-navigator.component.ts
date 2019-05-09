@@ -22,7 +22,7 @@ export class SequenceNavigatorComponent implements OnInit {
 
   scroll(id) {
     console.log('Scrolling to' + id);
-    let el = document.getElementById(id);
+    const el = document.getElementById(id);
     console.log(el);
     el.scrollIntoView({behavior: 'smooth', block: 'end', inline: 'nearest'});
   }

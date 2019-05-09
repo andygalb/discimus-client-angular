@@ -11,9 +11,9 @@ import {UserService} from '../../user.service';
 export class CourseProgressComponent implements OnInit {
 
   @Input() id: String;
-  courseTotal: number; //total number of points in course.
-  courseScore: number; //user's score in course so far.
-  courseProgress: number; //procent score so far.
+  courseTotal: number; // total number of points in course.
+  courseScore: number; // user's score in course so far.
+  courseProgress: number; // procent score so far.
 
   spinnerColor = 'primary';
   spinnerMode = 'determinate';
@@ -27,7 +27,7 @@ export class CourseProgressComponent implements OnInit {
   }
 
   calculateProgress() {
-    //Get course summary from user service.
+    // Get course summary from user service.
     console.log(this.userService.getCurrentCourse().courseSummary);
 
     const courseSummary = JSON.parse(this.userService.getCurrentCourse().courseSummary);
@@ -37,7 +37,7 @@ export class CourseProgressComponent implements OnInit {
     for (const sequence of courseSummary.sequences) {
 
       for (const question of sequence.questions) {
-        if (question.type != 'simple-text') {
+        if (question.type !== 'simple-text') {
           total += 1;
         }
       }

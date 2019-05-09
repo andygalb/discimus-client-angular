@@ -17,7 +17,8 @@ export class CourseListComponent implements OnInit {
   newCourse: Course;
   response: String;
 
-  constructor(public userService: UserService, private dataService: DataService, private courseSequenceQuestionService: CourseSequenceQuestionService, public dialog: MatDialog) {
+  constructor(public userService: UserService, private dataService: DataService,
+              private courseSequenceQuestionService: CourseSequenceQuestionService, public dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -71,7 +72,7 @@ export class CourseListComponent implements OnInit {
   openCourseDialog(): void {
 
     this.newCourse = new RCourse();
-    let dialogRef = this.dialog.open(CourseDialogComponent, {
+    const dialogRef = this.dialog.open(CourseDialogComponent, {
 
       data: {course: this.newCourse, dialogMetaData: {titleText: 'Add new course', okButtonText: 'Save'}},
     });
@@ -97,9 +98,9 @@ export class CourseListComponent implements OnInit {
 
   unenroleUserFromCourse(courseID) {
 
-    let enrolement: MEnrolement;
+    const enrolement: MEnrolement;
 
-    for (let enr of this.userService.enrolements) {
+    for (const enr of this.userService.enrolements) {
       if (enr.courseID === courseID) {
         enrolement = enr;
       }
@@ -109,8 +110,9 @@ export class CourseListComponent implements OnInit {
       .subscribe((data) => {
           console.log(data);
 
-          //Remove enrolement from enrolement list and course from course list.
-          this.userService.enrolements = this.userService.enrolements.filter(enrolementToRemove => enrolementToRemove._id !== enrolement._id);
+          // Remove enrolement from enrolement list and course from course list.
+          this.userService.enrolements = this.userService.enrolements
+            .filter(enrolementToRemove => enrolementToRemove._id !== enrolement._id);
           this.userService.courses = this.userService.courses.filter(course => course._id !== enrolement.courseID);
         },
         (err) => {

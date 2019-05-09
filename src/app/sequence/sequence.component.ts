@@ -57,7 +57,9 @@ export class SequenceComponent implements OnInit {
         return;
       },
       () => {
-        this.courseSequenceQuestionService.getMultipleQuestions(this.selectedSequence.questions).subscribe(data => this.questionsToShow = data);
+        this.courseSequenceQuestionService.getMultipleQuestions(this.selectedSequence.questions)
+          .subscribe(data => this.questionsToShow = data
+        );
       }
     );
   }
@@ -90,7 +92,8 @@ export class SequenceComponent implements OnInit {
             return;
           },
           () => {
-            this.courseSequenceQuestionService.getMultipleQuestions(this.selectedSequence.questions).subscribe(data => this.questionsToShow = data);
+            this.courseSequenceQuestionService.getMultipleQuestions(this.selectedSequence.questions)
+              .subscribe(data => this.questionsToShow = data);
             this.newQuestion = null;
           }
         );

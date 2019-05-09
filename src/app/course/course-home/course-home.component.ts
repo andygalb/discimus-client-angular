@@ -23,7 +23,8 @@ export class CourseHomeComponent implements OnInit {
 
   navigationSubscription;
 
-  constructor(private courseSequenceQuestionService: CourseSequenceQuestionService, private dataService: DataService, private route: ActivatedRoute, private userService: UserService) {
+  constructor(private courseSequenceQuestionService: CourseSequenceQuestionService, private dataService: DataService,
+              private route: ActivatedRoute, private userService: UserService) {
   }
 
   ngOnInit() {

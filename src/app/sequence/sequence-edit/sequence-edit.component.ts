@@ -77,12 +77,10 @@ export class SequenceEditComponent implements OnInit {
             console.log('Got data back');
             console.log(data);
             this.questionsToShow = data;
-          }
-        ),
-          err => {
-            console.error('Error getting questions!');
+          }, err => {
+            console.error('Error getting questions! ' + err);
             return;
-          };
+          });
       });
 
     this.dataSource = this.questions;
@@ -111,12 +109,12 @@ export class SequenceEditComponent implements OnInit {
         }
       });
 
-      //Dialog is closed.
+      // Dialog is closed.
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
-          //TODO Code smell
+          // TODO Code smell
           if (this.newQuestion.type === 'csharp') {
-            let answer = {inputs: this.metadata.inputs, outputs: this.metadata.outputs};
+            const answer = {inputs: this.metadata.inputs, outputs: this.metadata.outputs};
           }
           this.updateQuestion();
         }
@@ -145,9 +143,9 @@ export class SequenceEditComponent implements OnInit {
       console.log('The dialog was closed');
       if (result) {
 
-        //TODO Horrible code here...
+        // TODO Horrible code here...
         if (this.newQuestion.type === 'csharp') {
-          let answer = {
+          const answer = {
             inputs: this.metadata.inputs,
             outputs: this.metadata.outputs
           };
@@ -268,12 +266,10 @@ export class SequenceEditComponent implements OnInit {
       data => {
         console.log(data);
         this.questionsToShow = data;
-      }
-    ),
-      err => {
-        console.error('Error getting questions!');
+      }, err => {
+        console.error('Error getting questions! ' + err);
         return;
-      };
+      });
   }
 
   saveChanges(): void {

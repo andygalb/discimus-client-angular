@@ -107,12 +107,10 @@ export class CourseEditComponent implements OnInit {
       data => {
         console.log(data);
         this.sequencesToShow = data;
-      }
-    ),
-      err => {
-        console.error('Error getting sequences!');
+      }, err => {
+        console.error('Error getting sequences:' + err);
         return;
-      };
+      });
   }
 
   onDelete(sequence: Sequence): void {

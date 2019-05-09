@@ -89,7 +89,7 @@ export class DataService {
 
   enroleUserOnCourse(courseID, userID, role) {
 
-    let enrolement = new MEnrolement();
+    const enrolement = new MEnrolement();
     enrolement.courseID = courseID;
     enrolement.role = role;
     enrolement.userID = userID;

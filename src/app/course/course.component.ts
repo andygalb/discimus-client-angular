@@ -20,7 +20,7 @@ export class CourseComponent implements OnInit {
 
   constructor(private dataService: DataService, private userService: UserService, private route: ActivatedRoute, private router: Router) {
 
-    //TODO This is a hack to get sidelinks to navigate when the courseID changes.
+    // TODO This is a hack to get sidelinks to navigate when the courseID changes.
     /*this.navigationSubscription = this.router.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) {
         window.scrollTo(0, 0);

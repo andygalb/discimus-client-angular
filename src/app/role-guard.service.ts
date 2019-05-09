@@ -13,8 +13,8 @@ export class RoleGuardService implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot): boolean {
 
     if (!this.userService.isUserLoggedIn) {
-      //Does the user exist in local storage? In that case log the user in again...
-      let user = localStorage.getItem('user');
+      // Does the user exist in local storage? In that case log the user in again...
+      const user = localStorage.getItem('user');
       if (user != null) {
         this.userService.user = JSON.parse(user);
         this.userService.isUserLoggedIn = true;

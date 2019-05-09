@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
 
-    //Is the user already logged in? Then take the user to his/her landing page straight away.
+    // Is the user already logged in? Then take the user to his/her landing page straight away.
     if (this.userService.isUserLoggedIn) {
       this.router.navigate(['home']);
       return;
@@ -65,14 +65,14 @@ export class LoginComponent implements OnInit {
         const token = data['token'];
         const success = data['success'];
 
-        if (success != true) {
+        if (success !== true) {
           return;
         }
         if (token !== '') {
           localStorage.setItem('token', token);
         }
 
-        let user = data['user'];
+        const user = data['user'];
 
         if (user.local.username != null) {
 
@@ -84,7 +84,6 @@ export class LoginComponent implements OnInit {
           this.tempUser = null;
           this.router.navigate(['home']);
         }
-        ;
       }
       ,
       err => {

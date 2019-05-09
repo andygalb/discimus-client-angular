@@ -16,7 +16,8 @@ export class CourseDescriptionComponent implements OnInit {
   @Input() id: String;
   course: Course;
 
-  constructor(private dialog: MatDialog, public userService: UserService, private dataService: DataService, private courseSequenceQuestionService: CourseSequenceQuestionService) {
+  constructor(private dialog: MatDialog, public userService: UserService, private dataService: DataService,
+              private courseSequenceQuestionService: CourseSequenceQuestionService) {
   }
 
   ngOnInit() {

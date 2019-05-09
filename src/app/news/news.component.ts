@@ -6,7 +6,7 @@ import {DataService} from '../data.service';
 import {CourseSequenceQuestionService} from '../course-sequence-question.service';
 import {News} from '../models/modelInterfaces';
 import {UserService} from '../user.service';
-import {Observable} from 'rxjs/Rx';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-news',

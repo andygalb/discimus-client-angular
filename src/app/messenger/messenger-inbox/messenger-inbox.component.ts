@@ -55,14 +55,14 @@ export class MessengerInboxComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'quit') {
-        if (!messageToView.read) this.messengerService.markMessageAsRead(messageToView._id).subscribe((data) => {
+        if (!messageToView.read) {this.messengerService.markMessageAsRead(messageToView._id).subscribe((data) => {
           messageToView.read = true;
           this.messengerService.checkForNewMessages(this.userService.getCurrentUser()._id);
         }, (err) => {
           console.log(err);
         });
+        }
       }
-
     });
   }
 
