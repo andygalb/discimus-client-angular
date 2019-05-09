@@ -7,8 +7,8 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display title as Discimus', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to ltc-app!');
+    expect(page.getTitleText()).toEqual('Discimus');
   });
 });
