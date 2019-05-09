@@ -98,7 +98,7 @@ export class CourseListComponent implements OnInit {
 
   unenroleUserFromCourse(courseID) {
 
-    const enrolement: MEnrolement;
+    let enrolement = new MEnrolement();
 
     for (const enr of this.userService.enrolements) {
       if (enr.courseID === courseID) {
