@@ -1,6 +1,8 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {SettingsComponent} from './settings.component';
+import {MatCardModule, MatCheckboxModule, MatRadioModule} from '@angular/material';
+import {FormsModule} from '@angular/forms';
 
 describe('SettingsComponent', () => {
   let component: SettingsComponent;
@@ -8,7 +10,8 @@ describe('SettingsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SettingsComponent]
+      declarations: [SettingsComponent],
+      imports: [MatCardModule, MatRadioModule, FormsModule, MatCheckboxModule]
     })
       .compileComponents();
   }));

@@ -10,15 +10,10 @@ import {Route, RouterModule} from '@angular/router';
 import {UserService} from '../../user.service';
 import {RouterTestingModule} from '@angular/router/testing';
 import {CourseSequenceQuestionService} from '../../course-sequence-question.service';
-import {User} from '../../models/modelInterfaces';
-import {RUser} from '../../models/modelClasses';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
-class MockUserService extends UserService {
-
-
-}
-
+import {MockDataService, MockUserService} from '../../mocks/mocks';
+import {HttpClient} from '@angular/common/http';
+import {DataService} from '../../data.service';
 class MockCourseSequenceQuestionService extends CourseSequenceQuestionService {
 
 
@@ -34,7 +29,9 @@ describe('AdminSequenceComponent', () => {
       imports: [     BrowserAnimationsModule, RouterTestingModule, MatTableModule, MatCheckboxModule, HttpClientTestingModule, MatCardModule, MatMenuModule, MatFormFieldModule, MatOptionModule, MatSelectModule],
       providers: [
         {provide: UserService, useClass: MockUserService},
-        {provide: CourseSequenceQuestionService, useClass: MockCourseSequenceQuestionService}
+        {provide: CourseSequenceQuestionService, useClass: MockCourseSequenceQuestionService},
+        {provide: HttpClient, useClass: HttpClientTestingModule},
+        {provide: DataService, useClass: MockDataService}
       ]
     })
       .compileComponents();
@@ -42,7 +39,7 @@ describe('AdminSequenceComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AdminSequenceComponent);
-    userService = TestBed.get(UserService);
+    //userService = TestBed.get(UserService);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

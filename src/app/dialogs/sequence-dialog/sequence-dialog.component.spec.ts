@@ -1,9 +1,18 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {SequenceDialogComponent} from './sequence-dialog.component';
-import {MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule, MatMenuModule, MatSelectModule} from '@angular/material';
-import {FormsModule} from '@angular/forms';
+import {
+  MatCardModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatMenuModule, MatOptionModule,
+  MatSelectModule
+} from '@angular/material';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {AngularEditorModule} from '@kolkov/angular-editor';
 
 describe('SequenceDialogComponent', () => {
@@ -13,7 +22,8 @@ describe('SequenceDialogComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [SequenceDialogComponent],
-      imports: [MatCardModule, MatMenuModule, MatInputModule, MatFormFieldModule, FormsModule, MatSelectModule, MatIconModule, AngularEditorModule],
+      imports: [MatCardModule,  MatMenuModule, ReactiveFormsModule, MatDialogModule, MatIconModule,  MatInputModule, MatFormFieldModule, MatOptionModule, FormsModule, MatSelectModule, MatIconModule, AngularEditorModule],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
       .compileComponents();
   }));

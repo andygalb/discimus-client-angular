@@ -2,8 +2,9 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {SequenceEditComponent} from './sequence-edit.component';
 import {RouterModule} from '@angular/router';
-import {MatCardModule, MatMenuModule} from '@angular/material';
+import {MatCardModule, MatFormFieldModule, MatIconModule, MatMenuModule, MatTableModule} from '@angular/material';
 import {FormsModule} from '@angular/forms';
+import {TruncatePipe} from '../../truncate.pipe';
 
 describe('SequenceEditComponent', () => {
   let component: SequenceEditComponent;
@@ -11,8 +12,8 @@ describe('SequenceEditComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SequenceEditComponent],
-      imports: [MatCardModule, MatMenuModule, RouterModule, FormsModule],
+      declarations: [SequenceEditComponent, TruncatePipe],
+      imports: [MatCardModule, MatMenuModule, MatTableModule, MatIconModule, RouterModule, FormsModule, MatFormFieldModule],
     })
       .compileComponents();
   }));

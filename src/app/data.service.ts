@@ -63,6 +63,10 @@ export class DataService {
     return this.http.get<Sequence[]>(config.serverAddress + '/api/sequence/course/' + courseID);
   }
 
+  getThing<T>(id: String, type: String) {
+  return this.http.get<T>(config.serverAddress + '/api/' + type + '/' + id);
+  }
+
   getUsers() {
     return this.http.get<User[]>(config.serverAddress + '/api/user/all');
   }
