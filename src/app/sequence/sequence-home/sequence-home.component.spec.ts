@@ -1,8 +1,11 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {SequenceHomeComponent} from './sequence-home.component';
-import {MatCardModule} from '@angular/material';
+import {MatCardModule, MatFormFieldModule, MatIconModule} from '@angular/material';
 import {RouterTestingModule} from '@angular/router/testing';
+import {FormsModule} from '@angular/forms';
+import {AceEditorModule} from 'ng2-ace-editor';
+import {SequenceNavigatorComponent} from '../sequence-navigator/sequence-navigator.component';
 
 describe('SequenceHomeComponent', () => {
   let component: SequenceHomeComponent;
@@ -10,8 +13,8 @@ describe('SequenceHomeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SequenceHomeComponent],
-      imports: [RouterTestingModule, MatCardModule],
+      declarations: [SequenceHomeComponent, SequenceNavigatorComponent],
+      imports: [AceEditorModule, RouterTestingModule, MatCardModule, MatIconModule, MatFormFieldModule, FormsModule],
 
     })
       .compileComponents();

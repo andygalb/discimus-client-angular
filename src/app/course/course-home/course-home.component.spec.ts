@@ -8,6 +8,11 @@ import {DocumentsComponent} from '../documents/documents.component';
 import {CourseProgressComponent} from '../course-progress/course-progress.component';
 import {CourseSequenceComponent} from '../course-sequence/course-sequence.component';
 import {CourseStudentsComponent} from '../course-students/course-students.component';
+import {MockCourseSequenceQuestionService, MockDataService, MockUserService} from '../../mocks/mocks';
+import {UserService} from '../../user.service';
+import {CourseSequenceQuestionService} from '../../course-sequence-question.service';
+import {DataService} from '../../data.service';
+import {ActivatedRoute} from '@angular/router';
 
 describe('CourseHomeComponent', () => {
   let component: CourseHomeComponent;
@@ -16,7 +21,12 @@ describe('CourseHomeComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [CourseHomeComponent, CourseDescriptionComponent, NewsComponent, DocumentsComponent, CourseProgressComponent, CourseSequenceComponent, CourseStudentsComponent],
-      imports: [MatCardModule, MatMenuModule, MatIconModule, MatTableModule, MatCheckboxModule]
+      imports: [MatCardModule, MatMenuModule, MatIconModule, MatTableModule, MatCheckboxModule],
+      providers: [{provide: UserService, useClass: MockUserService},
+        {provide: DataService, useClass: MockDataService},
+        {provide: CourseSequenceQuestionService, useClass: MockCourseSequenceQuestionService},
+        {provide: ActivatedRoute}
+      ]
     })
       .compileComponents();
   }));

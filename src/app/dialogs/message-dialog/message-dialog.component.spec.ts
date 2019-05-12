@@ -1,7 +1,12 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {MessageDialogComponent} from './message-dialog.component';
-import {MatCardModule, MatFormFieldModule, MatMenuModule, MatSelectModule} from '@angular/material';
+import {
+  MatCardModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatMenuModule, MatOptionModule,
+  MatSelectModule
+} from '@angular/material';
+import {FormsModule} from '@angular/forms';
+import {AngularEditorModule} from '@kolkov/angular-editor';
 
 describe('SequenceDialogComponent', () => {
   let component: MessageDialogComponent;
@@ -10,7 +15,7 @@ describe('SequenceDialogComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [MessageDialogComponent],
-      imports: [MatCardModule, MatMenuModule, MatFormFieldModule, MatSelectModule],
+      imports: [MatCardModule, MatDialogModule, MatMenuModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatOptionModule, FormsModule, AngularEditorModule],
     })
       .compileComponents();
   }));

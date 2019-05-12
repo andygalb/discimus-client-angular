@@ -2,8 +2,9 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {MessagesComponent} from './messages.component';
 import {MessengerComponent} from '../messenger/messenger.component';
-import {MatIconModule, MatToolbarModule} from '@angular/material';
+import {MatCardModule, MatIconModule, MatToolbarModule} from '@angular/material';
 import {MessengerInboxComponent} from '../messenger/messenger-inbox/messenger-inbox.component';
+import {MessengerSentComponent} from '../messenger/messenger-sent/messenger-sent.component';
 
 describe('MessagesComponent', () => {
   let component: MessagesComponent;
@@ -11,8 +12,8 @@ describe('MessagesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MessagesComponent, MessengerComponent, MessengerInboxComponent],
-      imports: [MatIconModule, MatToolbarModule]
+      declarations: [MessagesComponent, MessengerComponent, MessengerInboxComponent, MessengerSentComponent],
+      imports: [MatIconModule, MatToolbarModule, MatCardModule]
     })
       .compileComponents();
   }));

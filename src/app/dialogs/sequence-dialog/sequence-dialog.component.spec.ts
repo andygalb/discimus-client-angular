@@ -2,8 +2,9 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {SequenceDialogComponent} from './sequence-dialog.component';
 import {
+  MAT_DIALOG_DATA,
   MatCardModule,
-  MatDialogModule,
+  MatDialogModule, MatDialogRef,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
@@ -22,7 +23,9 @@ describe('SequenceDialogComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [SequenceDialogComponent],
-      imports: [MatCardModule,  MatMenuModule, ReactiveFormsModule, MatDialogModule, MatIconModule,  MatInputModule, MatFormFieldModule, MatOptionModule, FormsModule, MatSelectModule, MatIconModule, AngularEditorModule],
+      imports: [AngularEditorModule, MatCardModule,  MatMenuModule, ReactiveFormsModule, MatDialogModule, MatIconModule,  MatInputModule, MatFormFieldModule, MatOptionModule, FormsModule, MatSelectModule, MatIconModule, AngularEditorModule],
+      providers: [MatDialogRef,
+        { provide: MAT_DIALOG_DATA, useValue: {sequence: {_id: 'hjkkjhh'}} }],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
       .compileComponents();

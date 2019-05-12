@@ -1,7 +1,12 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {MessengerComponent} from './messenger.component';
-import {MatIconModule, MatToolbarModule} from '@angular/material';
+import {MatDialogModule, MatIconModule, MatTableModule, MatTabsModule, MatToolbarModule} from '@angular/material';
+import {MessengerInboxComponent} from './messenger-inbox/messenger-inbox.component';
+import {MessengerSentComponent} from './messenger-sent/messenger-sent.component';
+import {MessengerService} from '../messenger.service';
+import {MockUserService} from '../mocks/mocks';
+import {UserService} from '../user.service';
 
 describe('MessengerComponent', () => {
   let component: MessengerComponent;
@@ -9,8 +14,10 @@ describe('MessengerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MessengerComponent],
-      imports: [MatIconModule, MatToolbarModule]
+      declarations: [MessengerComponent, MessengerInboxComponent, MessengerSentComponent],
+      imports: [MatIconModule, MatToolbarModule, MatTabsModule, MatTableModule, MatDialogModule],
+      providers: [{provide: MessengerService},
+        {provide: UserService, useClass: MockUserService}]
     })
       .compileComponents();
   }));

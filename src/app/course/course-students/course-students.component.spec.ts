@@ -2,6 +2,8 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {CourseStudentsComponent} from './course-students.component';
 import {MatCardModule, MatIconModule, MatMenuModule, MatTableModule} from '@angular/material';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {ActivatedRoute} from '@angular/router';
 
 describe('CourseStudentsComponent', () => {
   let component: CourseStudentsComponent;
@@ -10,7 +12,8 @@ describe('CourseStudentsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [CourseStudentsComponent],
-      imports: [MatTableModule, MatCardModule, MatMenuModule, MatIconModule]
+      imports: [HttpClientTestingModule,MatTableModule, MatCardModule, MatMenuModule, MatIconModule],
+      providers: [ActivatedRoute]
     })
       .compileComponents();
   }));

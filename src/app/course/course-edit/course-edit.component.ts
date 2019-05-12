@@ -15,16 +15,6 @@ export class CourseEditComponent implements OnInit {
 
   descriptionFC = new FormControl();
 
-  constructor(private route: ActivatedRoute,
-              private courseSequenceQuestionService: CourseSequenceQuestionService,
-              @Inject(FormBuilder) fb: FormBuilder) {
-    this.sequenceForm = fb.group({
-      title: ['', [Validators.required]],
-      description: ['', [Validators.required]],
-    });
-  }
-
-  sequenceForm: FormGroup;
   title = 'LTC';
   courseID: number;
   id: string;
@@ -34,6 +24,18 @@ export class CourseEditComponent implements OnInit {
   newSequenceID: String;
   selectedCourse: RCourse;
   response: String;
+
+
+  /*sequenceForm = this.fb.group({
+    title: ['', [Validators.required]],
+    description: ['', [Validators.required]],
+  });*/
+
+  constructor(private route: ActivatedRoute,
+              private courseSequenceQuestionService: CourseSequenceQuestionService,
+              private fb: FormBuilder) {}
+
+
 
   ngOnInit() {
     const courseID = this.route.parent.snapshot.params['id'];

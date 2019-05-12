@@ -2,8 +2,8 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {CourseEditComponent} from './course-edit.component';
 import {MatCardModule, MatFormFieldModule, MatIconModule, MatMenuModule} from '@angular/material';
-import {FormsModule} from '@angular/forms';
-import {RouterModule} from '@angular/router';
+import {FormBuilder, FormsModule} from '@angular/forms';
+import {ActivatedRoute, RouterModule} from '@angular/router';
 import {RouterTestingModule} from '@angular/router/testing';
 import {UserService} from '../../user.service';
 import {MockCourseSequenceQuestionService, MockUserService} from '../../mocks/mocks';
@@ -20,7 +20,9 @@ describe('CourseEditComponent', () => {
       imports: [RouterTestingModule, HttpClientTestingModule, MatFormFieldModule, MatCardModule, MatMenuModule, FormsModule, RouterModule, MatIconModule],
       providers: [
         {provide: UserService, useClass: MockUserService},
-        {provide: CourseSequenceQuestionService, useClass: MockCourseSequenceQuestionService}
+        {provide: CourseSequenceQuestionService, useClass: MockCourseSequenceQuestionService},
+        {provide: FormBuilder},
+        {provide: ActivatedRoute, useValue: {parent: {snapshot: {params: {'id': '123'}}}}}
       ]
     })
       .compileComponents();

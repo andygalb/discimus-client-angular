@@ -3,6 +3,9 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {CourseSequenceComponent} from './course-sequence.component';
 import {MatButtonModule, MatCardModule, MatDialog, MatDialogModule, MatDialogRef, MatIconModule, MatMenuModule} from '@angular/material';
 import {RouterTestingModule} from '@angular/router/testing';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {UserService} from '../../user.service';
+import {MockUserService} from '../../mocks/mocks';
 
 describe('CourseSequenceComponent', () => {
   let component: CourseSequenceComponent;
@@ -10,8 +13,9 @@ describe('CourseSequenceComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CourseSequenceComponent, MatDialogRef],
-      imports: [MatCardModule, MatMenuModule, MatIconModule, RouterTestingModule, MatButtonModule, MatDialogModule, MatDialogRef]
+      declarations: [CourseSequenceComponent],
+      imports: [HttpClientTestingModule, RouterTestingModule, MatCardModule, MatMenuModule, MatIconModule, RouterTestingModule, MatButtonModule, MatDialogModule],
+      providers: [{provide: UserService, useClass: MockUserService}]
     })
       .compileComponents();
   }));

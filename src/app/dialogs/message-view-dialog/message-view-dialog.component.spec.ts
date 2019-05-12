@@ -1,6 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {MessageViewDialogComponent} from './message-view-dialog.component';
+import {MatCardModule, MatDialogModule, MatIconModule} from '@angular/material';
 
 describe('SequenceDialogComponent', () => {
   let component: MessageViewDialogComponent;
@@ -8,7 +9,8 @@ describe('SequenceDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MessageViewDialogComponent]
+      declarations: [MessageViewDialogComponent],
+      imports: [MatCardModule, MatDialogModule, MatIconModule]
     })
       .compileComponents();
   }));

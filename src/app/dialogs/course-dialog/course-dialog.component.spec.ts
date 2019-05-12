@@ -1,8 +1,9 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {CourseDialogComponent} from './course-dialog.component';
-import {MatCardModule, MatFormFieldModule, MatMenuModule} from '@angular/material';
+import {MAT_DIALOG_DATA, MatCardModule, MatDialogRef, MatFormFieldModule, MatMenuModule} from '@angular/material';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {FormsModule} from '@angular/forms';
 
 describe('SequenceDialogComponent', () => {
   let component: CourseDialogComponent;
@@ -11,7 +12,8 @@ describe('SequenceDialogComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [CourseDialogComponent],
-      imports: [MatCardModule, MatMenuModule, MatFormFieldModule],
+      imports: [MatCardModule, MatMenuModule, MatFormFieldModule, FormsModule],
+      providers: [{ provide: MatDialogRef, useValue: {} }, { provide: MAT_DIALOG_DATA, useValue: null }],
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA
       ]

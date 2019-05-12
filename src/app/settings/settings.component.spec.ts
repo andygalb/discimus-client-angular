@@ -1,7 +1,10 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {SettingsComponent} from './settings.component';
-import {MatCardModule, MatCheckboxModule, MatRadioModule} from '@angular/material';
+import {
+  MatButtonToggleModule, MatCardModule, MatCheckboxModule, MatIconModule, MatRadioModule,
+  MatSlideToggleModule
+} from '@angular/material';
 import {FormsModule} from '@angular/forms';
 
 describe('SettingsComponent', () => {
@@ -11,7 +14,7 @@ describe('SettingsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [SettingsComponent],
-      imports: [MatCardModule, MatRadioModule, FormsModule, MatCheckboxModule]
+      imports: [MatIconModule, MatCardModule, MatRadioModule, FormsModule, MatCheckboxModule, MatButtonToggleModule, MatSlideToggleModule]
     })
       .compileComponents();
   }));
