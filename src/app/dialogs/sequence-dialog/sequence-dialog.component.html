@@ -5,7 +5,8 @@
          required name="title">
 </mat-form-field>
 <angular-editor [config]="editorConfig" class="form-control" placeholder="Sequence description here..." matInput
-                [(ngModel)]="sequence.sequenceDescription"></angular-editor>
+                [(ngModel)]="sequence.sequenceDescription">
+</angular-editor>
 <mat-dialog-actions>
   <button mat-raised-button color="primary" type="submit" cdkFocusInitial [mat-dialog-close]="" (click)="onSubmit()">
     Create

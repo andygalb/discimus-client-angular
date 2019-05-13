@@ -2,10 +2,11 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {CourseComponent} from './course.component';
 import {MatCardModule, MatFormFieldModule, MatMenuModule} from '@angular/material';
-import {ActivatedRoute, Route, RouterModule} from '@angular/router';
+import {ActivatedRoute, convertToParamMap, Route, RouterModule} from '@angular/router';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {UserService} from '../user.service';
 import {MockUserService} from '../mocks/mocks';
+import {Observable} from 'rxjs';
 
 describe('CourseComponent', () => {
   let component: CourseComponent;
@@ -15,7 +16,11 @@ describe('CourseComponent', () => {
     TestBed.configureTestingModule({
       declarations: [CourseComponent],
       imports: [HttpClientTestingModule, MatCardModule, MatMenuModule, MatFormFieldModule, RouterModule.forRoot([])],
-      providers: [{provide: UserService, useClass: MockUserService}, ActivatedRoute]
+      providers: [CourseComponent,
+        {provide: UserService, useClass: MockUserService},
+        {provide: ActivatedRoute , useValue: {
+          snapshot: {paramMap: convertToParamMap({'id': '123'}) }
+        }}]
     })
       .compileComponents();
   }));

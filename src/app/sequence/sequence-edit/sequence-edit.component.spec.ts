@@ -8,20 +8,23 @@ import {TruncatePipe} from '../../truncate.pipe';
 import {CourseSequenceQuestionService} from '../../course-sequence-question.service';
 import {MockCourseSequenceQuestionService, MockUserService} from '../../mocks/mocks';
 import {UserService} from '../../user.service';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('SequenceEditComponent', () => {
   let component: SequenceEditComponent;
   let fixture: ComponentFixture<SequenceEditComponent>;
 
+  const formBuilder: FormBuilder = new FormBuilder();
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [SequenceEditComponent, TruncatePipe],
-      imports: [MatCardModule, MatMenuModule, MatTableModule, MatIconModule, RouterModule, FormsModule, MatFormFieldModule],
-      providers: [{provide: ActivatedRoute},
+      imports: [RouterTestingModule, MatCardModule, MatMenuModule, MatTableModule, MatIconModule, RouterModule, FormsModule, MatFormFieldModule],
+      providers: [{provide: ActivatedRoute, useValue: {parent: {snapshot: {params: {'id': '123'}}}}},
         {provide: CourseSequenceQuestionService, useClass: MockCourseSequenceQuestionService},
         {provide: UserService, useClass: MockUserService},
         {provide: MatDialog},
-        {provide: FormBuilder}
+        { provide: FormBuilder, useValue: formBuilder }
       ]
     })
       .compileComponents();

@@ -1,8 +1,15 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {MessengerInboxComponent} from './messenger-inbox.component';
-import {MatCardModule, MatFormFieldModule, MatIconModule, MatTableModule} from '@angular/material';
+import {
+  MAT_DIALOG_DATA, MatCardModule, MatDialog, MatDialogModule, MatDialogRef, MatFormFieldModule, MatIconModule,
+  MatTableModule
+} from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {RMessage} from '../../models/modelClasses';
+import {UserService} from '../../user.service';
+import {MockUserService} from '../../mocks/mocks';
+import {MessengerService} from '../../messenger.service';
 
 describe('MessengerInboxComponent', () => {
   let component: MessengerInboxComponent;
@@ -11,7 +18,17 @@ describe('MessengerInboxComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [MessengerInboxComponent],
-      imports: [MatIconModule, MatCardModule, MatFormFieldModule, FormsModule, MatTableModule, ReactiveFormsModule]
+      imports: [MatIconModule, MatCardModule, MatDialogModule, MatFormFieldModule, FormsModule, MatTableModule, ReactiveFormsModule]
+      ,
+      providers: [MatDialogRef,
+        {
+          provide: MAT_DIALOG_DATA, useValue: {
+          message: new RMessage(),
+          dialogMetaData: {titleText: ' Message', okButtonText: 'Send'}
+        }
+        },
+        {provide: UserService, useClass: MockUserService},
+      MessengerService]
     })
       .compileComponents();
   }));

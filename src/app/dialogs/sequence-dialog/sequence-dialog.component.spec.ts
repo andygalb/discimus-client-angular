@@ -15,6 +15,12 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {AngularEditorModule} from '@kolkov/angular-editor';
+import {RSequence} from '../../models/modelClasses';
+import {MockUserService} from '../../mocks/mocks';
+import {UserService} from '../../user.service';
+import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+import {MockFactory} from '../../mocks/mockFactory';
+import {HttpClientModule} from '@angular/common/http';
 
 describe('SequenceDialogComponent', () => {
   let component: SequenceDialogComponent;
@@ -23,9 +29,14 @@ describe('SequenceDialogComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [SequenceDialogComponent],
-      imports: [AngularEditorModule, MatCardModule,  MatMenuModule, ReactiveFormsModule, MatDialogModule, MatIconModule,  MatInputModule, MatFormFieldModule, MatOptionModule, FormsModule, MatSelectModule, MatIconModule, AngularEditorModule],
-      providers: [MatDialogRef,
-        { provide: MAT_DIALOG_DATA, useValue: {sequence: {_id: 'hjkkjhh'}} }],
+      imports: [HttpClientTestingModule,  MatCardModule,
+        MatMenuModule, ReactiveFormsModule, MatDialogModule, MatIconModule,
+        MatInputModule, MatFormFieldModule, MatOptionModule, FormsModule,
+        MatSelectModule, MatIconModule, AngularEditorModule],
+      providers: [{provide: UserService, useValue: MockUserService},
+        SequenceDialogComponent,
+        MatDialogRef,
+        { provide: MAT_DIALOG_DATA, useValue: {sequence: MockFactory.getMockSequence()} }],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
       .compileComponents();

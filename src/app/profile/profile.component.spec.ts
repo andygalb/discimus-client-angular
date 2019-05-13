@@ -11,11 +11,15 @@ describe('ProfileComponent', () => {
   let component: ProfileComponent;
   let fixture: ComponentFixture<ProfileComponent>;
 
+  // create new instance of FormBuilder
+  const formBuilder: FormBuilder = new FormBuilder();
+
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ProfileComponent],
       imports: [MatIconModule, MatCardModule, FormsModule, MatFormFieldModule],
-      providers: [{provide: FormBuilder},
+      providers: [{provide: FormBuilder, useValue: formBuilder},
         {provide: UserService, useClass: MockUserService}],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })

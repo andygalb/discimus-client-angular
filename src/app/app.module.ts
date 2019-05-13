@@ -151,6 +151,7 @@ export function hljsLanguages() {
     AceEditorModule,
     AngularEditorModule,
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
     AppRoutingModule,

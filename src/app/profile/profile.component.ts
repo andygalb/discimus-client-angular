@@ -11,8 +11,8 @@ export class ProfileComponent implements OnInit {
 
   options: FormGroup;
 
-  constructor(fb: FormBuilder, public userService: UserService) {
-    this.options = fb.group({
+  constructor(private fb: FormBuilder, public userService: UserService) {
+    this.options = this.fb.group({
       hideRequired: false,
       floatLabel: 'auto',
     });

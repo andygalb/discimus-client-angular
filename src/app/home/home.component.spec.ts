@@ -6,6 +6,8 @@ import {CourseListComponent} from './course-list/course-list.component';
 import {RouterTestingModule} from '@angular/router/testing';
 import {SiteNewsComponent} from './site-news/site-news.component';
 import {MatCardModule} from '@angular/material';
+import {MockUserService} from '../mocks/mocks';
+import {UserService} from '../user.service';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -14,7 +16,8 @@ describe('HomeComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [HomeComponent, CourseListComponent, MessengerInboxComponent, SiteNewsComponent],
-      imports: [RouterTestingModule, MatCardModule]
+      imports: [RouterTestingModule, MatCardModule],
+      providers: [{provide: UserService, useClass: MockUserService}]
     })
       .compileComponents();
   }));

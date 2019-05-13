@@ -1,11 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {Question, Sequence} from '../../models/modelInterfaces';
-import {QuestionMetaData, RQuestion, RSequence} from '../../models/modelClasses';
-import {Course} from '../../models/modelInterfaces';
-import {RCourse} from '../../models/modelClasses';
-import {CourseDialogComponent} from '../course-dialog/course-dialog.component';
 import {AngularEditorConfig} from '@kolkov/angular-editor';
+import {Sequence} from '../../models/modelInterfaces';
 
 @Component({
   selector: 'app-course-dialog',

@@ -6,6 +6,7 @@ import {FormsModule} from '@angular/forms';
 import {Router} from '@angular/router';
 import {UserService} from '../user.service';
 import {MockUserService} from '../mocks/mocks';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -14,7 +15,7 @@ describe('LoginComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [LoginComponent],
-      imports: [MatFormFieldModule, MatCardModule, MatInputModule, MatMenuModule, MatFormFieldModule, FormsModule],
+      imports: [BrowserAnimationsModule, MatFormFieldModule, MatCardModule, MatInputModule, MatMenuModule, MatFormFieldModule, FormsModule],
       providers: [{provide: Router},
         {provide: UserService, useClass: MockUserService}]
     })

@@ -8,6 +8,7 @@ import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {RouterTestingModule} from '@angular/router/testing';
 import {Course, News} from '../models/modelInterfaces';
 import {Observable} from 'rxjs';
+import {MockFactory} from './mockFactory';
 
 export class MockUserService {
 
@@ -29,7 +30,7 @@ export class MockUserService {
       this.course.courseTitle = 'TestCourse';
       this.course.courseDescription = 'TestCourse';
       this.course.creatorID = '34344445';
-      this.course.courseSummary = 'TestCourse';
+      this.course.courseSummary = '{"sequences" : "" }';
       this.course.sequences = ['465444', '456654'];
 
       this.sequence = new RSequence();
@@ -62,7 +63,14 @@ export class MockUserService {
       return this.sequence;
     }
 
-    getEnrolementsForUsers() {
+  getCurrentQuestions(){
+      const seqArray = [];
+      seqArray.push(MockFactory.getMockQuestion());
+      seqArray.push(MockFactory.getMockQuestion());
+    return seqArray;
+  }
+
+  getEnrolementsForUser() {
 
       return new Observable((observer) => {
 
@@ -70,6 +78,18 @@ export class MockUserService {
         observer.complete();
       });
     }
+
+    getCurrentScoreForCourse(){
+      return 5;
+    }
+
+  hasUserAlreadyAnsweredQuestion(){
+      return false;
+  }
+
+  setCurrentQuestions(){
+
+  }
 }
 
 export class MockCourseSequenceQuestionService  {
@@ -117,7 +137,37 @@ export class MockCourseSequenceQuestionService  {
     return courseObservable;
   }
 
+  getSequenceByID() {
 
+    const sequenceObservable = new Observable((observer) => {
+
+      observer.next(MockFactory.getMockSequence());
+      observer.complete();
+    });
+
+    return sequenceObservable;
+
+  }
+
+ getMultipleSequences(){
+    const seqArray = [];
+    seqArray.push(MockFactory.getMockSequence());
+   seqArray.push(MockFactory.getMockSequence());
+   return new Observable((observer) => {
+     observer.next(seqArray);
+     observer.complete();
+   });
+ }
+
+  getMultipleQuestions(){
+    const quesArray = [];
+    quesArray.push(MockFactory.getMockQuestion());
+    quesArray.push(MockFactory.getMockQuestion());
+    return new Observable((observer) => {
+      observer.next(quesArray);
+      observer.complete();
+    });
+  }
 
 }
 
@@ -161,8 +211,10 @@ export class MockDataService  {
       news.title = 'Example title';
       news.owner = {id: 'Test owner id', firstName: 'Test Firstname', lastName: ' Test Lastname'};
 
+      const newsArray = [];
+      newsArray.push(news);
 
-      observer.next(news);
+      observer.next(newsArray);
       observer.complete();
     });
   }
