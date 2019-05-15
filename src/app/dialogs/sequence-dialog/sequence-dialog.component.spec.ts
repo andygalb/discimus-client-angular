@@ -39,7 +39,7 @@ describe('SequenceDialogComponent', () => {
       providers: [{provide: UserService, useValue: MockUserService},
         SequenceDialogComponent,
         { provide: MatDialogRef, useValue: {}},
-        { provide: MAT_DIALOG_DATA, useValue: [{sequence: MockFactory.getMockSequence(), dialogMetaData: null}] }],
+        { provide: MAT_DIALOG_DATA, useValue: {sequence: MockFactory.getMockSequence(), dialogMetaData: null} }],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
       .compileComponents();

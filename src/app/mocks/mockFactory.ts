@@ -22,8 +22,8 @@ export class MockFactory {
     const sequence = new RSequence();
 
     sequence._id = 'Test ID';
-    sequence.sequenceTitle = 'Test Sequence';
-    sequence.sequenceDescription = 'Test Sequence';
+    sequence.sequenceTitle = 'Test Sequence Title';
+    sequence.sequenceDescription = 'Test Sequence Description';
     sequence.questions = ['Test Question', 'Test Question'];
     return sequence;
   }
