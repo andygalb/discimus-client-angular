@@ -33,7 +33,7 @@ describe('SequenceDialogComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [SequenceDialogComponent],
-      imports: [BrowserAnimationsModule, MatCardModule,
+      imports: [BrowserAnimationsModule, HttpClientTestingModule, MatCardModule,
         ReactiveFormsModule, MatDialogModule, MatInputModule, MatFormFieldModule,
         FormsModule, MatIconModule, AngularEditorModule],
       providers: [{provide: UserService, useValue: MockUserService},
