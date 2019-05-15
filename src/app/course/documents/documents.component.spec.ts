@@ -5,7 +5,9 @@ import {MatCardModule, MatFormFieldModule, MatIconModule, MatMenuModule, MatTabl
 import {MatCheckboxModule} from '@angular/material';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {UserService} from '../../user.service';
-import {MockUserService} from '../../mocks/mocks';
+import {MockUserService, MockDataService} from '../../mocks/mocks';
+import {DataService} from '../../data.service';
+import {UploadService} from '../../upload/upload.service';
 
 describe('DocumentsComponent', () => {
   let component: DocumentsComponent;
@@ -16,7 +18,9 @@ describe('DocumentsComponent', () => {
       declarations: [DocumentsComponent],
       imports: [HttpClientTestingModule, MatCardModule, MatMenuModule, MatFormFieldModule,
         MatIconModule, MatTableModule, MatCheckboxModule],
-      providers: [{provide: UserService, useClass: MockUserService}]
+      providers: [{provide: UserService, useClass: MockUserService},
+     {provide: DataService, useClass: MockDataService},
+      {provide: UploadService}]
     })
       .compileComponents();
   }));

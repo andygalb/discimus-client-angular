@@ -5,9 +5,21 @@ import {MessengerInboxComponent} from '../messenger/messenger-inbox/messenger-in
 import {CourseListComponent} from './course-list/course-list.component';
 import {RouterTestingModule} from '@angular/router/testing';
 import {SiteNewsComponent} from './site-news/site-news.component';
-import {MatCardModule} from '@angular/material';
-import {MockUserService} from '../mocks/mocks';
+import {
+  MatCardModule,
+  MatDialogModule,
+  MatExpansionModule,
+  MatFormField,
+  MatFormFieldModule,
+  MatIconModule,
+  MatTableModule
+} from '@angular/material';
+import {MockCourseSequenceQuestionService, MockUserService} from '../mocks/mocks';
 import {UserService} from '../user.service';
+import {TruncatePipe} from '../truncate.pipe';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {CourseSequenceQuestionService} from '../course-sequence-question.service';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -15,9 +27,11 @@ describe('HomeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [HomeComponent, CourseListComponent, MessengerInboxComponent, SiteNewsComponent],
-      imports: [RouterTestingModule, MatCardModule],
-      providers: [{provide: UserService, useClass: MockUserService}]
+      declarations: [HomeComponent, CourseListComponent, MessengerInboxComponent, SiteNewsComponent, TruncatePipe],
+      imports: [BrowserAnimationsModule, HttpClientTestingModule, MatDialogModule, RouterTestingModule,
+        MatCardModule, MatIconModule, MatExpansionModule, MatFormFieldModule, MatTableModule],
+      providers: [{provide: UserService, useClass: MockUserService},
+        {provide: CourseSequenceQuestionService, useClass: MockCourseSequenceQuestionService}]
     })
       .compileComponents();
   }));

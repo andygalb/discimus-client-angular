@@ -5,8 +5,9 @@ import {MatCardModule, MatFormFieldModule, MatMenuModule} from '@angular/materia
 import {ActivatedRoute, convertToParamMap, Route, RouterModule} from '@angular/router';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {UserService} from '../user.service';
-import {MockUserService} from '../mocks/mocks';
+import {MockUserService, MockDataService} from '../mocks/mocks';
 import {Observable} from 'rxjs';
+import {DataService} from '../data.service';
 
 describe('CourseComponent', () => {
   let component: CourseComponent;
@@ -18,6 +19,7 @@ describe('CourseComponent', () => {
       imports: [HttpClientTestingModule, MatCardModule, MatMenuModule, MatFormFieldModule, RouterModule.forRoot([])],
       providers: [CourseComponent,
         {provide: UserService, useClass: MockUserService},
+        {provide: DataService, useClass: MockDataService},
         {provide: ActivatedRoute , useValue: {
           snapshot: {paramMap: convertToParamMap({'id': '123'}) }
         }}]

@@ -21,12 +21,12 @@ class MockCourseSequenceQuestionService extends CourseSequenceQuestionService {
 describe('AdminSequenceComponent', () => {
   let component: AdminSequenceComponent;
   let fixture: ComponentFixture<AdminSequenceComponent>;
-  let userService: UserService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [AdminSequenceComponent],
-      imports: [     BrowserAnimationsModule, RouterTestingModule, MatTableModule, MatCheckboxModule, HttpClientTestingModule, MatCardModule, MatMenuModule, MatFormFieldModule, MatOptionModule, MatSelectModule],
+      imports: [     BrowserAnimationsModule, RouterTestingModule, MatTableModule, MatCheckboxModule,
+        HttpClientTestingModule, MatCardModule, MatMenuModule, MatFormFieldModule, MatOptionModule, MatSelectModule],
       providers: [
         {provide: UserService, useClass: MockUserService},
         {provide: CourseSequenceQuestionService, useClass: MockCourseSequenceQuestionService},
@@ -39,7 +39,7 @@ describe('AdminSequenceComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AdminSequenceComponent);
-    //userService = TestBed.get(UserService);
+    // userService = TestBed.get(UserService);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

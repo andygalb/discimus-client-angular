@@ -7,8 +7,8 @@ import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('DataService', () => {
   beforeEach(() => TestBed.configureTestingModule({
-    imports:[ HttpClientTestingModule],
-    providers:[
+    imports: [ HttpClientTestingModule],
+    providers: [
       {provide: UserService, useClass: MockUserService}
     ]
 

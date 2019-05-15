@@ -2,15 +2,24 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {MessengerComponent} from './messenger.component';
 import {
-  MAT_DIALOG_DATA, MatDialogModule, MatDialogRef, MatIconModule, MatTableModule, MatTabsModule,
+  MAT_DIALOG_DATA,
+  MatButtonModule,
+  MatCardModule,
+  MatDialogModule,
+  MatDialogRef,
+  MatFormFieldModule,
+  MatIconModule, MatInputModule, MatSortModule,
+  MatTableModule,
+  MatTabsModule,
   MatToolbarModule
 } from '@angular/material';
 import {MessengerInboxComponent} from './messenger-inbox/messenger-inbox.component';
 import {MessengerSentComponent} from './messenger-sent/messenger-sent.component';
 import {MessengerService} from '../messenger.service';
-import {MockUserService} from '../mocks/mocks';
+import {MockMessengerService, MockUserService} from '../mocks/mocks';
 import {UserService} from '../user.service';
 import {RMessage} from '../models/modelClasses';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 describe('MessengerComponent', () => {
   let component: MessengerComponent;
@@ -19,10 +28,11 @@ describe('MessengerComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [MessengerComponent, MessengerInboxComponent, MessengerSentComponent],
-      imports: [MatIconModule, MatToolbarModule, MatTabsModule, MatTableModule, MatDialogModule],
-      providers: [{provide: MessengerService},
+      imports: [BrowserAnimationsModule, MatSortModule, MatInputModule, MatCardModule, MatIconModule,
+        MatButtonModule, MatToolbarModule, MatTabsModule, MatFormFieldModule, MatTableModule, MatDialogModule],
+      providers: [{provide: MessengerService, useClass: MockMessengerService},
         {provide: UserService, useClass: MockUserService},
-        MatDialogRef,
+        { provide: MatDialogRef, useValue: {}},
         { provide: MAT_DIALOG_DATA, useValue: {
           message: new RMessage(),
           dialogMetaData: {titleText: ' Create Message', okButtonText: 'Send'}

@@ -1,16 +1,19 @@
+
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {SequenceDialogComponent} from './sequence-dialog.component';
 import {
-  MAT_DIALOG_DATA,
   MatCardModule,
-  MatDialogModule, MatDialogRef,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
-  MatMenuModule, MatOptionModule,
-  MatSelectModule
 } from '@angular/material';
+
+import {
+  MAT_DIALOG_DATA,
+  MatDialogModule, MatDialogRef
+} from '@angular/material/dialog';
+
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
@@ -21,6 +24,7 @@ import {UserService} from '../../user.service';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {MockFactory} from '../../mocks/mockFactory';
 import {HttpClientModule} from '@angular/common/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 describe('SequenceDialogComponent', () => {
   let component: SequenceDialogComponent;
@@ -29,14 +33,13 @@ describe('SequenceDialogComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [SequenceDialogComponent],
-      imports: [HttpClientTestingModule,  MatCardModule,
-        MatMenuModule, ReactiveFormsModule, MatDialogModule, MatIconModule,
-        MatInputModule, MatFormFieldModule, MatOptionModule, FormsModule,
-        MatSelectModule, MatIconModule, AngularEditorModule],
+      imports: [BrowserAnimationsModule, MatCardModule,
+        ReactiveFormsModule, MatDialogModule, MatInputModule, MatFormFieldModule,
+        FormsModule, MatIconModule, AngularEditorModule],
       providers: [{provide: UserService, useValue: MockUserService},
         SequenceDialogComponent,
-        MatDialogRef,
-        { provide: MAT_DIALOG_DATA, useValue: {sequence: MockFactory.getMockSequence()} }],
+        { provide: MatDialogRef, useValue: {}},
+        { provide: MAT_DIALOG_DATA, useValue: [{sequence: MockFactory.getMockSequence(), dialogMetaData: null}] }],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
       .compileComponents();
@@ -52,3 +55,5 @@ describe('SequenceDialogComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+

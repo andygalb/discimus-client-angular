@@ -4,7 +4,7 @@ import {AngularEditorConfig} from '@kolkov/angular-editor';
 import {Sequence} from '../../models/modelInterfaces';
 
 @Component({
-  selector: 'app-course-dialog',
+  selector: 'app-sequence-dialog',
   templateUrl: './sequence-dialog.component.html',
   styleUrls: ['./sequence-dialog.component.css']
 })

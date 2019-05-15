@@ -5,10 +5,11 @@ import {MatCardModule, MatFormFieldModule, MatMenuModule} from '@angular/materia
 import {RouterModule} from '@angular/router';
 import {TruncatePipe} from '../truncate.pipe';
 import {UserService} from '../user.service';
-import {MockCourseSequenceQuestionService, MockUserService} from '../mocks/mocks';
+import {MockCourseSequenceQuestionService, MockDataService, MockUserService} from '../mocks/mocks';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {RouterTestingModule} from '@angular/router/testing';
 import {CourseSequenceQuestionService} from '../course-sequence-question.service';
+import {DataService} from '../data.service';
 
 describe('CourseSearchComponent', () => {
   let component: CourseSearchComponent;
@@ -20,7 +21,8 @@ describe('CourseSearchComponent', () => {
       imports: [RouterTestingModule, HttpClientTestingModule, MatCardModule, MatFormFieldModule],
       providers: [TruncatePipe,
         {provide: UserService, useClass: MockUserService},
-        {provide: CourseSequenceQuestionService, useClass: MockCourseSequenceQuestionService}]
+        {provide: CourseSequenceQuestionService, useClass: MockCourseSequenceQuestionService},
+        {provide: DataService, useClass: MockDataService}]
     })
       .compileComponents();
   }));

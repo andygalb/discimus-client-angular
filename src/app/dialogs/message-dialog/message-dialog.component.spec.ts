@@ -10,18 +10,22 @@ import {FormsModule} from '@angular/forms';
 import {AngularEditorModule} from '@kolkov/angular-editor';
 import {RMessage} from '../../models/modelClasses';
 import {MessengerService} from '../../messenger.service';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {MockMessengerService} from '../../mocks/mocks';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-describe('SequenceDialogComponent', () => {
+describe('MessageDialogComponent', () => {
   let component: MessageDialogComponent;
   let fixture: ComponentFixture<MessageDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [MessageDialogComponent],
-      imports: [MatCardModule, MatDialogModule, MatMenuModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatOptionModule, FormsModule, AngularEditorModule],
+      imports: [BrowserAnimationsModule, HttpClientTestingModule, MatCardModule, MatDialogModule,
+        MatMenuModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatOptionModule, FormsModule, AngularEditorModule],
       providers: [
         MessageDialogComponent,
-        {provide: MessengerService},
+        {provide: MessengerService, useClass: MockMessengerService},
         { provide: MatDialogRef},
         {
           provide: MAT_DIALOG_DATA, useValue: {

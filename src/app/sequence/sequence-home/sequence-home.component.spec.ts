@@ -1,7 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {SequenceHomeComponent} from './sequence-home.component';
-import {MatCardModule, MatFormFieldModule, MatIconModule, MatListModule} from '@angular/material';
+import {MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule} from '@angular/material';
 import {RouterTestingModule} from '@angular/router/testing';
 import {FormBuilder, FormsModule} from '@angular/forms';
 import {AceEditorModule} from 'ng2-ace-editor';
@@ -10,6 +10,7 @@ import {MockCourseSequenceQuestionService, MockUserService} from '../../mocks/mo
 import {UserService} from '../../user.service';
 import {CourseSequenceQuestionService} from '../../course-sequence-question.service';
 import {ActivatedRoute} from '@angular/router';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 describe('SequenceHomeComponent', () => {
   let component: SequenceHomeComponent;
@@ -21,7 +22,8 @@ describe('SequenceHomeComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [SequenceHomeComponent, SequenceNavigatorComponent],
-      imports: [AceEditorModule, RouterTestingModule, MatCardModule, MatListModule, MatIconModule, MatFormFieldModule, FormsModule],
+      imports: [AceEditorModule, BrowserAnimationsModule, RouterTestingModule, MatInputModule, MatCardModule,
+        MatListModule, MatIconModule, MatFormFieldModule, FormsModule],
     providers: [{provide: UserService, useClass: MockUserService},
       {provide: CourseSequenceQuestionService, useClass: MockCourseSequenceQuestionService},
       { provide: FormBuilder, useValue: formBuilder },

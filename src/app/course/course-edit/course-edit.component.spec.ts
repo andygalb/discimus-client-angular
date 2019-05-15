@@ -17,7 +17,8 @@ describe('CourseEditComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [CourseEditComponent],
-      imports: [RouterTestingModule, HttpClientTestingModule, MatFormFieldModule, MatCardModule, MatMenuModule, FormsModule, RouterModule, MatIconModule],
+      imports: [RouterTestingModule, HttpClientTestingModule, MatFormFieldModule, MatCardModule,
+        MatMenuModule, FormsModule, RouterModule, MatIconModule],
       providers: [
         {provide: UserService, useClass: MockUserService},
         {provide: CourseSequenceQuestionService, useClass: MockCourseSequenceQuestionService},

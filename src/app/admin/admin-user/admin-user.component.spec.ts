@@ -8,6 +8,8 @@ import {
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {RouterModule} from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {DataService} from '../../data.service';
+import {MockDataService} from '../../mocks/mocks';
 
 describe('AdminUserComponent', () => {
   let component: AdminUserComponent;
@@ -16,7 +18,9 @@ describe('AdminUserComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [AdminUserComponent],
-      imports: [BrowserAnimationsModule, MatTableModule, MatCheckboxModule, HttpClientTestingModule, MatCardModule, MatMenuModule, MatFormFieldModule, MatOptionModule, MatSelectModule, RouterModule]
+      imports: [BrowserAnimationsModule, MatTableModule, MatCheckboxModule, HttpClientTestingModule,
+        MatCardModule, MatMenuModule, MatFormFieldModule, MatOptionModule, MatSelectModule, RouterModule],
+      providers: [{provide: DataService, useClass: MockDataService}]
 
     })
       .compileComponents();

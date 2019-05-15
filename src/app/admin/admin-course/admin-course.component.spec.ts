@@ -4,6 +4,9 @@ import {AdminCourseComponent} from './admin-course.component';
 import {MatCardModule, MatCheckboxModule, MatFormFieldModule, MatMenuModule, MatTableModule} from '@angular/material';
 import {RouterModule} from '@angular/router';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {DataService} from '../../data.service';
+import {MockDataService} from '../../mocks/mocks';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('AdminCourseComponent', () => {
   let component: AdminCourseComponent;
@@ -12,7 +15,9 @@ describe('AdminCourseComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [AdminCourseComponent],
-      imports: [HttpClientTestingModule, MatCardModule, MatMenuModule, MatFormFieldModule, MatTableModule, MatCheckboxModule, RouterModule],
+      imports: [HttpClientTestingModule, RouterTestingModule, MatCardModule,
+        MatMenuModule, MatFormFieldModule, MatTableModule, MatCheckboxModule],
+      providers: [{provide: DataService, useClass: MockDataService}]
     })
       .compileComponents();
   }));

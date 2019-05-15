@@ -10,7 +10,9 @@ const httpOptions = {
   })
 };
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class CourseSequenceQuestionService {
 
   constructor(private http: HttpClient) {

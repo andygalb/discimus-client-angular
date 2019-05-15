@@ -21,8 +21,10 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
-      imports: [BrowserAnimationsModule, HttpClientTestingModule, RouterTestingModule, MatListModule, MatCardModule, MatBadgeModule, MatSidenavModule, MatMenuModule, MatFormFieldModule, MatIconModule, MatDividerModule, MatToolbarModule],
-      providers :[{provide: UserService, useClass: MockUserService},
+      imports: [BrowserAnimationsModule, HttpClientTestingModule, RouterTestingModule, MatListModule, MatCardModule,
+        MatBadgeModule, MatSidenavModule, MatMenuModule, MatFormFieldModule,
+        MatIconModule, MatDividerModule, MatToolbarModule],
+      providers : [{provide: UserService, useClass: MockUserService},
         {provide: CourseSequenceQuestionService, useClass: MockCourseSequenceQuestionService},
         {provide: LoaderService, useClass: MockLoaderService}]
     }).compileComponents();

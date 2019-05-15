@@ -12,6 +12,7 @@ import {UserService} from '../../user.service';
 import {HttpClientModule} from '@angular/common/http';
 import {CourseSequenceQuestionService} from '../../course-sequence-question.service';
 import {DataService} from '../../data.service';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 describe('CourseListComponent', () => {
   let component: CourseListComponent;
@@ -25,7 +26,8 @@ describe('CourseListComponent', () => {
       providers: [{provide: UserService, useClass: MockUserService},
         {provide: CourseSequenceQuestionService, useClass: MockCourseSequenceQuestionService},
         {provide: DataService, useClass: MockDataService},
-        {provide: MatDialogRef}]
+        {provide: MatDialogRef}],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
       .compileComponents();
   }));

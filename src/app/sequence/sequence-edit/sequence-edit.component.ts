@@ -8,7 +8,7 @@ import {Question, Sequence} from '../../models/modelInterfaces';
 import {DialogMetaData, QuestionMetaData, RQuestion} from '../../models/modelClasses';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatDialog} from '@angular/material';
-import {QuestionDialogComponent} from '../../question-dialog/question-dialog.component';
+import {QuestionDialogComponent} from '../../dialogs/question-dialog/question-dialog.component';
 
 @Component({
   selector: 'app-sequence',

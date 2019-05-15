@@ -5,9 +5,10 @@ import {MatButtonModule, MatCardModule, MatDialog, MatDialogModule, MatDialogRef
 import {RouterTestingModule} from '@angular/router/testing';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {UserService} from '../../user.service';
-import {MockCourseSequenceQuestionService, MockUserService} from '../../mocks/mocks';
+import {MockCourseSequenceQuestionService, MockUserService, MockDataService} from '../../mocks/mocks';
 import {CourseSequenceQuestionService} from '../../course-sequence-question.service';
 import {ActivatedRoute, convertToParamMap} from '@angular/router';
+import {DataService} from '../../data.service';
 
 describe('CourseSequenceComponent', () => {
   let component: CourseSequenceComponent;
@@ -16,8 +17,10 @@ describe('CourseSequenceComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [CourseSequenceComponent],
-      imports: [HttpClientTestingModule, RouterTestingModule, MatCardModule, MatMenuModule, MatIconModule, RouterTestingModule, MatButtonModule, MatDialogModule],
+      imports: [HttpClientTestingModule, MatCardModule, MatMenuModule, MatIconModule,
+        RouterTestingModule, MatButtonModule, MatDialogModule],
       providers: [{provide: UserService, useClass: MockUserService},
+        {provide: DataService, useClass: MockDataService},
         {provide: CourseSequenceQuestionService, useClass: MockCourseSequenceQuestionService},
         {provide: ActivatedRoute , useValue: {
           parent : {snapshot: {paramMap: convertToParamMap({'id': '123'}) }}

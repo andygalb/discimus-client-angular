@@ -5,8 +5,9 @@ import {MatCardModule, MatIconModule, MatMenuModule, MatTableModule} from '@angu
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {ActivatedRoute} from '@angular/router';
 import {Observable} from 'rxjs';
-import {MockUserService} from '../../mocks/mocks';
+import {MockUserService, MockDataService} from '../../mocks/mocks';
 import {UserService} from '../../user.service';
+import {DataService} from '../../data.service';
 
 describe('CourseStudentsComponent', () => {
   let component: CourseStudentsComponent;
@@ -18,7 +19,8 @@ describe('CourseStudentsComponent', () => {
       imports: [HttpClientTestingModule, MatTableModule, MatCardModule, MatMenuModule, MatIconModule],
       providers: [{provide: ActivatedRoute , useValue: {
         params: {id: 123}}},
-        {provide: UserService , useClass: MockUserService}]
+        {provide: UserService , useClass: MockUserService},
+        {provide: DataService , useClass: MockDataService}]
     })
       .compileComponents();
   }));

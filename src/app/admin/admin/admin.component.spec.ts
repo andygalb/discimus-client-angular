@@ -5,6 +5,8 @@ import {RouterModule} from '@angular/router';
 import {MatToolbarModule} from '@angular/material';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {RouterTestingModule} from '@angular/router/testing';
+import {DataService} from '../../data.service';
+import {MockDataService} from '../../mocks/mocks';
 
 describe('AdminComponent', () => {
   let component: AdminComponent;
@@ -14,6 +16,7 @@ describe('AdminComponent', () => {
     TestBed.configureTestingModule({
       declarations: [AdminComponent],
       imports: [HttpClientTestingModule, RouterTestingModule, MatToolbarModule],
+      providers: [{provide: DataService, useClass: MockDataService}]
     })
       .compileComponents();
   }));

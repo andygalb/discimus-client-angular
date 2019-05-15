@@ -9,6 +9,7 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {Course, News} from '../models/modelInterfaces';
 import {Observable} from 'rxjs';
 import {MockFactory} from './mockFactory';
+import {MessengerService} from '../messenger.service';
 
 export class MockUserService {
 
@@ -35,7 +36,7 @@ export class MockUserService {
 
       this.sequence = new RSequence();
 
-      this.sequence._id= '343333';
+      this.sequence._id = '343333';
       this.sequence.sequenceTitle = 'Test Sequence';
       this.sequence.sequenceDescription = 'Test Sequence';
       this.sequence.questions = ['2222222', '23322222'];
@@ -48,22 +49,26 @@ export class MockUserService {
     }
 
     getCurrentUser() {
-      return this.user;
+      return MockFactory.getMockUser();
     }
 
     getCurrentCourse() {
     return this.course;
   }
 
-    setCurrentSequence(){
+    setCurrentCourse() {
+
+   }
+
+    setCurrentSequence() {
       return this.sequence;
     }
 
-    getCurrentSequence(){
+    getCurrentSequence() {
       return this.sequence;
     }
 
-  getCurrentQuestions(){
+  getCurrentQuestions() {
       const seqArray = [];
       seqArray.push(MockFactory.getMockQuestion());
       seqArray.push(MockFactory.getMockQuestion());
@@ -79,15 +84,15 @@ export class MockUserService {
       });
     }
 
-    getCurrentScoreForCourse(){
+    getCurrentScoreForCourse() {
       return 5;
     }
 
-  hasUserAlreadyAnsweredQuestion(){
+  hasUserAlreadyAnsweredQuestion() {
       return false;
   }
 
-  setCurrentQuestions(){
+  setCurrentQuestions() {
 
   }
 }
@@ -112,7 +117,7 @@ export class MockCourseSequenceQuestionService  {
 
     }
 
-  getAllCourses(){
+  getAllCourses() {
 
     const courseObservable = new Observable((observer) => {
 
@@ -149,7 +154,7 @@ export class MockCourseSequenceQuestionService  {
 
   }
 
- getMultipleSequences(){
+ getMultipleSequences() {
     const seqArray = [];
     seqArray.push(MockFactory.getMockSequence());
    seqArray.push(MockFactory.getMockSequence());
@@ -159,7 +164,7 @@ export class MockCourseSequenceQuestionService  {
    });
  }
 
-  getMultipleQuestions(){
+  getMultipleQuestions() {
     const quesArray = [];
     quesArray.push(MockFactory.getMockQuestion());
     quesArray.push(MockFactory.getMockQuestion());
@@ -177,19 +182,58 @@ export class MockDataService  {
 
   }
 
+  getSequencesForCourse() {
+    return this.getSequences();
+  }
+
+  getUsers() {
+    return new Observable((observer) => {
+
+      const userArray = [];
+      userArray.push(MockFactory.getMockUser());
+      userArray.push(MockFactory.getMockUser());
+      observer.next(userArray);
+      observer.complete();
+    });
+  }
+
+  getUsersForCourse() {
+    return new Observable((observer) => {
+
+      const userArray = [];
+      userArray.push(MockFactory.getMockUser());
+      userArray.push(MockFactory.getMockUser());
+      observer.next(userArray);
+      observer.complete();
+    });
+  }
+
+  getAllDocumentsForCourse() {
+
+    return new Observable((observer) => {
+
+      const documentArray = [];
+      documentArray.push(MockFactory.getMockDocument());
+      documentArray.push(MockFactory.getMockDocument());
+      observer.next(documentArray);
+      observer.complete();
+    });
+
+  }
+
 
   getSequences() {
 
     return new Observable((observer) => {
 
-      let sequence = new RSequence();
+      const sequence = new RSequence();
       sequence._id = 'Test ID';
       sequence.sequenceDescription = 'Example description';
       sequence.sequenceTitle = 'Example title';
-      sequence.questions = ['11111111','111111111'];
+      sequence.questions = ['11111111', '111111111'];
       sequence.creatorID = '3333333';
 
-      let seqArray = [];
+      const seqArray = [];
       seqArray.push(sequence);
       seqArray.push(sequence);
 
@@ -197,14 +241,46 @@ export class MockDataService  {
       observer.next(seqArray);
       observer.complete();
     });
-
   }
 
-  getNews(){
+
+  getQuestions() {
 
     return new Observable((observer) => {
 
-      let news = new RNews();
+      const quesArray = [];
+      quesArray.push(MockFactory.getMockQuestion());
+      quesArray.push(MockFactory.getMockQuestion());
+      observer.next(quesArray);
+      observer.complete();
+    });
+  }
+    getCourse() {
+      return new Observable((observer) => {
+
+        const course = MockFactory.getMockCourse();
+        observer.next(course);
+        observer.complete();
+      });
+    }
+
+  getCourses() {
+    return new Observable((observer) => {
+
+      const courseArray = [];
+      courseArray.push(MockFactory.getMockCourse());
+      courseArray.push(MockFactory.getMockCourse());
+      observer.next(courseArray);
+      observer.complete();
+    });
+  }
+
+
+  getNews() {
+
+    return new Observable((observer) => {
+
+      const news = new RNews();
       news._id = 'Test ID';
       news.content = 'Example content';
       news.courseID = 'Test Course ID';
@@ -218,7 +294,65 @@ export class MockDataService  {
       observer.complete();
     });
   }
+  getEnrolementsForUser() {
+    const enroleArray = [];
+    enroleArray.push(MockFactory.getMockEnrolement());
+    enroleArray.push(MockFactory.getMockEnrolement());
+    return new Observable((observer) => {
+      observer.next(enroleArray);
+      observer.complete();
+    });
+  }
+
 }
+
 export class MockLoaderService extends LoaderService {
+
+}
+
+export class MockMessengerService {
+
+  getMessages() {
+    const messArray = [];
+    messArray.push(MockFactory.getMockMessage());
+    messArray.push(MockFactory.getMockMessage());
+    return new Observable((observer) => {
+      observer.next(messArray);
+      observer.complete();
+    });
+  }
+
+  getReceivedMessages() {
+    const messArray = [];
+    messArray.push(MockFactory.getMockMessage());
+    messArray.push(MockFactory.getMockMessage());
+    return new Observable((observer) => {
+      observer.next(messArray);
+      observer.complete();
+    });
+  }
+
+  checkForNewMessages() {
+    const messArray = [];
+    messArray.push(MockFactory.getMockMessage());
+    messArray.push(MockFactory.getMockMessage());
+    return new Observable((observer) => {
+      observer.next(messArray);
+      observer.complete();
+    });
+  }
+
+  markMessageAsRead() {}
+
+  getSystemUsers() {
+    const userArray = [];
+    userArray.push(MockFactory.getMockUser());
+    userArray.push(MockFactory.getMockUser());
+    return new Observable((observer) => {
+      observer.next(userArray);
+      observer.complete();
+    });
+
+  }
 
 }

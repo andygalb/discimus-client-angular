@@ -14,7 +14,8 @@ describe('SiteNewsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [SiteNewsComponent],
-      imports: [HttpClientTestingModule, BrowserAnimationsModule, MatCardModule, MatMenuModule, MatFormFieldModule, MatIconModule, MatExpansionModule],
+      imports: [HttpClientTestingModule, BrowserAnimationsModule, MatCardModule, MatMenuModule,
+        MatFormFieldModule, MatIconModule, MatExpansionModule],
       providers: [{provide: DataService, useClass: MockDataService}]
     })
       .compileComponents();
