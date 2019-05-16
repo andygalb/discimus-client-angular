@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DataService} from '../../data.service';
 import {MatTableDataSource} from '@angular/material';
-import {Course} from '../../models/modelInterfaces';
+import {ICourse} from '../../models/modelInterfaces';
 
 @Component({
   selector: 'app-admin-course',
@@ -10,7 +10,7 @@ import {Course} from '../../models/modelInterfaces';
 })
 export class AdminCourseComponent implements OnInit {
 
-  courses: Course[];
+  courses: ICourse[];
 
   dataSource = new MatTableDataSource();
   displayedColumns = ['selectCourse', 'courseTitle', 'teacher', 'creationDate'];

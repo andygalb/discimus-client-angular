@@ -4,7 +4,7 @@ import {DataService} from '../../data.service';
 import {MatTableDataSource, PageEvent} from '@angular/material';
 import {DataSource} from '@angular/cdk/table';
 import {RouterModule} from '@angular/router';
-import {Sequence} from '../../models/modelInterfaces';
+import {ISequence} from '../../models/modelInterfaces';
 
 @Component({
   selector: 'app-admin',
@@ -13,7 +13,7 @@ import {Sequence} from '../../models/modelInterfaces';
 })
 export class AdminComponent implements OnInit {
 
-  sequences: Sequence[];
+  sequences: ISequence[];
 
   constructor(private dataService: DataService) {
   }

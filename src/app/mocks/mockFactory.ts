@@ -1,12 +1,12 @@
 
 
-import {MEnrolement, RCourse, RDocument, RMessage, RQuestion, RSequence, RUser} from '../models/modelClasses';
+import {Enrolement, Course, CourseDocument, Message, Question, Sequence, User} from '../models/modelClasses';
 
 export class MockFactory {
 
   static getMockCourse() {
 
-    const course = new RCourse();
+    const course = new Course();
 
     course._id = 'Test ID';
     course.courseTitle = 'Test Course';
@@ -19,21 +19,21 @@ export class MockFactory {
 
   static getMockSequence() {
 
-    const sequence = new RSequence();
+    const sequence = new Sequence();
 
     sequence._id = 'Test ID';
-    sequence.sequenceTitle = 'Test Sequence Title';
-    sequence.sequenceDescription = 'Test Sequence Description';
-    sequence.questions = ['Test Question', 'Test Question'];
+    sequence.sequenceTitle = 'Test ISequence Title';
+    sequence.sequenceDescription = 'Test ISequence Description';
+    sequence.questions = ['Test IQuestion', 'Test IQuestion'];
     return sequence;
   }
 
   static getMockQuestion() {
 
-    const question = new RQuestion();
+    const question = new Question();
 
     question._id = 'Test ID';
-    question.title = 'Test Question';
+    question.title = 'Test IQuestion';
     question.text = 'Test Text';
     question.type = 'Test type';
     question.questionAnswer = {text: 'answer', javascript: '', csharp: ''};
@@ -43,7 +43,7 @@ export class MockFactory {
 
   static getMockMessage() {
 
-    const message = new RMessage();
+    const message = new Message();
 
     message._id = 'Test ID';
     message.title = 'Test message';
@@ -60,7 +60,7 @@ export class MockFactory {
 
   static getMockEnrolement() {
 
-    const enrolement = new MEnrolement();
+    const enrolement = new Enrolement();
 
     enrolement._id = 'Test ID';
     enrolement.courseID = 'Test Course ID';
@@ -72,7 +72,7 @@ export class MockFactory {
 
   static getMockUser() {
 
-    const user = new RUser();
+    const user = new User();
 
     user._id = 'Test ID';
     user.results = [{
@@ -81,10 +81,10 @@ export class MockFactory {
       dateTime: Date.now(),
       answer: 'Test Answer',
       courseID: 'Test course ID',
-      sequenceID: 'Test Sequence ID',
+      sequenceID: 'Test ISequence ID',
       questionID: 'Test sequence ID',
       courseTitle: 'Test Course Title',
-      sequenceTitle: 'Test Sequence Title',
+      sequenceTitle: 'Test ISequence Title',
       questionTitle: 'Test question title',
     }
     ];
@@ -106,7 +106,7 @@ export class MockFactory {
 
   static getMockDocument() {
 
-    const doc = new RDocument();
+    const doc = new CourseDocument();
 
     doc._id = 'Test ID';
     doc.course = 'Test Course';

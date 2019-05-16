@@ -1,10 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {CourseSequenceQuestionService} from './course-sequence-question.service';
-import {FormBuilder, Validators} from '@angular/forms';
-import {ActivatedRoute} from '@angular/router';
 import {UserService} from './user.service';
 import {LoaderService} from './interceptor/httpconfig.interceptor.';
-import {Course} from './models/modelInterfaces';
 import {MessengerService} from './messenger.service';
 
 @Component({

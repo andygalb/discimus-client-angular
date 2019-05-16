@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Sequence, User} from '../../models/modelInterfaces';
+import {ISequence, IUser} from '../../models/modelInterfaces';
 import {MatDialog, MatTableDataSource} from '@angular/material';
 import {DataService} from '../../data.service';
 import {UserService} from '../../user.service';
-import {RSequence} from '../../models/modelClasses';
+import {Sequence} from '../../models/modelClasses';
 import {CourseDialogComponent} from '../../dialogs/course-dialog/course-dialog.component';
 import {CourseSequenceQuestionService} from '../../course-sequence-question.service';
 import {SequenceDialogComponent} from '../../dialogs/sequence-dialog/sequence-dialog.component';
@@ -16,9 +16,9 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class CourseSequenceComponent implements OnInit {
 
-  sequences: Sequence[];
+  sequences: ISequence[];
   @Input() style: string;
-  newSequence: Sequence;
+  newSequence: ISequence;
   dataSource = new MatTableDataSource();
   displayedColumns = ['selectSequence', 'sequenceTitle', 'created_at'];
 
@@ -70,7 +70,7 @@ export class CourseSequenceComponent implements OnInit {
 
   openSequenceDialog(): void {
 
-    this.newSequence = new RSequence();
+    this.newSequence = new Sequence();
     const dialogRef = this.dialog.open(SequenceDialogComponent, {
 
       data: {sequence: this.newSequence}
@@ -87,7 +87,7 @@ export class CourseSequenceComponent implements OnInit {
   // This function is needed to separate "real" questions from questions that only consist of text and require no answer.
   answeredQuestionCounter(sequenceID: string) {
     let count = 0;
-    const user: User = this.userService.getCurrentUser();
+    const user: IUser = this.userService.getCurrentUser();
 
     for (let i = 0; i < user.results.length; i++) {
       if (user.results[i].sequenceID === sequenceID) {

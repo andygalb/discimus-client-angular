@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {RMessage} from '../../models/modelClasses';
+import {Message} from '../../models/modelClasses';
 import {MatTableDataSource} from '@angular/material';
 import {UserService} from '../../user.service';
 import {MessengerService} from '../../messenger.service';

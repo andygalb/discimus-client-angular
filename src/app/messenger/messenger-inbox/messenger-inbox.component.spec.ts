@@ -14,7 +14,7 @@ import {
   MatTableModule
 } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {RMessage} from '../../models/modelClasses';
+import {Message} from '../../models/modelClasses';
 import {UserService} from '../../user.service';
 import {MockMessengerService, MockUserService} from '../../mocks/mocks';
 import {MessengerService} from '../../messenger.service';
@@ -32,8 +32,8 @@ describe('MessengerInboxComponent', () => {
       providers: [{ provide: MatDialogRef, useValue: {}},
         {
           provide: MAT_DIALOG_DATA, useValue: {
-          message: new RMessage(),
-          dialogMetaData: {titleText: ' Message', okButtonText: 'Send'}
+          message: new Message(),
+          dialogMetaData: {titleText: ' IMessage', okButtonText: 'Send'}
         }
         },
         {provide: UserService, useClass: MockUserService},

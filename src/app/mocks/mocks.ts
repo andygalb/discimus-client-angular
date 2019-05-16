@@ -3,29 +3,29 @@ import {CourseSequenceQuestionService} from '../course-sequence-question.service
 import {UserService} from '../user.service';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
-import {MEnrolement, RCourse, RNews, RQuestion, RSequence, RUser} from '../models/modelClasses';
+import {Enrolement, Course, News, Question, Sequence, User} from '../models/modelClasses';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {RouterTestingModule} from '@angular/router/testing';
-import {Course, News} from '../models/modelInterfaces';
+import {ICourse, INews} from '../models/modelInterfaces';
 import {Observable} from 'rxjs';
 import {MockFactory} from './mockFactory';
 import {MessengerService} from '../messenger.service';
 
 export class MockUserService {
 
-     user: RUser;
-     course: RCourse;
-     sequence: RSequence;
-     enrolement: MEnrolement;
+     user: User;
+     course: Course;
+     sequence: Sequence;
+     enrolement: Enrolement;
 
 
     constructor() {
-     this.user = new RUser();
+     this.user = new User();
      this.user.local = {firstName: 'Test', lastName: 'McTesty', username: 'tester', email: 'test@test.com',
           password: 'test', admin: false, userType: 'student',
           organisation: 'BigSchool' , location: 'Sweden', meta: { age: 45 , website: 'https://test.com' }};
 
-     this.course = new RCourse();
+     this.course = new Course();
 
       this.course._id = '68768678';
       this.course.courseTitle = 'TestCourse';
@@ -34,18 +34,18 @@ export class MockUserService {
       this.course.courseSummary = '{"sequences" : "" }';
       this.course.sequences = ['465444', '456654'];
 
-      this.sequence = new RSequence();
+      this.sequence = new Sequence();
 
       this.sequence._id = '343333';
-      this.sequence.sequenceTitle = 'Test Sequence';
-      this.sequence.sequenceDescription = 'Test Sequence';
+      this.sequence.sequenceTitle = 'Test ISequence';
+      this.sequence.sequenceDescription = 'Test ISequence';
       this.sequence.questions = ['2222222', '23322222'];
 
-    this.enrolement = new MEnrolement();
+    this.enrolement = new Enrolement();
     this.enrolement._id = 'EnrolID';
     this.enrolement.courseID = 'Test Course ID';
     this.enrolement.role = ' student';
-    this.enrolement.userID = 'Test User ID';
+    this.enrolement.userID = 'Test IUser ID';
     }
 
     getCurrentUser() {
@@ -98,15 +98,15 @@ export class MockUserService {
 }
 
 export class MockCourseSequenceQuestionService  {
-  course: RCourse;
-  sequence: RSequence;
-  question: RQuestion;
+  course: Course;
+  sequence: Sequence;
+  question: Question;
 
   constructor() {
-    this.course = new RCourse();
+    this.course = new Course();
 
-    this.sequence = new RSequence();
-    this.question = new RQuestion();
+    this.sequence = new Sequence();
+    this.question = new Question();
 
     this.course._id = '68768678';
     this.course.courseTitle = 'TestCourse';
@@ -226,7 +226,7 @@ export class MockDataService  {
 
     return new Observable((observer) => {
 
-      const sequence = new RSequence();
+      const sequence = new Sequence();
       sequence._id = 'Test ID';
       sequence.sequenceDescription = 'Example description';
       sequence.sequenceTitle = 'Example title';
@@ -280,7 +280,7 @@ export class MockDataService  {
 
     return new Observable((observer) => {
 
-      const news = new RNews();
+      const news = new News();
       news._id = 'Test ID';
       news.content = 'Example content';
       news.courseID = 'Test Course ID';

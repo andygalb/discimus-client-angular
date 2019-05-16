@@ -12,7 +12,7 @@ import {
 } from '@angular/material';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {RCourse} from '../../models/modelClasses';
+import {Course} from '../../models/modelClasses';
 import {MockFactory} from '../../mocks/mockFactory';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 

@@ -2,7 +2,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {MessageViewDialogComponent} from './message-view-dialog.component';
 import {MAT_DIALOG_DATA, MatCardModule, MatDialogModule, MatDialogRef, MatIconModule} from '@angular/material';
-import {RMessage, RNews} from '../../models/modelClasses';
+import {Message, News} from '../../models/modelClasses';
 import {MockFactory} from '../../mocks/mockFactory';
 
 describe('MessageViewDialogComponent', () => {

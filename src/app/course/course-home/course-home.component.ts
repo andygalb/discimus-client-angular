@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {DataService} from '../../data.service';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
-import {Course, News} from '../../models/modelInterfaces';
+import {ICourse, INews} from '../../models/modelInterfaces';
 import {UserService} from '../../user.service';
 import config from '../../config.json';
 import {CourseDialogComponent} from '../../dialogs/course-dialog/course-dialog.component';
@@ -17,9 +17,9 @@ export class CourseHomeComponent implements OnInit {
 
   url = config.serverAddress;
   id: String;
-  course: Course;
+  course: ICourse;
 
-  courseCopy: Course;
+  courseCopy: ICourse;
 
   navigationSubscription;
 

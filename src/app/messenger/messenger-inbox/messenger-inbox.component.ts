@@ -1,8 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Message} from '../../models/modelInterfaces';
+import {IMessage} from '../../models/modelInterfaces';
 import {UserService} from '../../user.service';
 import {MessengerService} from '../../messenger.service';
-import {RMessage} from '../../models/modelClasses';
+import {Message} from '../../models/modelClasses';
 import {MatDialog, MatSort, MatSortable} from '@angular/material';
 import {MatTableDataSource} from '@angular/material';
 import {MessageViewDialogComponent} from '../../dialogs/message-view-dialog/message-view-dialog.component';
@@ -14,7 +14,7 @@ import {MessageViewDialogComponent} from '../../dialogs/message-view-dialog/mess
 })
 export class MessengerInboxComponent implements OnInit {
 
-  messages: RMessage[];
+  messages: Message[];
 
   dataSource = new MatTableDataSource();
   displayedColumns = ['read', 'fromName', 'title', 'created_at'];
@@ -43,13 +43,13 @@ export class MessengerInboxComponent implements OnInit {
 
   }
 
-  viewMessage(messageToView: Message) {
+  viewMessage(messageToView: IMessage) {
 
     const dialogRef = this.dialog.open(MessageViewDialogComponent, {
       width: '50%',
       data: {
         message: messageToView,
-        dialogMetaData: {titleText: ' Message', okButtonText: 'Send'}
+        dialogMetaData: {titleText: ' IMessage', okButtonText: 'Send'}
       }
     });
 

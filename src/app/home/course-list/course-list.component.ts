@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../user.service';
-import {Course} from '../../models/modelInterfaces';
-import {MEnrolement, RCourse} from '../../models/modelClasses';
+import {ICourse} from '../../models/modelInterfaces';
+import {Enrolement, Course} from '../../models/modelClasses';
 import {CourseDialogComponent} from '../../dialogs/course-dialog/course-dialog.component';
 import {MatDialog} from '@angular/material';
 import {CourseSequenceQuestionService} from '../../course-sequence-question.service';
@@ -14,7 +14,7 @@ import {DataService} from '../../data.service';
 })
 export class CourseListComponent implements OnInit {
 
-  newCourse: Course;
+  newCourse: ICourse;
   response: String;
 
   constructor(public userService: UserService, private dataService: DataService,
@@ -71,7 +71,7 @@ export class CourseListComponent implements OnInit {
 
   openCourseDialog(): void {
 
-    this.newCourse = new RCourse();
+    this.newCourse = new Course();
     const dialogRef = this.dialog.open(CourseDialogComponent, {
 
       data: {course: this.newCourse, dialogMetaData: {titleText: 'Add new course', okButtonText: 'Save'}},
@@ -98,7 +98,7 @@ export class CourseListComponent implements OnInit {
 
   unenroleUserFromCourse(courseID) {
 
-    let enrolement = new MEnrolement();
+    let enrolement = new Enrolement();
 
     for (const enr of this.userService.enrolements) {
       if (enr.courseID === courseID) {

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Course, News, Question, QuestionResponse, Sequence} from './models/modelInterfaces';
+import {ICourse, INews, IQuestion, IQuestionResponse, ISequence} from './models/modelInterfaces';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import config from './config.json';
 
@@ -18,31 +18,31 @@ export class CourseSequenceQuestionService {
   constructor(private http: HttpClient) {
   }
 
-  currentCourse: Course;
-  currentSequence: Sequence;
-  currentQuestion: Question;
+  currentCourse: ICourse;
+  currentSequence: ISequence;
+  currentQuestion: IQuestion;
 
   getAllQuestions() {
-    return this.http.get<Question[]>(config.serverAddress + '/api/question/all');
+    return this.http.get<IQuestion[]>(config.serverAddress + '/api/question/all');
   }
 
   getAllCourses() {
-    return this.http.get<Course[]>(config.serverAddress + '/api/course/all');
+    return this.http.get<ICourse[]>(config.serverAddress + '/api/course/all');
   }
 
   getCourseByID(id) {
-    return this.http.get<Course>(config.serverAddress + '/api/course/' + id);
+    return this.http.get<ICourse>(config.serverAddress + '/api/course/' + id);
   }
 
-  addCourse(course: Course) {
+  addCourse(course: ICourse) {
     return this.http.post<String>(config.serverAddress + '/api/course', JSON.stringify(course), httpOptions);
   }
 
-  updateCourse(course: Course) {
+  updateCourse(course: ICourse) {
     return this.http.put<String>(config.serverAddress + '/api/course/' + course._id, JSON.stringify(course), httpOptions);
   }
 
-  deleteCourse(course: Course) {
+  deleteCourse(course: ICourse) {
     return this.http.delete<String>(config.serverAddress + '/api/course/' + course._id, httpOptions);
   }
 
@@ -50,15 +50,15 @@ export class CourseSequenceQuestionService {
     return this.http.delete<string>(config.serverAddress + '/api/course/' + courseID, httpOptions);
   }
 
-  addNews(news: News) {
+  addNews(news: INews) {
     return this.http.post<String>(config.serverAddress + '/api/news', JSON.stringify(news), httpOptions);
   }
 
-  deleteSequence(sequence: Sequence) {
+  deleteSequence(sequence: ISequence) {
     return this.http.delete<String>(config.serverAddress + '/api/sequence/' + sequence._id, httpOptions);
   }
 
-  addSequence(sequence: Sequence) {
+  addSequence(sequence: ISequence) {
     return this.http.post<JSON>(config.serverAddress + '/api/sequence', JSON.stringify(sequence), httpOptions);
   }
 
@@ -70,7 +70,7 @@ export class CourseSequenceQuestionService {
     return this.http.post<JSON>(config.serverAddress + '/api/course/sequence', JSON.stringify(content), httpOptions);
   }
 
-  updateSequence(sequence: Sequence) {
+  updateSequence(sequence: ISequence) {
     return this.http.put<string>(config.serverAddress + '/api/sequence/' + sequence._id, JSON.stringify(sequence), httpOptions);
   }
 
@@ -79,12 +79,12 @@ export class CourseSequenceQuestionService {
   }
 
   getSequenceByID(id: number) {
-    return this.http.get<Sequence>(config.serverAddress + '/api/sequence/' + id, httpOptions);
+    return this.http.get<ISequence>(config.serverAddress + '/api/sequence/' + id, httpOptions);
   }
 
   getMultipleSequences(sequences: String[]) {
     const objectToSend = {sequences: sequences};
-    return this.http.post<Sequence[]>(config.serverAddress + '/api/multiple/sequences', JSON.stringify(objectToSend), httpOptions);
+    return this.http.post<ISequence[]>(config.serverAddress + '/api/multiple/sequences', JSON.stringify(objectToSend), httpOptions);
   }
 
   deleteQuestion(id: String) {
@@ -92,34 +92,34 @@ export class CourseSequenceQuestionService {
   }
 
   getQuestionByID(id: string) {
-    return this.http.get<Question>(config.serverAddress + '/api/question/' + id, httpOptions);
+    return this.http.get<IQuestion>(config.serverAddress + '/api/question/' + id, httpOptions);
   }
 
-  addQuestion(question: Question) {
+  addQuestion(question: IQuestion) {
     return this.http.post<string>(config.serverAddress + '/api/question', JSON.stringify(question), httpOptions);
   }
 
-  updateQuestion(question: Question) {
+  updateQuestion(question: IQuestion) {
     return this.http.put<string>(config.serverAddress + '/api/question/' + question._id, JSON.stringify(question), httpOptions);
   }
 
   getMultipleQuestions(questions: string[]) {
 
     const objectToSend = {questions: questions};
-    return this.http.post<Question[]>(config.serverAddress + '/api/multiple/questions', JSON.stringify(objectToSend), httpOptions);
+    return this.http.post<IQuestion[]>(config.serverAddress + '/api/multiple/questions', JSON.stringify(objectToSend), httpOptions);
   }
 
-  isAnswerCorrect(question: Question, givenAnswer: string) {
+  isAnswerCorrect(question: IQuestion, givenAnswer: string) {
     return this.submitAnswerToServer(question, givenAnswer);
   }
 
-  submitAnswerToServer(question: Question, submittedAnswer: string) {
+  submitAnswerToServer(question: IQuestion, submittedAnswer: string) {
     console.log('Submitting question to server');
     const objectToSend = {
       question: question,
       submittedAnswer: submittedAnswer
     };
-    return this.http.post<QuestionResponse>(config.serverAddress + '/api/test/submit', JSON.stringify(objectToSend), httpOptions);
+    return this.http.post<IQuestionResponse>(config.serverAddress + '/api/test/submit', JSON.stringify(objectToSend), httpOptions);
   }
 
 

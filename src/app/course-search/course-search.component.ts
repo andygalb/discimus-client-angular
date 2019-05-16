@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from '../user.service';
 import {DataService} from '../data.service';
 import {CourseSequenceQuestionService} from '../course-sequence-question.service';
-import {Course} from '../models/modelInterfaces';
+import {ICourse} from '../models/modelInterfaces';
 
 @Component({
   selector: 'app-course-search',
@@ -15,7 +15,7 @@ export class CourseSearchComponent implements OnInit {
   userEnrolements = [];
   ready = false;
 
-  selectedCourse: Course;
+  selectedCourse: ICourse;
 
   constructor(private userService: UserService, private dataService: DataService,
               private courseSequenceQuestionService: CourseSequenceQuestionService) {

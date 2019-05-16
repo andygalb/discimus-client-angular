@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {Question} from '../../models/modelInterfaces';
-import {DialogMetaData, QuestionMetaData, RQuestion} from '../../models/modelClasses';
+import {IQuestion} from '../../models/modelInterfaces';
+import {DialogMetaData, QuestionMetaData, Question} from '../../models/modelClasses';
 import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
@@ -22,7 +22,7 @@ export class QuestionDialogComponent implements OnInit {
 
   multipleChoiceChoices = ['bananas', 'apples', 'pears'];
 
-  newQuestion: RQuestion;
+  newQuestion: Question;
   metadata: QuestionMetaData;
   dialogMetaData: DialogMetaData;
   htmlContent: String;

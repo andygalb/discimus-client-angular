@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material';
 import {UserService} from '../user.service';
-import {User} from '../models/modelInterfaces';
-import {RUser} from '../models/modelClasses';
+import {IUser} from '../models/modelInterfaces';
+import {User} from '../models/modelClasses';
 
 @Component({
   selector: 'app-login',
@@ -17,8 +17,8 @@ export class LoginComponent implements OnInit {
 
   loginFeedback: string;
 
-  user: User;
-  tempUser: User;
+  user: IUser;
+  tempUser: IUser;
 
   constructor(private router: Router, private userService: UserService) {
   }
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.tempUser = new RUser();
+    this.tempUser = new User();
 
     this.tempUser.local = {
       userType: '',

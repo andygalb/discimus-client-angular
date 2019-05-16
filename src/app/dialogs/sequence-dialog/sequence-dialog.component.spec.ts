@@ -18,7 +18,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {AngularEditorModule} from '@kolkov/angular-editor';
-import {RSequence} from '../../models/modelClasses';
+import {Sequence} from '../../models/modelClasses';
 import {MockUserService} from '../../mocks/mocks';
 import {UserService} from '../../user.service';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';

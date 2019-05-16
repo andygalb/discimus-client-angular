@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
-import {Course, Enrolement, Question, Result, Sequence, User} from './models/modelInterfaces';
+import {ICourse, IEnrolement, IQuestion, IResult, ISequence, IUser} from './models/modelInterfaces';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {RUser} from './models/modelClasses';
+import {User} from './models/modelClasses';
 import config from './config.json';
 import {CourseSequenceQuestionService} from './course-sequence-question.service';
 
@@ -15,14 +15,14 @@ const httpOptions = {
 @Injectable()
 export class UserService {
 
-  user: RUser = new RUser();
+  user: User = new User();
   isUserLoggedIn = false;
-  courses: Course[];
-  enrolements: Enrolement[];
+  courses: ICourse[];
+  enrolements: IEnrolement[];
   router: Router;
-  currentCourse: Course;
-  currentSequence: Sequence;
-  currentQuestion: Question;
+  currentCourse: ICourse;
+  currentSequence: ISequence;
+  currentQuestion: IQuestion;
   currentCourseID: string;
   currentCourseTitle: string;
   currentSequenceID: string;
@@ -36,16 +36,16 @@ export class UserService {
     this.courses = [];
   }
 
-  loginUser(user: User) {
+  loginUser(user: IUser) {
     console.log(user);
     return this.http.post(this.serverAddress + '/api/auth/local/', {'username': user.local.username, 'password': user.local.password});
   }
 
-  initiateUser(user: User) {
+  initiateUser(user: IUser) {
     this.user = user;
   }
 
-  setCurrentCourse(course: Course) {
+  setCurrentCourse(course: ICourse) {
     console.log('Current course was just set');
     console.log(course);
     this.currentCourse = course;
@@ -71,7 +71,7 @@ export class UserService {
     return sequence;
   }
 
-  setCurrentQuestions(questions: Question[]) {
+  setCurrentQuestions(questions: IQuestion[]) {
     localStorage.setItem('currentQuestions', JSON.stringify(questions));
   }
 
@@ -82,7 +82,7 @@ export class UserService {
 
 
   getEnrolementsForUser() {
-    this.http.get<Enrolement[]>(config.serverAddress + '/api/enrolement/user/' + this.getCurrentUser()._id).subscribe((enrolements) => {
+    this.http.get<IEnrolement[]>(config.serverAddress + '/api/enrolement/user/' + this.getCurrentUser()._id).subscribe((enrolements) => {
         this.enrolements = enrolements;
         this.getCoursesForUser();
       },
@@ -128,15 +128,15 @@ export class UserService {
     });
   }
 
-  getCurrentUser(): User {
+  getCurrentUser(): IUser {
     return this.user;
   }
 
-  addCorrectAnswer(question: Question, answer: string): any {
+  addCorrectAnswer(question: IQuestion, answer: string): any {
 
     const course = this.getCurrentCourse();
     const sequence = this.getCurrentSequence();
-    const result: Result = new Result;
+    const result: IResult = new IResult;
     result.questionID = question._id;
     result.questionTitle = question.title;
     result.type = question.type;

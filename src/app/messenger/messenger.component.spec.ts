@@ -18,7 +18,7 @@ import {MessengerSentComponent} from './messenger-sent/messenger-sent.component'
 import {MessengerService} from '../messenger.service';
 import {MockMessengerService, MockUserService} from '../mocks/mocks';
 import {UserService} from '../user.service';
-import {RMessage} from '../models/modelClasses';
+import {Message} from '../models/modelClasses';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 describe('MessengerComponent', () => {
@@ -34,8 +34,8 @@ describe('MessengerComponent', () => {
         {provide: UserService, useClass: MockUserService},
         { provide: MatDialogRef, useValue: {}},
         { provide: MAT_DIALOG_DATA, useValue: {
-          message: new RMessage(),
-          dialogMetaData: {titleText: ' Create Message', okButtonText: 'Send'}
+          message: new Message(),
+          dialogMetaData: {titleText: ' Create IMessage', okButtonText: 'Send'}
         } }]
     })
       .compileComponents();

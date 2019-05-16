@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MatTableDataSource} from '@angular/material';
 import {DataService} from '../../data.service';
-import {Question} from '../../models/modelInterfaces';
+import {IQuestion} from '../../models/modelInterfaces';
 
 @Component({
   selector: 'app-admin-question',
@@ -10,7 +10,7 @@ import {Question} from '../../models/modelInterfaces';
 })
 export class AdminQuestionComponent implements OnInit {
 
-  questions: Question[];
+  questions: IQuestion[];
 
   dataSource = new MatTableDataSource();
   displayedColumns = ['firstName', 'lastName', 'userName', 'admin', 'userType'];

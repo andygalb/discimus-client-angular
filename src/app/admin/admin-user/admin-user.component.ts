@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MatTableDataSource, PageEvent} from '@angular/material';
 import {DataService} from '../../data.service';
-import {User} from '../../models/modelInterfaces';
+import {IUser} from '../../models/modelInterfaces';
 
 @Component({
   selector: 'app-admin-user',
@@ -10,8 +10,8 @@ import {User} from '../../models/modelInterfaces';
 })
 export class AdminUserComponent implements OnInit {
 
-  users: User[];
-  selected: User[] = [];
+  users: IUser[];
+  selected: IUser[] = [];
 
   actions = ['delete'];
   length = 100;

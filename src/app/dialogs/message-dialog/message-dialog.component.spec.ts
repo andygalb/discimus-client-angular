@@ -8,7 +8,7 @@ import {
 } from '@angular/material';
 import {FormsModule} from '@angular/forms';
 import {AngularEditorModule} from '@kolkov/angular-editor';
-import {RMessage} from '../../models/modelClasses';
+import {Message} from '../../models/modelClasses';
 import {MessengerService} from '../../messenger.service';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {MockMessengerService} from '../../mocks/mocks';
@@ -29,8 +29,8 @@ describe('MessageDialogComponent', () => {
         { provide: MatDialogRef},
         {
           provide: MAT_DIALOG_DATA, useValue: {
-          message: new RMessage(),
-          dialogMetaData: {titleText: ' Message', okButtonText: 'Send'}
+          message: new Message(),
+          dialogMetaData: {titleText: ' IMessage', okButtonText: 'Send'}
           }
         }]
     })

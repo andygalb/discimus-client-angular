@@ -3,9 +3,9 @@ import {ActivatedRoute} from '@angular/router';
 import {FormBuilder, Validators} from '@angular/forms';
 import {FormGroup, FormControl} from '@angular/forms';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {Course, Sequence} from '../../models/modelInterfaces';
+import {ICourse, ISequence} from '../../models/modelInterfaces';
 import {CourseSequenceQuestionService} from '../../course-sequence-question.service';
-import {RCourse, RSequence} from '../../models/modelClasses';
+import {Course, Sequence} from '../../models/modelClasses';
 
 @Component({
   selector: 'app-course',
@@ -18,11 +18,11 @@ export class CourseEditComponent implements OnInit {
   title = 'LTC';
   courseID: number;
   id: string;
-  sequencesToShow: Sequence[];
-  selectedSequence: Sequence;
-  newSequence: Sequence;
+  sequencesToShow: ISequence[];
+  selectedSequence: ISequence;
+  newSequence: ISequence;
   newSequenceID: String;
-  selectedCourse: RCourse;
+  selectedCourse: Course;
   response: String;
 
 
@@ -57,11 +57,11 @@ export class CourseEditComponent implements OnInit {
   }
 
   createNewSequence(): void {
-    this.newSequence = new RSequence();
+    this.newSequence = new Sequence();
   }
 
   // After a sequence is successfully created it has to be added to the course.
-  submitNewSequence(sequence: Sequence): void {
+  submitNewSequence(sequence: ISequence): void {
 
     this.courseSequenceQuestionService.addSequence(this.newSequence).subscribe(
       data => {
@@ -97,7 +97,7 @@ export class CourseEditComponent implements OnInit {
     );
   }
 
-  onSelectSequence(sequence: Sequence): void {
+  onSelectSequence(sequence: ISequence): void {
     this.selectedSequence = sequence;
   }
 
@@ -115,7 +115,7 @@ export class CourseEditComponent implements OnInit {
       });
   }
 
-  onDelete(sequence: Sequence): void {
+  onDelete(sequence: ISequence): void {
     this.courseSequenceQuestionService.deleteSequence(sequence).subscribe(
       data => this.response = data,
       err => {

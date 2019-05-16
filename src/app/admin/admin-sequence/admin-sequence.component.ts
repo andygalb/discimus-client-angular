@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {DataService} from '../../data.service';
-import {Sequence} from '../../models/modelInterfaces';
+import {ISequence} from '../../models/modelInterfaces';
 import {MatTableDataSource} from '@angular/material';
 import {UserService} from '../../user.service';
 
@@ -11,7 +11,7 @@ import {UserService} from '../../user.service';
 })
 export class AdminSequenceComponent implements OnInit {
 
-  sequences: Sequence[];
+  sequences: ISequence[];
 
   actions = ['Delete'];
   dataSource = new MatTableDataSource();

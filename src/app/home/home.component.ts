@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../user.service';
 import {DataService} from '../data.service';
-import {News, User} from '../models/modelInterfaces';
+import {INews, IUser} from '../models/modelInterfaces';
 
 @Component({
   selector: 'app-home',

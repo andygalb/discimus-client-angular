@@ -22,7 +22,7 @@ import {CourseSequenceQuestionService} from '../../course-sequence-question.serv
 import {DataService} from '../../data.service';
 import {ActivatedRoute, convertToParamMap} from '@angular/router';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {RNews} from '../../models/modelClasses';
+import {News} from '../../models/modelClasses';
 import {RouterTestingModule} from '@angular/router/testing';
 
 describe('CourseHomeComponent', () => {
@@ -41,7 +41,7 @@ describe('CourseHomeComponent', () => {
         {provide: ActivatedRoute, useValue: {parent: {
               snapshot: {paramMap: convertToParamMap({'id': '123'}) }}}},
         { provide: MatDialogRef, useValue: {}},
-        { provide: MAT_DIALOG_DATA, useValue: {news: new RNews(), dialogMetaData: { titleText: 'Test Title Text'} } }
+        { provide: MAT_DIALOG_DATA, useValue: {news: new News(), dialogMetaData: { titleText: 'Test Title Text'} } }
       ]
     })
       .compileComponents();

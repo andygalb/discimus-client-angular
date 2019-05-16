@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {AngularEditorConfig} from '@kolkov/angular-editor';
-import {DialogMetaData, RNews} from '../../models/modelClasses';
+import {DialogMetaData, News} from '../../models/modelClasses';
 
 @Component({
   selector: 'app-news-dialog',
@@ -10,7 +10,7 @@ import {DialogMetaData, RNews} from '../../models/modelClasses';
 })
 export class NewsDialogComponent implements OnInit {
 
-  news: RNews;
+  news: News;
   dialogMetaData: DialogMetaData;
 
   editorConfig: AngularEditorConfig = {
@@ -18,7 +18,7 @@ export class NewsDialogComponent implements OnInit {
     spellcheck: true,
     height: '15rem',
     minHeight: '5rem',
-    placeholder: 'News here...',
+    placeholder: 'INews here...',
   };
 
   constructor(public dialogRef: MatDialogRef<NewsDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {

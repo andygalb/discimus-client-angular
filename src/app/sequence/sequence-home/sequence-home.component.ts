@@ -4,8 +4,8 @@ import {FormBuilder, Validators} from '@angular/forms';
 import {FormGroup} from '@angular/forms';
 import {CourseSequenceQuestionService} from '../../course-sequence-question.service';
 import {UserService} from '../../user.service';
-import {Question, QuestionResponse, Sequence} from '../../models/modelInterfaces';
-import {RQuestion} from '../../models/modelClasses';
+import {IQuestion, IQuestionResponse, ISequence} from '../../models/modelInterfaces';
+import {Question} from '../../models/modelClasses';
 
 
 @Component({
@@ -18,15 +18,15 @@ export class SequenceHomeComponent implements OnInit {
   id: string;
   response: string;
   questionForm: FormGroup;
-  questions: Question[];
-  questionsToShow: Question[];
-  selectedSequence: Sequence;
-  selectedQuestion: Question;
-  newQuestion: Question;
+  questions: IQuestion[];
+  questionsToShow: IQuestion[];
+  selectedSequence: ISequence;
+  selectedQuestion: IQuestion;
+  newQuestion: IQuestion;
   newQuestionID: string;
   myUserService: UserService;
   feedback: string;
-  questionResponse: QuestionResponse;
+  questionResponse: IQuestionResponse;
 
   constructor(private route: ActivatedRoute,
               private courseSequenceQuestionService: CourseSequenceQuestionService,
@@ -73,7 +73,7 @@ export class SequenceHomeComponent implements OnInit {
   }
 
   createNewQuestion(): void {
-    this.newQuestion = new RQuestion();
+    this.newQuestion = new Question();
   }
 
   deleteQuestion(question): void {

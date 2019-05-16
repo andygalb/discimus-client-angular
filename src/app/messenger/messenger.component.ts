@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {RMessage, RSequence} from '../models/modelClasses';
+import {Message, Sequence} from '../models/modelClasses';
 import {SequenceDialogComponent} from '../dialogs/sequence-dialog/sequence-dialog.component';
 import {MessageDialogComponent} from '../dialogs/message-dialog/message-dialog.component';
 import {MatDialog} from '@angular/material';
@@ -13,7 +13,7 @@ import {UserService} from '../user.service';
 })
 export class MessengerComponent implements OnInit {
 
-  newMessage: RMessage;
+  newMessage: Message;
 
   constructor(public dialog: MatDialog, private messengerService: MessengerService, private userService: UserService) {
   }
@@ -23,12 +23,12 @@ export class MessengerComponent implements OnInit {
 
   openMessageDialog(): void {
 
-    this.newMessage = new RMessage();
+    this.newMessage = new Message();
     const dialogRef = this.dialog.open(MessageDialogComponent, {
 
       data: {
         message: this.newMessage,
-        dialogMetaData: {titleText: ' Create Message', okButtonText: 'Send'}
+        dialogMetaData: {titleText: ' Create IMessage', okButtonText: 'Send'}
       }
     });
 

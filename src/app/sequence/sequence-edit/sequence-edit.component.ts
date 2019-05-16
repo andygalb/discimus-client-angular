@@ -4,8 +4,8 @@ import {FormBuilder, Validators} from '@angular/forms';
 import {FormGroup} from '@angular/forms';
 import {CourseSequenceQuestionService} from '../../course-sequence-question.service';
 import {UserService} from '../../user.service';
-import {Question, Sequence} from '../../models/modelInterfaces';
-import {DialogMetaData, QuestionMetaData, RQuestion} from '../../models/modelClasses';
+import {IQuestion, ISequence} from '../../models/modelInterfaces';
+import {DialogMetaData, QuestionMetaData, Question} from '../../models/modelClasses';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatDialog} from '@angular/material';
 import {QuestionDialogComponent} from '../../dialogs/question-dialog/question-dialog.component';
@@ -42,16 +42,16 @@ export class SequenceEditComponent implements OnInit {
     });
   }
 
-  sequences: Sequence[];
-  questions: Question[];
-  questionsToShow: Question[];
-  selectedSequence: Sequence = null;
-  selectedQuestion: Question;
-  newQuestion: Question;
+  sequences: ISequence[];
+  questions: IQuestion[];
+  questionsToShow: IQuestion[];
+  selectedSequence: ISequence = null;
+  selectedQuestion: IQuestion;
+  newQuestion: IQuestion;
   newQuestionID: string;
   myUserService: UserService;
   displayedColumns: string[] = ['title', 'text', 'creationDate', 'edit', 'delete'];
-  dataSource: Question[];
+  dataSource: IQuestion[];
 
   ngOnInit() {
 
@@ -99,7 +99,7 @@ export class SequenceEditComponent implements OnInit {
       this.newQuestion = question;
       this.metadata = new QuestionMetaData();
 
-      const dialogMetaData = new DialogMetaData('Edit Question', 'Save', 'edit');
+      const dialogMetaData = new DialogMetaData('Edit IQuestion', 'Save', 'edit');
 
       const dialogRef = this.dialog.open(QuestionDialogComponent, {
         data: {
@@ -124,10 +124,10 @@ export class SequenceEditComponent implements OnInit {
 
   createNewQuestion(): void {
 
-    this.newQuestion = new RQuestion();
+    this.newQuestion = new Question();
     this.metadata = new QuestionMetaData();
 
-    const dialogMetaData = new DialogMetaData('Create New Question', 'Save', 'create');
+    const dialogMetaData = new DialogMetaData('Create New IQuestion', 'Save', 'create');
 
     this.newQuestion.questionAnswer = {text: '', javascript: '', csharp: ''};
 

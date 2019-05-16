@@ -9,7 +9,7 @@ import {CourseSequenceQuestionService} from '../course-sequence-question.service
 import {MockCourseSequenceQuestionService, MockDataService, MockUserService} from '../mocks/mocks';
 import {UserService} from '../user.service';
 import {DataService} from '../data.service';
-import {RNews} from '../models/modelClasses';
+import {News} from '../models/modelClasses';
 import {MockFactory} from '../mocks/mockFactory';
 
 describe('NewsComponent', () => {
@@ -25,7 +25,7 @@ describe('NewsComponent', () => {
         {provide: DataService, useClass: MockDataService},
         { provide: MatDialog, useValue: {}},
         { provide: MatDialogRef, useValue: {}},
-        { provide: MAT_DIALOG_DATA, useValue: [{ news: new RNews(), dialogMetaData: {titleText: ' Create News', okButtonText: 'Save'} }]}
+        { provide: MAT_DIALOG_DATA, useValue: [{ news: new News(), dialogMetaData: {titleText: ' Create INews', okButtonText: 'Save'} }]}
             ],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })

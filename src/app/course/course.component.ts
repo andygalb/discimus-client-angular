@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DataService} from '../data.service';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
-import {Course, Question, Sequence} from '../models/modelInterfaces';
+import {ICourse, IQuestion, ISequence} from '../models/modelInterfaces';
 import {UserService} from '../user.service';
 
 @Component({
@@ -12,9 +12,9 @@ import {UserService} from '../user.service';
 export class CourseComponent implements OnInit {
 
   id: String;
-  course: Course;
-  sequence: Sequence;
-  question: Question;
+  course: ICourse;
+  sequence: ISequence;
+  question: IQuestion;
 
   navigationSubscription;
 

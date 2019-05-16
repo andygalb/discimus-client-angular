@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Message, User} from './models/modelInterfaces';
+import {IMessage, IUser} from './models/modelInterfaces';
 import {HttpClient} from '@angular/common/http';
 import config from './config.json';
 
@@ -8,18 +8,18 @@ import config from './config.json';
 })
 export class MessengerService {
 
-  newMessages: Message[];
+  newMessages: IMessage[];
 
   constructor(private http: HttpClient) {
     this.newMessages = [];
   }
 
-  sendMessage(message: Message) {
+  sendMessage(message: IMessage) {
     return this.http.post<string>(config.serverAddress + '/api/message', message);
   }
 
   checkForNewMessages(id: String) {
-    this.http.get<Message[]>(config.serverAddress + '/api/message/user/' + id).subscribe((messages) => {
+    this.http.get<IMessage[]>(config.serverAddress + '/api/message/user/' + id).subscribe((messages) => {
         this.newMessages = messages.filter(message => message.read === false);
       }
       ,
@@ -30,11 +30,11 @@ export class MessengerService {
   }
 
   getReceivedMessages(id: String) {
-    return this.http.get<Message[]>(config.serverAddress + '/api/message/user/' + id);
+    return this.http.get<IMessage[]>(config.serverAddress + '/api/message/user/' + id);
   }
 
   getSentMessages(id: String) {
-    return this.http.get<Message[]>(config.serverAddress + '/api/message/user/from/' + id);
+    return this.http.get<IMessage[]>(config.serverAddress + '/api/message/user/from/' + id);
   }
 
   markMessageAsRead(id: String) {
@@ -42,6 +42,6 @@ export class MessengerService {
   }
 
   getSystemUsers() {
-    return this.http.get<User[]>(config.serverAddress + '/api/user/all');
+    return this.http.get<IUser[]>(config.serverAddress + '/api/user/all');
   }
 }

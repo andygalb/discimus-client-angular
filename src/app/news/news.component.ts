@@ -1,10 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {RNews} from '../models/modelClasses';
+import {News} from '../models/modelClasses';
 import {NewsDialogComponent} from '../dialogs/news-dialog/news-dialog.component';
 import {MatDialog} from '@angular/material';
 import {DataService} from '../data.service';
 import {CourseSequenceQuestionService} from '../course-sequence-question.service';
-import {News} from '../models/modelInterfaces';
+import {INews} from '../models/modelInterfaces';
 import {UserService} from '../user.service';
 import {Observable} from 'rxjs/Observable';
 
@@ -17,8 +17,8 @@ export class NewsComponent implements OnInit {
 
   @Input() id: String;
 
-  newsItem: RNews;
-  news: Observable<News[]>;
+  newsItem: News;
+  news: Observable<INews[]>;
 
   constructor(private dialog: MatDialog, public dataService: DataService,
               private courseSequenceQuestionService: CourseSequenceQuestionService, public userService: UserService) {
@@ -34,10 +34,10 @@ export class NewsComponent implements OnInit {
 
   openNewsDialog(): void {
 
-    this.newsItem = new RNews();
+    this.newsItem = new News();
 
     const dialogRef = this.dialog.open(NewsDialogComponent, {
-      data: {news: this.newsItem, dialogMetaData: {titleText: ' Create News', okButtonText: 'Save'}}
+      data: {news: this.newsItem, dialogMetaData: {titleText: ' Create INews', okButtonText: 'Save'}}
     });
 
     dialogRef.afterClosed().subscribe(result => {

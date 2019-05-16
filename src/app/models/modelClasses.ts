@@ -1,15 +1,15 @@
-import {CourseDocument, Course, Question, Result, Sequence, User, News, Message, Enrolement} from './modelInterfaces';
+import {ICourseDocument, ICourse, IQuestion, IResult, ISequence, IUser, INews, IMessage, IEnrolement} from './modelInterfaces';
 
-export class RUser implements User {
+export class User implements IUser {
   _id: String;
   local: { firstName: String; lastName: String; username: String; email: String;
   password: String; admin: Boolean; userType: String; organisation: String; location: String; meta: { age: Number; website: String } };
   facebook: { id: String; token: String; email: String; name: String };
   azure: { id: String; token: String; email: String; name: String; givenName: String; familyName: String };
-  results: Result[];
+  results: IResult[];
 }
 
-export class RCourse implements Course {
+export class Course implements ICourse {
   _id: String;
   courseTitle: String;
   courseDescription: String;
@@ -20,7 +20,7 @@ export class RCourse implements Course {
   updated_at: { type: Date; required: true };
 }
 
-export class RMessage implements Message {
+export class Message implements IMessage {
   _id: String;
   fromID: String;
   fromName: String;
@@ -36,7 +36,7 @@ export class RMessage implements Message {
   updated_at: { type: Date, required: true };
 }
 
-export class RDocument implements CourseDocument {
+export class CourseDocument implements ICourseDocument {
   _id: String;
   owner: String;
   course: String;
@@ -45,7 +45,7 @@ export class RDocument implements CourseDocument {
   updated_at: { type: Date, required: true };
 }
 
-export class RNews implements News {
+export class News implements INews {
   _id: String;
   owner: {
     id: String;
@@ -60,7 +60,7 @@ export class RNews implements News {
 }
 
 
-export class RSequence implements Sequence {
+export class Sequence implements ISequence {
   _id: string;
   sequenceTitle: string;
   sequenceDescription: string;
@@ -70,7 +70,7 @@ export class RSequence implements Sequence {
   updated_at: { type: Date; required: true };
 }
 
-export class RQuestion implements Question {
+export class Question implements IQuestion {
 
   constructor() {
     this.questionAnswer = {text: '', javascript: '', csharp: ''};
@@ -111,7 +111,7 @@ export class DialogMetaData {
   type: String;
 }
 
-export class MEnrolement implements Enrolement {
+export class Enrolement implements IEnrolement {
   _id: String;
   courseID: String;
   userID: String;

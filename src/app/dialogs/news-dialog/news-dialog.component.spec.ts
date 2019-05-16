@@ -14,7 +14,7 @@ import {
 import {AngularEditorModule} from '@kolkov/angular-editor';
 import {UserService} from '../../user.service';
 import {MockUserService} from '../../mocks/mocks';
-import {RNews} from '../../models/modelClasses';
+import {News} from '../../models/modelClasses';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {Router} from '@angular/router';
@@ -32,7 +32,7 @@ describe('NewsDialogComponent', () => {
         NewsDialogComponent,
         { provide: Router},
         { provide: MatDialogRef, useValue: {}},
-        { provide: MAT_DIALOG_DATA, useValue: {news: new RNews(), dialogMetaData: { titleText: 'Test Title Text'} } }]
+        { provide: MAT_DIALOG_DATA, useValue: {news: new News(), dialogMetaData: { titleText: 'Test Title Text'} } }]
     })
       .compileComponents();
   }));

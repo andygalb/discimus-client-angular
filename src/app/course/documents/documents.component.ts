@@ -1,6 +1,6 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {DataService} from '../../data.service';
-import {CourseDocument} from '../../models/modelInterfaces';
+import {ICourseDocument} from '../../models/modelInterfaces';
 import {MatTableDataSource} from '@angular/material';
 import {UploadService} from '../../upload/upload.service';
 import {UserService} from '../../user.service';
@@ -30,7 +30,7 @@ export class DocumentsComponent implements OnInit {
   dataSource = new MatTableDataSource();
   displayedColumns = ['selectDocument', 'originalFilename', 'creationDate'];
 
-  documents: Observable<CourseDocument[]>;
+  documents: Observable<ICourseDocument[]>;
 
   constructor(private dataService: DataService,
               public uploadService: UploadService, public userService: UserService) {

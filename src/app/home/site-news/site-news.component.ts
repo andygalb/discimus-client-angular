@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {News} from '../../models/modelInterfaces';
+import {INews} from '../../models/modelInterfaces';
 import {DataService} from '../../data.service';
 
 @Component({
@@ -9,7 +9,7 @@ import {DataService} from '../../data.service';
 })
 export class SiteNewsComponent implements OnInit {
 
-  news: News[];
+  news: INews[];
 
   constructor(private dataService: DataService) {
   }

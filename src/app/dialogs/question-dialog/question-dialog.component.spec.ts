@@ -13,7 +13,7 @@ import {
 } from '@angular/material';
 import {AngularEditorModule} from '@kolkov/angular-editor';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {RNews, RQuestion} from '../../models/modelClasses';
+import {News, Question} from '../../models/modelClasses';
 import {MockFactory} from '../../mocks/mockFactory';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 

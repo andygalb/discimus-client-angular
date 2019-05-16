@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Question} from '../../models/modelInterfaces';
+import {IQuestion} from '../../models/modelInterfaces';
 import {UserService} from '../../user.service';
 
 @Component({
@@ -9,8 +9,8 @@ import {UserService} from '../../user.service';
 })
 export class SequenceNavigatorComponent implements OnInit {
 
-  questionsToShow: Question[];
-  @Input() questions: Question[];
+  questionsToShow: IQuestion[];
+  @Input() questions: IQuestion[];
 
   constructor(private userService: UserService) {
   }

@@ -4,7 +4,7 @@ import {CourseDialogComponent} from '../../dialogs/course-dialog/course-dialog.c
 import {MatDialog} from '@angular/material';
 import {CourseSequenceQuestionService} from '../../course-sequence-question.service';
 import {DataService} from '../../data.service';
-import {Course} from '../../models/modelInterfaces';
+import {ICourse} from '../../models/modelInterfaces';
 
 @Component({
   selector: 'app-course-description',
@@ -14,7 +14,7 @@ import {Course} from '../../models/modelInterfaces';
 export class CourseDescriptionComponent implements OnInit {
 
   @Input() id: String;
-  course: Course;
+  course: ICourse;
 
   constructor(private dialog: MatDialog, public userService: UserService, private dataService: DataService,
               private courseSequenceQuestionService: CourseSequenceQuestionService) {
@@ -33,7 +33,7 @@ export class CourseDescriptionComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('Result:' + result);
+      console.log('IResult:' + result);
       if (result === 'submit') {
 
         this.updateCourse();

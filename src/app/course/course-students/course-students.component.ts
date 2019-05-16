@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {User} from '../../models/modelInterfaces';
+import {IUser} from '../../models/modelInterfaces';
 import {DataService} from '../../data.service';
 import {UserService} from '../../user.service';
 import {MatTableDataSource} from '@angular/material';
@@ -13,7 +13,7 @@ import {ActivatedRoute} from '@angular/router';
 export class CourseStudentsComponent implements OnInit {
 
   // @ts-ignore
-  users: User[];
+  users: IUser[];
   @Input() id: String;
   dataSource = new MatTableDataSource();
   displayedColumns = ['userFirstName', 'userSurname', 'userEmail', 'userType'];

@@ -3,9 +3,9 @@ import {ActivatedRoute} from '@angular/router';
 import {FormBuilder, Validators} from '@angular/forms';
 import {FormGroup} from '@angular/forms';
 import {UserService} from '../user.service';
-import {Question, Sequence} from '../models/modelInterfaces';
+import {IQuestion, ISequence} from '../models/modelInterfaces';
 import {CourseSequenceQuestionService} from '../course-sequence-question.service';
-import {RQuestion} from '../models/modelClasses';
+import {Question} from '../models/modelClasses';
 
 @Component({
   selector: 'app-sequence',
@@ -30,11 +30,11 @@ export class SequenceComponent implements OnInit {
     });
   }
 
-  questions: Question[];
-  questionsToShow: Question[];
-  selectedSequence: Sequence;
-  selectedQuestion: Question;
-  newQuestion: Question;
+  questions: IQuestion[];
+  questionsToShow: IQuestion[];
+  selectedSequence: ISequence;
+  selectedQuestion: IQuestion;
+  newQuestion: IQuestion;
   newQuestionID: string;
   myUserService: UserService;
 
@@ -45,7 +45,7 @@ export class SequenceComponent implements OnInit {
   }
 
   createNewQuestion(): void {
-    this.newQuestion = new RQuestion();
+    this.newQuestion = new Question();
   }
 
   deleteQuestion(question): void {
@@ -69,7 +69,7 @@ export class SequenceComponent implements OnInit {
     this.courseSequenceQuestionService.addQuestion(this.newQuestion).subscribe(
       data => {
         this.response = data;
-        console.log('Question added...');
+        console.log('IQuestion added...');
         console.log(data);
         this.newQuestionID = data['questionID'];
       },
@@ -84,7 +84,7 @@ export class SequenceComponent implements OnInit {
         this.courseSequenceQuestionService.updateSequence(this.selectedSequence).subscribe(
           data => {
             console.log(data);
-            console.log('Sequence updated...');
+            console.log('ISequence updated...');
             this.response = data;
           },
           err => {

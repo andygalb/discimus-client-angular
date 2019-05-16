@@ -1,4 +1,4 @@
-export interface CourseDocument {
+export interface ICourseDocument {
   _id: String;
   owner: String;
   course: String;
@@ -7,7 +7,7 @@ export interface CourseDocument {
   updated_at: { type: Date, required: true };
 }
 
-export interface Course {
+export interface ICourse {
   _id: String;
   courseTitle: String;
   courseDescription: String;
@@ -18,7 +18,7 @@ export interface Course {
   updated_at: { type: Date, required: true };
 }
 
-export interface News {
+export interface INews {
   _id: String;
   owner: {
     id: String;
@@ -31,7 +31,7 @@ export interface News {
   created_at: { type: Date, required: true };
 }
 
-export interface Message {
+export interface IMessage {
   _id: String;
   fromID: String;
   fromName: String;
@@ -47,7 +47,7 @@ export interface Message {
   updated_at: { type: Date, required: true };
 }
 
-export interface Question {
+export interface IQuestion {
   _id: string;
   title: string;
   text: string;
@@ -64,7 +64,7 @@ export interface Question {
   updated_at: { type: Date, required: true };
 }
 
-export class Result {
+export class IResult {
   _id: String;
   type: String;
   dateTime: number;
@@ -77,7 +77,7 @@ export class Result {
   questionTitle: String;
 }
 
-export interface Sequence {
+export interface ISequence {
   _id: string;
   sequenceTitle: string;
   sequenceDescription: string;
@@ -87,7 +87,7 @@ export interface Sequence {
   updated_at: { type: Date, required: true };
 }
 
-export interface User {
+export interface IUser {
   _id: String;
   local: {
     firstName: String;
@@ -120,10 +120,10 @@ export interface User {
     givenName: String;
     familyName: String;
   };
-  results: Result[];
+  results: IResult[];
 }
 
-export interface Document {
+export interface IDocument {
   _id: String;
   documentTitle: String;
   courseID: String;
@@ -133,7 +133,7 @@ export interface Document {
   uploaded_at: { type: Date, required: true };
 }
 
-export interface Enrolement {
+export interface IEnrolement {
   _id: String;
   courseID: String;
   userID: String;
@@ -142,7 +142,7 @@ export interface Enrolement {
   updated_at: { type: Date };
 }
 
-export interface QuestionResponse {
+export interface IQuestionResponse {
   expectedResults: string;
   actualResults: string;
   studentResults: string;

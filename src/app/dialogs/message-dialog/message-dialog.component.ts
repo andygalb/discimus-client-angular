@@ -1,8 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {AngularEditorConfig} from '@kolkov/angular-editor';
-import {DialogMetaData, RMessage} from '../../models/modelClasses';
-import {User} from '../../models/modelInterfaces';
+import {DialogMetaData, Message} from '../../models/modelClasses';
+import {IUser} from '../../models/modelInterfaces';
 import {MessengerService} from '../../messenger.service';
 
 @Component({
@@ -12,18 +12,18 @@ import {MessengerService} from '../../messenger.service';
 })
 export class MessageDialogComponent implements OnInit {
 
-  message: RMessage;
+  message: Message;
   dialogMetaData: DialogMetaData;
 
-  users: User[];
-  selected: User;
+  users: IUser[];
+  selected: IUser;
 
   editorConfig: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
     height: '15rem',
     minHeight: '5rem',
-    placeholder: 'Message here...',
+    placeholder: 'IMessage here...',
   };
 
   constructor(public dialogRef: MatDialogRef<MessageDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any,
@@ -54,7 +54,7 @@ export class MessageDialogComponent implements OnInit {
 
   }
 
-  onSelect(user: User) {
+  onSelect(user: IUser) {
     this.message.recipientFirstName = user.local.firstName;
     this.message.recipientLastName = user.local.lastName;
     this.message.toID = user._id;

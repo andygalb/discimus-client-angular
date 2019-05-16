@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Course} from '../../models/modelInterfaces';
+import {ICourse} from '../../models/modelInterfaces';
 import {I} from '@angular/cdk/typings/keycodes';
 import {UserService} from '../../user.service';
 

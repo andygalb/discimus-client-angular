@@ -1,9 +1,9 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {Question} from '../../models/modelInterfaces';
-import {DialogMetaData, QuestionMetaData, RQuestion} from '../../models/modelClasses';
-import {Course} from '../../models/modelInterfaces';
-import {RCourse} from '../../models/modelClasses';
+import {IQuestion} from '../../models/modelInterfaces';
+import {DialogMetaData, QuestionMetaData, Question} from '../../models/modelClasses';
+import {ICourse} from '../../models/modelInterfaces';
+import {Course} from '../../models/modelClasses';
 import {AngularEditorConfig} from '@kolkov/angular-editor';
 
 @Component({
@@ -13,7 +13,7 @@ import {AngularEditorConfig} from '@kolkov/angular-editor';
 })
 export class CourseDialogComponent implements OnInit {
 
-  course: Course;
+  course: ICourse;
   dialogMetaData: DialogMetaData;
 
   editorConfig: AngularEditorConfig = {

@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {DialogMetaData, RMessage} from '../../models/modelClasses';
+import {DialogMetaData, Message} from '../../models/modelClasses';
 
 @Component({
   selector: 'app-message-view-dialog',
@@ -9,7 +9,7 @@ import {DialogMetaData, RMessage} from '../../models/modelClasses';
 })
 export class MessageViewDialogComponent implements OnInit {
 
-  message: RMessage;
+  message: Message;
   dialogMetaData: DialogMetaData;
 
   constructor(public dialogRef: MatDialogRef<MessageViewDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
